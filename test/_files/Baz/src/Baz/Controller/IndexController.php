@@ -1,15 +1,14 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-test for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-test/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-test/blob/master/LICENSE.md New BSD License
  */
 
 namespace Baz\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
+use Laminas\Mvc\Controller\AbstractActionController;
 
 class IndexController extends AbstractActionController
 {
@@ -30,7 +29,7 @@ class IndexController extends AbstractActionController
 
     public function redirectAction()
     {
-        return $this->redirect()->toUrl('http://www.zend.com');
+        return $this->redirect()->toUrl('https://www.zend.com');
     }
 
     public function exceptionAction()

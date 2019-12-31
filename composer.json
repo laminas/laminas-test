@@ -1,38 +1,22 @@
 {
-    "name": "zendframework/zend-test",
+    "name": "laminas/laminas-test",
     "description": " ",
     "license": "BSD-3-Clause",
     "keywords": [
-        "zf2",
+        "laminas",
         "test"
     ],
-    "homepage": "https://github.com/zendframework/zend-test",
-    "autoload": {
-        "psr-4": {
-            "Zend\\Test\\": "src/"
-        }
+    "homepage": "https://laminas.dev",
+    "support": {
+        "docs": "https://docs.laminas.dev/laminas-test/",
+        "issues": "https://github.com/laminas/laminas-test/issues",
+        "source": "https://github.com/laminas/laminas-test",
+        "rss": "https://github.com/laminas/laminas-test/releases.atom",
+        "chat": "https://laminas.dev/chat",
+        "forum": "https://discourse.laminas.dev"
     },
-    "require": {
-        "php": ">=5.3.3",
-        "phpunit/PHPUnit": "3.7.*",
-        "zendframework/zend-console": "self.version",
-        "zendframework/zend-dom": "self.version",
-        "zendframework/zend-eventmanager": "self.version",
-        "zendframework/zend-http": "self.version",
-        "zendframework/zend-mvc": "self.version",
-        "zendframework/zend-servicemanager": "self.version",
-        "zendframework/zend-stdlib": "self.version",
-        "zendframework/zend-uri": "self.version",
-        "zendframework/zend-view": "self.version"
-    },
-    "require-dev": {
-        "zendframework/zend-console": "self.version",
-        "fabpot/php-cs-fixer": "1.7.*",
-        "satooshi/php-coveralls": "dev-master",
-        "phpunit/PHPUnit": "~4.0"
-    },
-    "suggest": {
-        "zendframework/zend-console": "Zend\\Console component"
+    "config": {
+        "sort-packages": true
     },
     "extra": {
         "branch-alias": {
@@ -40,9 +24,40 @@
             "dev-develop": "2.3-dev"
         }
     },
+    "require": {
+        "php": ">=5.3.3",
+        "laminas/laminas-console": "self.version",
+        "laminas/laminas-dom": "self.version",
+        "laminas/laminas-eventmanager": "self.version",
+        "laminas/laminas-http": "self.version",
+        "laminas/laminas-mvc": "self.version",
+        "laminas/laminas-servicemanager": "self.version",
+        "laminas/laminas-stdlib": "self.version",
+        "laminas/laminas-uri": "self.version",
+        "laminas/laminas-view": "self.version",
+        "laminas/laminas-zendframework-bridge": "^1.0",
+        "phpunit/phpunit": "3.7.*"
+    },
+    "require-dev": {
+        "fabpot/php-cs-fixer": "1.7.*",
+        "laminas/laminas-console": "self.version",
+        "phpunit/phpunit": "~4.0",
+        "satooshi/php-coveralls": "dev-master"
+    },
+    "suggest": {
+        "laminas/laminas-console": "Laminas\\Console component"
+    },
+    "autoload": {
+        "psr-4": {
+            "Laminas\\Test\\": "src/"
+        }
+    },
     "autoload-dev": {
         "psr-4": {
-            "ZendTest\\Test\\": "test/"
+            "LaminasTest\\Test\\": "test/"
         }
+    },
+    "replace": {
+        "zendframework/zend-test": "self.version"
     }
 }
