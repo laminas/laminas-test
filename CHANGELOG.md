@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- [#4](https://github.com/zendframework/zend-test/pull/4) PHPUnit v5 Support.
+- [zendframework/zend-test#4](https://github.com/zendframework/zend-test/pull/4) PHPUnit v5 Support.
 
 ### Deprecated
 
