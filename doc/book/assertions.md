@@ -1,7 +1,7 @@
 # Assertions
 
 Assertions are at the heart of unit testing; you use them to verify that the
-results are what you expect. To this end, `Zend\Test\PHPUnit\AbstractControllerTestCase`
+results are what you expect. To this end, `Laminas\Test\PHPUnit\AbstractControllerTestCase`
 provides a number of assertions to make testing your MVC apps and controllers
 simpler.
 
@@ -33,11 +33,11 @@ for JavaScript UIs and/or AJAX integration will be present; most JS toolkits
 provide some mechanism for manipulating DOM elements based on CSS selectors, so
 the syntax would be the same.
 
-This functionality is provided via [Zend\\Dom\\Query](https://zendframework.github.io/zend-dom/query/),
+This functionality is provided via [Laminas\\Dom\\Query](https://docs.laminas.dev/laminas-dom/query/),
 and integrated into a set of 'Query' assertions. Each of these assertions takes
 as their first argument a CSS selector, with optionally additional arguments
 and/or an error message, based on the assertion type. You can find the rules for
-writing the CSS selectors in the zend-dom [Theory of Operation](https://zendframework.github.io/zend-dom/query/#theory-of-operation)
+writing the CSS selectors in the laminas-dom [Theory of Operation](https://docs.laminas.dev/laminas-dom/query/#theory-of-operation)
 chapter. Query assertions include:
 
 - `assertQuery($path)`: assert that one or more DOM elements matching the given
@@ -82,7 +82,7 @@ XPath variants of all the Query assertions are also provided. These are:
 ## Redirect Assertions
 
 Often an action will redirect. Instead of following the redirect,
-`Zend\Test\PHPUnit\ControllerTestCase` allows you to test for redirects with a
+`Laminas\Test\PHPUnit\ControllerTestCase` allows you to test for redirects with a
 handful of assertions.
 
 - `assertRedirect()`: assert simply that a redirect has occurred.

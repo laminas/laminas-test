@@ -1,11 +1,10 @@
 docs_dir: doc/book
 site_dir: doc/html
-pages:
+nav:
     - index.md
     - Introduction: intro.md
     - "Unit testing with PHPUnit": phpunit.md
     - Assertions: assertions.md
-site_name: zend-test
-site_description: zend-test
-repo_url: 'https://github.com/zendframework/zend-test'
-copyright: 'Copyright (c) 2016 <a href="http://www.zend.com/">Zend Technologies USA Inc.</a>'
+site_name: laminas-test
+site_description: laminas-test
+repo_url: 'https://github.com/laminas/laminas-test'
