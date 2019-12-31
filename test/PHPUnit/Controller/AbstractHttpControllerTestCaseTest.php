@@ -1,22 +1,21 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-test for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-test/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-test/blob/master/LICENSE.md New BSD License
  */
-namespace ZendTest\Test\PHPUnit\Controller;
+namespace LaminasTest\Test\PHPUnit\Controller;
 
-use Zend\EventManager\StaticEventManager;
-use Zend\Mvc\MvcEvent;
-use Zend\Router\Http\RouteMatch;
-use Zend\Stdlib\Parameters;
-use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
-use Zend\View\Model\ViewModel;
+use Laminas\EventManager\StaticEventManager;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Router\Http\RouteMatch;
+use Laminas\Stdlib\Parameters;
+use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
+use Laminas\View\Model\ViewModel;
 
 /**
- * @group      Zend_Test
+ * @group      Laminas_Test
  */
 class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
 {
@@ -87,7 +86,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
     public function testAssertResponseHeaderContainsMultipleHeaderInterface()
     {
         $this->dispatch('/tests');
-        $this->assertResponseHeaderContains('WWW-Authenticate', 'Basic realm="ZF2"');
+        $this->assertResponseHeaderContains('WWW-Authenticate', 'Basic realm="Laminas"');
     }
 
     public function testAssertNotResponseHeaderContains()
@@ -102,7 +101,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
     public function testAssertNotResponseHeaderContainsMultipleHeaderInterface()
     {
         $this->dispatch('/tests');
-        $this->assertNotResponseHeaderContains('WWW-Authenticate', 'Basic realm="ZF3"');
+        $this->assertNotResponseHeaderContains('WWW-Authenticate', 'Basic realm="LaminasProject"');
     }
 
     public function testAssertResponseHeaderRegex()
@@ -120,7 +119,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
     public function testAssertResponseHeaderRegexMultipleHeaderInterface()
     {
         $this->dispatch('/tests');
-        $this->assertResponseHeaderRegex('WWW-Authenticate', '#"ZF2"$#');
+        $this->assertResponseHeaderRegex('WWW-Authenticate', '#"Laminas"$#');
     }
 
     public function testAssertNotResponseHeaderRegex()
@@ -135,7 +134,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
     public function testAssertNotResponseHeaderRegexMultipleHeaderInterface()
     {
         $this->dispatch('/tests');
-        $this->assertNotResponseHeaderRegex('WWW-Authenticate', '#"ZF3"$#');
+        $this->assertNotResponseHeaderRegex('WWW-Authenticate', '#"LaminasProject"$#');
     }
 
     public function testAssertRedirect()
@@ -145,7 +144,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
 
         $this->setExpectedException(
             'PHPUnit_Framework_ExpectationFailedException',
-            'actual redirection is "http://www.zend.com"' // check actual redirection is display
+            'actual redirection is "https://www.zend.com"' // check actual redirection is display
         );
         $this->assertNotRedirect();
     }
@@ -162,22 +161,22 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
     public function testAssertRedirectTo()
     {
         $this->dispatch('/redirect');
-        $this->assertRedirectTo('http://www.zend.com');
+        $this->assertRedirectTo('https://www.zend.com');
 
         $this->setExpectedException(
             'PHPUnit_Framework_ExpectationFailedException',
-            'actual redirection is "http://www.zend.com"' // check actual redirection is display
+            'actual redirection is "https://www.zend.com"' // check actual redirection is display
         );
-        $this->assertRedirectTo('http://www.zend.fr');
+        $this->assertRedirectTo('http://www.laminas.fr');
     }
 
     public function testAssertNotRedirectTo()
     {
         $this->dispatch('/redirect');
-        $this->assertNotRedirectTo('http://www.zend.fr');
+        $this->assertNotRedirectTo('http://www.laminas.fr');
 
         $this->setExpectedException('PHPUnit_Framework_ExpectationFailedException');
-        $this->assertNotRedirectTo('http://www.zend.com');
+        $this->assertNotRedirectTo('https://www.zend.com');
     }
 
     public function testAssertRedirectRegex()
@@ -187,15 +186,15 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
 
         $this->setExpectedException(
             'PHPUnit_Framework_ExpectationFailedException',
-            'actual redirection is "http://www.zend.com"' // check actual redirection is display
+            'actual redirection is "https://www.zend.com"' // check actual redirection is display
         );
-        $this->assertRedirectRegex('#zend\.fr$#');
+        $this->assertRedirectRegex('#laminas\.fr$#');
     }
 
     public function testAssertNotRedirectRegex()
     {
         $this->dispatch('/redirect');
-        $this->assertNotRedirectRegex('#zend\.fr#');
+        $this->assertNotRedirectRegex('#laminas\.fr#');
 
         $this->setExpectedException('PHPUnit_Framework_ExpectationFailedException');
         $this->assertNotRedirectRegex('#zend\.com$#');
@@ -630,7 +629,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
     {
         if (! class_exists(StaticEventManager::class)) {
             $this->markTestSkipped(
-                'StaticEventManager tests are unnecessary and impossible under zend-servicemanager v3'
+                'StaticEventManager tests are unnecessary and impossible under laminas-servicemanager v3'
             );
         }
 
@@ -644,7 +643,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
 
         $this->assertEquals(true, StaticEventManager::hasInstance());
         $countListeners = count(StaticEventManager::getInstance()->getListeners(
-            'Zend\Mvc\Application',
+            'Laminas\Mvc\Application',
             MvcEvent::EVENT_FINISH
         ));
         $this->assertEquals(1, $countListeners);
@@ -653,7 +652,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
 
         $this->assertEquals(false, StaticEventManager::hasInstance());
         $countListeners = StaticEventManager::getInstance()->getListeners(
-            'Zend\Mvc\Application',
+            'Laminas\Mvc\Application',
             MvcEvent::EVENT_FINISH
         );
         $this->assertEquals(false, $countListeners);
