@@ -1,25 +1,23 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- * @package   Zend_Test
+ * @see       https://github.com/laminas/laminas-test for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-test/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-test/blob/master/LICENSE.md New BSD License
  */
-namespace ZendTest\Test\PHPUnit\Controller;
+namespace LaminasTest\Test\PHPUnit\Controller;
 
-use Zend\Mvc\Application;
-use Zend\Mvc\MvcEvent;
-use Zend\Stdlib\RequestInterface;
-use Zend\Stdlib\ResponseInterface;
-use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
+use Laminas\Mvc\Application;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Stdlib\RequestInterface;
+use Laminas\Stdlib\ResponseInterface;
+use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
 /**
- * @category   Zend
- * @package    Zend_Test
+ * @category   Laminas
+ * @package    Laminas_Test
  * @subpackage UnitTests
- * @group      Zend_Test
+ * @group      Laminas_Test
  */
 class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
 {
@@ -43,7 +41,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         // cosntruct app
         $this->getApplication();
 
-        $this->setExpectedException('Zend\Stdlib\Exception\LogicException');
+        $this->setExpectedException('Laminas\Stdlib\Exception\LogicException');
         $this->setApplicationConfig(
             include __DIR__ . '/../../_files/application.config.php'
         );
@@ -58,13 +56,13 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
     public function testApplicationClass()
     {
         $applicationClass = get_class($this->getApplication());
-        $this->assertEquals($applicationClass, 'Zend\Mvc\Application');
+        $this->assertEquals($applicationClass, 'Laminas\Mvc\Application');
     }
 
     public function testApplicationServiceLocatorClass()
     {
         $smClass = get_class($this->getApplicationServiceLocator());
-        $this->assertEquals($smClass, 'Zend\ServiceManager\ServiceManager');
+        $this->assertEquals($smClass, 'Laminas\ServiceManager\ServiceManager');
     }
 
     public function testAssertApplicationRequest()

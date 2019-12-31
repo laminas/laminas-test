@@ -1,30 +1,29 @@
 <?php
-/**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- */
-namespace Zend\Test\PHPUnit\Controller;
 
-use PHPUnit_Framework_TestCase;
+/**
+ * @see       https://github.com/laminas/laminas-test for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-test/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-test/blob/master/LICENSE.md New BSD License
+ */
+namespace Laminas\Test\PHPUnit\Controller;
+
+use Laminas\EventManager\StaticEventManager;
+use Laminas\Http\Request as HttpRequest;
+use Laminas\Mvc\Application;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Mvc\SendResponseListener;
+use Laminas\Stdlib\Exception\LogicException;
+use Laminas\Stdlib\Parameters;
+use Laminas\Stdlib\ResponseInterface;
+use Laminas\Uri\Http as HttpUri;
+use Laminas\View\Helper\Placeholder;
 use PHPUnit_Framework_ExpectationFailedException;
-use Zend\EventManager\StaticEventManager;
-use Zend\Http\Request as HttpRequest;
-use Zend\Mvc\Application;
-use Zend\Mvc\MvcEvent;
-use Zend\Mvc\SendResponseListener;
-use Zend\Stdlib\Exception\LogicException;
-use Zend\Stdlib\Parameters;
-use Zend\Stdlib\ResponseInterface;
-use Zend\Uri\Http as HttpUri;
-use Zend\View\Helper\Placeholder;
+use PHPUnit_Framework_TestCase;
 
 abstract class AbstractControllerTestCase extends PHPUnit_Framework_TestCase
 {
     /**
-     * @var \Zend\Mvc\ApplicationInterface
+     * @var \Laminas\Mvc\ApplicationInterface
      */
     private $application;
 
@@ -125,7 +124,7 @@ abstract class AbstractControllerTestCase extends PHPUnit_Framework_TestCase
 
     /**
      * Get the application object
-     * @return \Zend\Mvc\ApplicationInterface
+     * @return \Laminas\Mvc\ApplicationInterface
      */
     public function getApplication()
     {
@@ -137,7 +136,7 @@ abstract class AbstractControllerTestCase extends PHPUnit_Framework_TestCase
             $consoleServiceConfig = array(
                 'service_manager' => array(
                     'factories' => array(
-                        'ServiceListener' => 'Zend\Test\PHPUnit\Mvc\Service\ServiceListenerFactory',
+                        'ServiceListener' => 'Laminas\Test\PHPUnit\Mvc\Service\ServiceListenerFactory',
                     ),
                 ),
             );
@@ -157,7 +156,7 @@ abstract class AbstractControllerTestCase extends PHPUnit_Framework_TestCase
 
     /**
      * Get the service manager of the application object
-     * @return \Zend\ServiceManager\ServiceManager
+     * @return \Laminas\ServiceManager\ServiceManager
      */
     public function getApplicationServiceLocator()
     {
@@ -166,7 +165,7 @@ abstract class AbstractControllerTestCase extends PHPUnit_Framework_TestCase
 
     /**
      * Get the application request object
-     * @return \Zend\Stdlib\RequestInterface
+     * @return \Laminas\Stdlib\RequestInterface
      */
     public function getRequest()
     {
@@ -273,7 +272,7 @@ abstract class AbstractControllerTestCase extends PHPUnit_Framework_TestCase
      * Trigger an application event
      *
      * @param  string $eventName
-     * @return \Zend\EventManager\ResponseCollection
+     * @return \Laminas\EventManager\ResponseCollection
      */
     public function triggerApplicationEvent($eventName)
     {
