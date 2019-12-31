@@ -1,6 +1,6 @@
 # Unit testing with PHPUnit
 
-`Zend\Test\PHPUnit` provides an abstract `TestCase` for zend-mvc applications
+`Laminas\Test\PHPUnit` provides an abstract `TestCase` for laminas-mvc applications
 that contains assertions for testing against a variety of responsibilities.
 Probably the easiest way to understand what it can do is to see an example.
 
@@ -11,7 +11,7 @@ names:
 ```php
 namespace ApplicationTest\Controller;
 
-use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
+use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
 class IndexControllerTest extends AbstractHttpControllerTestCase
 {
@@ -46,7 +46,7 @@ As noted in the previous example, all MVC test cases should extend
 `AbstractHttpControllerTestCase`.  This class in turn extends
 `PHPUnit_Framework_TestCase`, and gives you all the structure and assertions
 you'd expect from PHPUnit, as well as some scaffolding and assertions specific
-to zend-mvc.
+to laminas-mvc.
 
 In order to test your MVC application, you will need to setup the application
 configuration. Use the `setApplicationConfig()` method to do this:
@@ -68,7 +68,7 @@ execution:
 ```php
 namespace ApplicationTest\Controller;
 
-use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
+use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
 class IndexControllerTest extends AbstractHttpControllerTestCase
 {
