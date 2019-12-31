@@ -1,20 +1,19 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-test for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-test/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-test/blob/master/LICENSE.md New BSD License
  */
-namespace ZendTest\Test\PHPUnit\Controller;
+namespace LaminasTest\Test\PHPUnit\Controller;
 
+use Laminas\Router\RouteMatch;
+use Laminas\Test\PHPUnit\Controller\AbstractConsoleControllerTestCase;
+use LaminasTest\Test\ExpectedExceptionTrait;
 use PHPUnit\Framework\ExpectationFailedException;
-use Zend\Router\RouteMatch;
-use Zend\Test\PHPUnit\Controller\AbstractConsoleControllerTestCase;
-use ZendTest\Test\ExpectedExceptionTrait;
 
 /**
- * @group      Zend_Test
+ * @group      Laminas_Test
  */
 class AbstractConsoleControllerTestCaseTest extends AbstractConsoleControllerTestCase
 {
@@ -112,7 +111,7 @@ class AbstractConsoleControllerTestCaseTest extends AbstractConsoleControllerTes
     public function testAssertMatchedArgumentsWithMandatoryValue()
     {
         $this->dispatch("foo --bar='FOO' --baz='ARE'");
-        /** @var \Zend\Mvc\Router\Console\RouteMatch $routeMatch */
+        /** @var \Laminas\Mvc\Router\Console\RouteMatch $routeMatch */
         $routeMatch = $this->getApplication()->getMvcEvent()->getRouteMatch();
         $this->assertNotNull($routeMatch);
         $this->assertEquals('arguments-mandatory', $routeMatch->getMatchedRouteName());
@@ -120,7 +119,7 @@ class AbstractConsoleControllerTestCaseTest extends AbstractConsoleControllerTes
         $this->reset();
 
         $this->dispatch('foo --bar="FOO" --baz="ARE"');
-        /** @var \Zend\Mvc\Router\Console\RouteMatch $routeMatch */
+        /** @var \Laminas\Mvc\Router\Console\RouteMatch $routeMatch */
         $routeMatch = $this->getApplication()->getMvcEvent()->getRouteMatch();
         $this->assertNotNull($routeMatch);
         $this->assertEquals('arguments-mandatory', $routeMatch->getMatchedRouteName());
