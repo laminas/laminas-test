@@ -1,10 +1,9 @@
 <?php
+
 /**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminas/laminas-test for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-test/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-test/blob/master/LICENSE.md New BSD License
  */
 
 namespace Bar;
@@ -19,7 +18,7 @@ class Module
     public function getAutoloaderConfig()
     {
         return [
-            'Zend\Loader\StandardAutoloader' => [
+            'Laminas\Loader\StandardAutoloader' => [
                 'namespaces' => [
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
                 ],
@@ -30,6 +29,9 @@ class Module
     public function getServiceConfig()
     {
         return [
+            // Legacy Zend Framework aliases
+            'aliases' => [
+            ],
             'factories' => [
                 'BarObject' => function ($sm) {
                     $foo      = $sm->get('FooObject');

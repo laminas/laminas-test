@@ -1,62 +1,19 @@
 {
-    "name": "zendframework/zend-test",
-    "description": "Tools to facilitate unit testing of zend-mvc applications",
+    "name": "laminas/laminas-test",
+    "description": "Tools to facilitate unit testing of laminas-mvc applications",
     "license": "BSD-3-Clause",
     "keywords": [
-        "zendframework",
-        "zf",
+        "laminas",
         "test"
     ],
+    "homepage": "https://laminas.dev",
     "support": {
-        "docs": "https://docs.zendframework.com/zend-test/",
-        "issues": "https://github.com/zendframework/zend-test/issues",
-        "source": "https://github.com/zendframework/zend-test",
-        "rss": "https://github.com/zendframework/zend-test/releases.atom",
-        "slack": "https://zendframework-slack.herokuapp.com",
-        "forum": "https://discourse.zendframework.com/c/questions/components"
-    },
-    "require": {
-        "php": "^5.6 || ^7.0",
-        "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0 || ^7.0",
-        "sebastian/version": "^1.0.4 || ^2.0",
-        "zendframework/zend-console": "^2.6",
-        "zendframework/zend-dom": "^2.6",
-        "zendframework/zend-eventmanager": "^2.6.2 || ^3.0",
-        "zendframework/zend-http": "^2.5.4",
-        "zendframework/zend-mvc": "^3.0",
-        "zendframework/zend-servicemanager": "^2.7.5 || ^3.0.3",
-        "zendframework/zend-stdlib": "^2.7 || ^3.0",
-        "zendframework/zend-uri": "^2.5",
-        "zendframework/zend-view": "^2.6.3"
-    },
-    "require-dev": {
-        "mikey179/vfsStream": "~1.2",
-        "symfony/finder": "^2.2",
-        "zendframework/zend-coding-standard": "~1.0.0",
-        "zendframework/zend-i18n": "^2.6",
-        "zendframework/zend-log": "^2.7.1",
-        "zendframework/zend-modulemanager": "^2.7.1",
-        "zendframework/zend-mvc-console": "^1.1.8",
-        "zendframework/zend-mvc-plugin-flashmessenger": "^0.1.0",
-        "zendframework/zend-serializer": "^2.6.1",
-        "zendframework/zend-session": "^2.8.5",
-        "zendframework/zend-validator": "^2.8"
-    },
-    "suggest": {
-        "zendframework/zend-mvc-console": "^1.1.8, to test MVC <-> console integration"
-    },
-    "autoload": {
-        "files": [
-            "autoload/phpunit-class-aliases.php"
-        ],
-        "psr-4": {
-            "Zend\\Test\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "ZendTest\\Test\\": "test/"
-        }
+        "docs": "https://docs.laminas.dev/laminas-test/",
+        "issues": "https://github.com/laminas/laminas-test/issues",
+        "source": "https://github.com/laminas/laminas-test",
+        "rss": "https://github.com/laminas/laminas-test/releases.atom",
+        "chat": "https://laminas.dev/chat",
+        "forum": "https://discourse.laminas.dev"
     },
     "config": {
         "sort-packages": true
@@ -65,6 +22,50 @@
         "branch-alias": {
             "dev-master": "3.1.x-dev",
             "dev-develop": "3.2.x-dev"
+        }
+    },
+    "require": {
+        "php": "^5.6 || ^7.0",
+        "laminas/laminas-console": "^2.6",
+        "laminas/laminas-dom": "^2.6",
+        "laminas/laminas-eventmanager": "^2.6.2 || ^3.0",
+        "laminas/laminas-http": "^2.5.4",
+        "laminas/laminas-mvc": "^3.0",
+        "laminas/laminas-servicemanager": "^2.7.5 || ^3.0.3",
+        "laminas/laminas-stdlib": "^2.7 || ^3.0",
+        "laminas/laminas-uri": "^2.5",
+        "laminas/laminas-view": "^2.6.3",
+        "laminas/laminas-zendframework-bridge": "^1.0",
+        "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0 || ^7.0",
+        "sebastian/version": "^1.0.4 || ^2.0"
+    },
+    "require-dev": {
+        "laminas/laminas-coding-standard": "~1.0.0",
+        "laminas/laminas-i18n": "^2.6",
+        "laminas/laminas-log": "^2.7.1",
+        "laminas/laminas-modulemanager": "^2.7.1",
+        "laminas/laminas-mvc-console": "^1.1.8",
+        "laminas/laminas-mvc-plugin-flashmessenger": "^0.1.0",
+        "laminas/laminas-serializer": "^2.6.1",
+        "laminas/laminas-session": "^2.8.5",
+        "laminas/laminas-validator": "^2.8",
+        "mikey179/vfsstream": "~1.2",
+        "symfony/finder": "^2.2"
+    },
+    "suggest": {
+        "laminas/laminas-mvc-console": "^1.1.8, to test MVC <-> console integration"
+    },
+    "autoload": {
+        "files": [
+            "autoload/phpunit-class-aliases.php"
+        ],
+        "psr-4": {
+            "Laminas\\Test\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "LaminasTest\\Test\\": "test/"
         }
     },
     "scripts": {
@@ -76,5 +77,8 @@
         "cs-fix": "phpcbf",
         "test": "phpunit --colors",
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
+    },
+    "replace": {
+        "zendframework/zend-test": "self.version"
     }
 }
