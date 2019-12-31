@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- [#75](https://github.com/zendframework/zend-test/pull/75) adds support for PHP 7.3.
+- [zendframework/zend-test#75](https://github.com/zendframework/zend-test/pull/75) adds support for PHP 7.3.
 
 ### Changed
 
@@ -22,9 +22,9 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#74](https://github.com/zendframework/zend-test/pull/74) reverts changes introduced in version 3.2.1 to how superglobals are reset
+- [zendframework/zend-test#74](https://github.com/zendframework/zend-test/pull/74) reverts changes introduced in version 3.2.1 to how superglobals are reset
   between tests, primarily by fixing the root problem -- base URL detection --
-  by requiring a zend-http version that fixes that detection.
+  by requiring a laminas-http version that fixes that detection.
 
 ## 3.2.1 - 2018-12-10
 
@@ -46,18 +46,18 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#70](https://github.com/zendframework/zend-test/pull/70) fixes a memory leak in controller test cases.
+- [zendframework/zend-test#70](https://github.com/zendframework/zend-test/pull/70) fixes a memory leak in controller test cases.
 
-- [#66](https://github.com/zendframework/zend-test/pull/66) Fixes globals not
+- [zendframework/zend-test#66](https://github.com/zendframework/zend-test/pull/66) Fixes globals not
   cleared for controller tests
 
 ## 3.2.0 - 2018-04-07
 
 ### Added
 
-- [#60](https://github.com/zendframework/zend-test/pull/60) Added support for
+- [zendframework/zend-test#60](https://github.com/zendframework/zend-test/pull/60) Added support for
   PHPUnit 7
-- [#65](https://github.com/zendframework/zend-test/pull/65) Added support for
+- [zendframework/zend-test#65](https://github.com/zendframework/zend-test/pull/65) Added support for
   query parameters in DELETE request in AbstractControllerTestCase
 
 ### Deprecated
@@ -70,7 +70,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#63](https://github.com/zendframework/zend-test/pull/63) Fixed compatibility
+- [zendframework/zend-test#63](https://github.com/zendframework/zend-test/pull/63) Fixed compatibility
   with PHP 7.2
 
 ## 3.1.1 - 2017-10-29
@@ -89,18 +89,18 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#55](https://github.com/zendframework/zend-test/pull/55) Fixes compatibility
+- [zendframework/zend-test#55](https://github.com/zendframework/zend-test/pull/55) Fixes compatibility
   with PHPUnit 5.7.23 where empty expected exception message no longer means
   message is not checked.
-- [#49](https://github.com/zendframework/zend-test/pull/49) Fixes missing alias
+- [zendframework/zend-test#49](https://github.com/zendframework/zend-test/pull/49) Fixes missing alias
   for compatibility with PHPUnit <6.0
 
 ## 3.1.0 - 2017-05-01
 
 ### Added
 
-- [#40](https://github.com/zendframework/zend-test/pull/40) and
-  [#48](https://github.com/zendframework/zend-test/pull/48) add support for
+- [zendframework/zend-test#40](https://github.com/zendframework/zend-test/pull/40) and
+  [zendframework/zend-test#48](https://github.com/zendframework/zend-test/pull/48) add support for
   the PHPUnit 6 series, while retaining support for PHPUnit 4 and 5.
 
 ### Deprecated
@@ -131,14 +131,14 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#33](https://github.com/zendframework/zend-test/pull/33) fixes
+- [zendframework/zend-test#33](https://github.com/zendframework/zend-test/pull/33) fixes
   `queryContentRegexAssertion()` (used by `assertQueryContentRegex()` and
   `assertXpathQueryContentRegex()`) properly checks all matching nodes for
   content matching the regular expression, instead of only the first. The
   prevents false negative assertions from occuring.
-- [#21](https://github.com/zendframework/zend-test/pull/21) updates the
+- [zendframework/zend-test#21](https://github.com/zendframework/zend-test/pull/21) updates the
   `sebastian/version` dependency to also allow v2.0 releases.
-- [#31](https://github.com/zendframework/zend-test/pull/31) fixes an issue with
+- [zendframework/zend-test#31](https://github.com/zendframework/zend-test/pull/31) fixes an issue with
   the `AbstractControllerTestCase` when used to test a console request.
   Previously, routes with multiple literal flags were never matched; they now
   are.
@@ -159,8 +159,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#26](https://github.com/zendframework/zend-test/pull/26) fixes how
-  `$traceErrors` works under PHP 7 and PHPUnit 5. Any zend-test-specific
+- [zendframework/zend-test#26](https://github.com/zendframework/zend-test/pull/26) fixes how
+  `$traceErrors` works under PHP 7 and PHPUnit 5. Any laminas-test-specific
   assertion failures now append a list of all exception messages to the base
   message when the flag is enabled.
 
@@ -168,7 +168,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- This release adds support for zend-mvc v3.
+- This release adds support for laminas-mvc v3.
 
 ### Deprecated
 
@@ -177,7 +177,7 @@ All notable changes to this project will be documented in this file, in reverse 
 ### Removed
 
 - This release removes support for PHP versions `< 5.6`.
-- This release removes support for zend-mvc v2.
+- This release removes support for laminas-mvc v2.
 
 ### Fixed
 
@@ -187,8 +187,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- [#22](https://github.com/zendframework/zend-test/pull/22) adds and publishes
-  the documentation to https://zendframework.github.io/zend-test/
+- [zendframework/zend-test#22](https://github.com/zendframework/zend-test/pull/22) adds and publishes
+  the documentation to https://docs.laminas.dev/laminas-test/
 
 ### Deprecated
 
@@ -218,7 +218,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#20](https://github.com/zendframework/zend-test/pull/20) updates the zend-mvc
+- [zendframework/zend-test#20](https://github.com/zendframework/zend-test/pull/20) updates the laminas-mvc
   requirement to 2.7.1, ensuring deprecation notices will not occur in the
   majority of circumstances.
 
@@ -238,12 +238,12 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#19](https://github.com/zendframework/zend-test/pull/19) updates the
+- [zendframework/zend-test#19](https://github.com/zendframework/zend-test/pull/19) updates the
   code to be forwards compatible with:
-  - zend-eventmanager v3
-  - zend-servicemanager v3
-  - zend-stdlib v3
-  - zend-mvc v2.7
+  - laminas-eventmanager v3
+  - laminas-servicemanager v3
+  - laminas-stdlib v3
+  - laminas-mvc v2.7
 
 ## 2.5.3 - 2016-03-01
 
@@ -261,10 +261,10 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#6](https://github.com/zendframework/zend-test/pull/6) updates the
+- [zendframework/zend-test#6](https://github.com/zendframework/zend-test/pull/6) updates the
   `AbstractControllerTestCase` to mark a test as failed if no route match occurs
   in a number of assertions that require a route match.
-- [#7](https://github.com/zendframework/zend-test/pull/7) modifies the `reset()`
+- [zendframework/zend-test#7](https://github.com/zendframework/zend-test/pull/7) modifies the `reset()`
   method of the `AbstractControllerTestCase` to prevent rewriting the
   `$_SESSION` superglobal if it has not previously been enabled.
 
@@ -272,7 +272,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- [#4](https://github.com/zendframework/zend-test/pull/4) PHPUnit v5 Support.
+- [zendframework/zend-test#4](https://github.com/zendframework/zend-test/pull/4) PHPUnit v5 Support.
 
 ### Deprecated
 

@@ -1,12 +1,13 @@
 <?php
-/**
- * @see       https://github.com/zendframework/zend-test for the canonical source repository
- * @copyright Copyright (c) 2018 Zend Technologies USA Inc. (https://www.zend.com)
- * @license   https://github.com/zendframework/zend-test/blob/master/LICENSE.md New BSD License
- */
-namespace ZendTest\Test\PHPUnit\Controller;
 
-use Zend\Test\PHPUnit\Controller\AbstractControllerTestCase;
+/**
+ * @see       https://github.com/laminas/laminas-test for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-test/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-test/blob/master/LICENSE.md New BSD License
+ */
+namespace LaminasTest\Test\PHPUnit\Controller;
+
+use Laminas\Test\PHPUnit\Controller\AbstractControllerTestCase;
 
 class MemoryLeakTest extends AbstractControllerTestCase
 {
