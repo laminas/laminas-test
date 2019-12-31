@@ -1,11 +1,12 @@
 <?php
+
 /**
- * @see       https://github.com/zendframework/zend-test for the canonical source repository
- * @copyright Copyright (c) 2018 Zend Technologies USA Inc. (https://www.zend.com)
- * @license   https://github.com/zendframework/zend-test/blob/master/LICENSE.md New BSD License
+ * @see       https://github.com/laminas/laminas-test for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-test/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-test/blob/master/LICENSE.md New BSD License
  */
 
-$cacheDir = sys_get_temp_dir() . '/zf2-module-test';
+$cacheDir = sys_get_temp_dir() . '/laminas-module-test';
 
 if (! is_dir($cacheDir)) {
     mkdir($cacheDir);
@@ -13,10 +14,10 @@ if (! is_dir($cacheDir)) {
 
 return [
     'modules' => [
-        'Zend\Router',
-        'Zend\Validator',
-        'Zend\Mvc\Console',
-        'Zend\Mvc\Plugin\FlashMessenger',
+        'Laminas\Router',
+        'Laminas\Validator',
+        'Laminas\Mvc\Console',
+        'Laminas\Mvc\Plugin\FlashMessenger',
         'Baz',
     ],
     'module_listener_options' => [
