@@ -1,29 +1,28 @@
 <?php
-/**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- */
-namespace Zend\Test\PHPUnit\Controller;
 
+/**
+ * @see       https://github.com/laminas/laminas-test for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-test/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-test/blob/master/LICENSE.md New BSD License
+ */
+namespace Laminas\Test\PHPUnit\Controller;
+
+use Laminas\Console\Console;
+use Laminas\EventManager\StaticEventManager;
+use Laminas\Http\Request as HttpRequest;
+use Laminas\Mvc\Application;
+use Laminas\Mvc\MvcEvent;
+use Laminas\Stdlib\Exception\LogicException;
+use Laminas\Stdlib\Parameters;
+use Laminas\Stdlib\ResponseInterface;
+use Laminas\Uri\Http as HttpUri;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
-use Zend\Console\Console;
-use Zend\EventManager\StaticEventManager;
-use Zend\Http\Request as HttpRequest;
-use Zend\Mvc\Application;
-use Zend\Mvc\MvcEvent;
-use Zend\Stdlib\Exception\LogicException;
-use Zend\Stdlib\Parameters;
-use Zend\Stdlib\ResponseInterface;
-use Zend\Uri\Http as HttpUri;
 
 abstract class AbstractControllerTestCase extends TestCase
 {
     /**
-     * @var \Zend\Mvc\ApplicationInterface
+     * @var \Laminas\Mvc\ApplicationInterface
      */
     protected $application;
 
@@ -176,7 +175,7 @@ abstract class AbstractControllerTestCase extends TestCase
 
     /**
      * Get the application object
-     * @return \Zend\Mvc\ApplicationInterface
+     * @return \Laminas\Mvc\ApplicationInterface
      */
     public function getApplication()
     {
@@ -195,7 +194,7 @@ abstract class AbstractControllerTestCase extends TestCase
 
     /**
      * Get the service manager of the application object
-     * @return \Zend\ServiceManager\ServiceManager
+     * @return \Laminas\ServiceManager\ServiceManager
      */
     public function getApplicationServiceLocator()
     {
@@ -204,7 +203,7 @@ abstract class AbstractControllerTestCase extends TestCase
 
     /**
      * Get the application request object
-     * @return \Zend\Stdlib\RequestInterface
+     * @return \Laminas\Stdlib\RequestInterface
      */
     public function getRequest()
     {
@@ -346,7 +345,7 @@ abstract class AbstractControllerTestCase extends TestCase
      * Trigger an application event
      *
      * @param  string                                $eventName
-     * @return \Zend\EventManager\ResponseCollection
+     * @return \Laminas\EventManager\ResponseCollection
      */
     public function triggerApplicationEvent($eventName)
     {
@@ -781,7 +780,7 @@ abstract class AbstractControllerTestCase extends TestCase
     /**
      * Recursively search a view model and it's children for the given templateName
      *
-     * @param  \Zend\View\Model\ModelInterface $viewModel
+     * @param  \Laminas\View\Model\ModelInterface $viewModel
      * @param  string    $templateName
      * @return boolean
      */

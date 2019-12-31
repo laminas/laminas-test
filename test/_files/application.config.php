@@ -1,15 +1,15 @@
 <?php
-$cacheDir = sys_get_temp_dir() . '/zf2-module-test';
+$cacheDir = sys_get_temp_dir() . '/laminas-module-test';
 if (! is_dir($cacheDir)) {
     mkdir($cacheDir);
 }
 
 return [
     'modules' => [
-        'Zend\Router',
-        'Zend\Validator',
-        'Zend\Mvc\Console',
-        'Zend\Mvc\Plugin\FlashMessenger',
+        'Laminas\Router',
+        'Laminas\Validator',
+        'Laminas\Mvc\Console',
+        'Laminas\Mvc\Plugin\FlashMessenger',
         'Baz',
     ],
     'module_listener_options' => [

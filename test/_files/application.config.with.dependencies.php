@@ -1,8 +1,8 @@
 <?php
 return [
     'modules' => [
-        'Zend\Router',
-        'Zend\Validator',
+        'Laminas\Router',
+        'Laminas\Validator',
         'Baz',
         'Foo',
         'Bar',
