@@ -1,6 +1,6 @@
 # Unit testing with PHPUnit
 
-`Zend\Test\PHPUnit` provides a TestCase for MVC applications that contains assertions for testing
+`Laminas\Test\PHPUnit` provides a TestCase for MVC applications that contains assertions for testing
 against a variety of responsibilities. Probably the easiest way to understand what it can do is to
 see an example.
 
@@ -12,7 +12,7 @@ controller and action name :
 
 namespace ApplicationTest\Controller;
 
-use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
+use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
 class IndexControllerTest extends AbstractHttpControllerTestCase
 {
@@ -44,7 +44,7 @@ modules dependencies or your current application config.
 
 As noted in the previous example, all MVC test cases should extend AbstractHttpControllerTestCase.
 This class in turn extends `PHPUnit_Framework_TestCase`, and gives you all the structure and
-assertions you'd expect from PHPUnit -- as well as some scaffolding and assertions specific to Zend
+assertions you'd expect from PHPUnit -- as well as some scaffolding and assertions specific to Laminas
 Framework's MVC implementation.
 
 In order to test your MVC application, you will need to setup the application config. Use simply the
@@ -68,7 +68,7 @@ flag `traceError` to throw MVC exception during the tests writing :
 
 namespace ApplicationTest\Controller;
 
-use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
+use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
 class IndexControllerTest extends AbstractHttpControllerTestCase
 {
@@ -126,7 +126,7 @@ Now that the request is made, it's time to start making assertions against it.
 ### Assertions
 
 Assertions are at the heart of Unit Testing; you use them to verify that the results are what you
-expect. To this end, `Zend\Test\PHPUnit\AbstractControllerTestCase` provides a number of assertions
+expect. To this end, `Laminas\Test\PHPUnit\AbstractControllerTestCase` provides a number of assertions
 to make testing your MVC apps and controllers simpler.
 
 **Request Assertions**
@@ -154,11 +154,11 @@ They also make it trivial to ensure that items necessary for Javascript UIs and/
 will be present; most JS toolkits provide some mechanism for pulling DOM elements based on CSS
 selectors, so the syntax would be the same.
 
-This functionality is provided via `Zend\Dom\Query`, and integrated into a set of 'Query'
+This functionality is provided via `Laminas\Dom\Query`, and integrated into a set of 'Query'
 assertions. Each of these assertions takes as their first argument a CSS selector, with optionally
 additional arguments and/or an error message, based on the assertion type. You can find the rules
-for writing the CSS selectors in the `Zend\Dom\Query` \[Theory of
-Operation\](zend.dom.query.operation) chapter. Query assertions include:
+for writing the CSS selectors in the `Laminas\Dom\Query` \[Theory of
+Operation\](laminas.dom.query.operation) chapter. Query assertions include:
 
 - `assertQuery($path)`: assert that one or more DOM elements matching the given CSS selector are
 present.
@@ -198,7 +198,7 @@ the Query assertions are also provided. These are:
 **Redirect Assertions**
 
 Often an action will redirect. Instead of following the redirect,
-`Zend\Test\PHPUnit\ControllerTestCase` allows you to test for redirects with a handful of
+`Laminas\Test\PHPUnit\ControllerTestCase` allows you to test for redirects with a handful of
 assertions.
 
 - `assertRedirect()`: assert simply that a redirect has occurred.

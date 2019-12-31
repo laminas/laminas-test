@@ -1,8 +1,8 @@
 {
-    "title": "Zend\\Test",
+    "title": "Laminas\\Test",
     "target": "html/",
     "content": [
-        "book/zend.test.introduction.md",
-        "book/zend.test.phpunit.md"
+        "book/laminas.test.introduction.md",
+        "book/laminas.test.phpunit.md"
     ]
 }
