@@ -1,15 +1,14 @@
 <?php
-/**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- */
-namespace Zend\Test\PHPUnit\Controller;
 
+/**
+ * @see       https://github.com/laminas/laminas-test for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-test/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-test/blob/master/LICENSE.md New BSD License
+ */
+namespace Laminas\Test\PHPUnit\Controller;
+
+use Laminas\Dom\Document;
 use PHPUnit_Framework_ExpectationFailedException;
-use Zend\Dom\Document;
 
 abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
 {
@@ -29,7 +28,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
      * Get response header by key
      *
      * @param  string $header
-     * @return \Zend\Http\Header\HeaderInterface|false
+     * @return \Laminas\Http\Header\HeaderInterface|false
      */
     protected function getResponseHeader($header)
     {
