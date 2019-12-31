@@ -1,14 +1,13 @@
 <?php
-/**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- */
-namespace Zend\Test\PHPUnit\Mvc\Service;
 
-use Zend\Mvc\Service\ServiceListenerFactory as BaseServiceListenerFactory;
+/**
+ * @see       https://github.com/laminas/laminas-test for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-test/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-test/blob/master/LICENSE.md New BSD License
+ */
+namespace Laminas\Test\PHPUnit\Mvc\Service;
+
+use Laminas\Mvc\Service\ServiceListenerFactory as BaseServiceListenerFactory;
 
 class ServiceListenerFactory extends BaseServiceListenerFactory
 {
@@ -22,14 +21,14 @@ class ServiceListenerFactory extends BaseServiceListenerFactory
             $this->defaultServiceConfig,
             array('factories' => array(
                 'Request' => function($sm) {
-                    return new \Zend\Http\PhpEnvironment\Request();
+                    return new \Laminas\Http\PhpEnvironment\Request();
                 },
                 'Response' => function($sm) {
-                    return new \Zend\Http\PhpEnvironment\Response();
+                    return new \Laminas\Http\PhpEnvironment\Response();
                 },
-                'Router' => 'Zend\Test\PHPUnit\Mvc\Service\RouterFactory',
+                'Router' => 'Laminas\Test\PHPUnit\Mvc\Service\RouterFactory',
                 'ViewManager' => function($sm) {
-                    return new \Zend\Mvc\View\Http\ViewManager();
+                    return new \Laminas\Mvc\View\Http\ViewManager();
                 },
             ))
         );
