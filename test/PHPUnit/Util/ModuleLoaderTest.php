@@ -1,21 +1,20 @@
 <?php
-/**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- */
-namespace ZendTest\Test\PHPUnit\Util;
 
+/**
+ * @see       https://github.com/laminas/laminas-test for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-test/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-test/blob/master/LICENSE.md New BSD License
+ */
+namespace LaminasTest\Test\PHPUnit\Util;
+
+use Laminas\Test\Util\ModuleLoader;
 use PHPUnit_Framework_TestCase;
-use Zend\Test\Util\ModuleLoader;
 
 class ModuleLoaderTest extends PHPUnit_Framework_TestCase
 {
     public function tearDownCacheDir()
     {
-        $cacheDir = sys_get_temp_dir() . '/zf2-module-test';
+        $cacheDir = sys_get_temp_dir() . '/laminas-module-test';
         if (is_dir($cacheDir)) {
             static::rmdir($cacheDir);
         }
@@ -51,7 +50,7 @@ class ModuleLoaderTest extends PHPUnit_Framework_TestCase
 
     public function testCanNotLoadModule()
     {
-        $this->setExpectedException('Zend\ModuleManager\Exception\RuntimeException', 'could not be initialized');
+        $this->setExpectedException('Laminas\ModuleManager\Exception\RuntimeException', 'could not be initialized');
         $loader = new ModuleLoader(array('FooBaz'));
     }
 
@@ -98,15 +97,15 @@ class ModuleLoaderTest extends PHPUnit_Framework_TestCase
         $loader = new ModuleLoader(array('Baz' => __DIR__ . '/../../_files/Baz'));
 
         $this->assertInstanceOf(
-            'Zend\ServiceManager\ServiceLocatorInterface',
+            'Laminas\ServiceManager\ServiceLocatorInterface',
             $loader->getServiceManager()
         );
         $this->assertInstanceOf(
-            'Zend\ModuleManager\ModuleManager',
+            'Laminas\ModuleManager\ModuleManager',
             $loader->getModuleManager()
         );
         $this->assertInstanceOf(
-            'Zend\Mvc\ApplicationInterface',
+            'Laminas\Mvc\ApplicationInterface',
             $loader->getApplication()
         );
     }

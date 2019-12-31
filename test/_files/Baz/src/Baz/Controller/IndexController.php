@@ -2,7 +2,7 @@
 
 namespace Baz\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
+use Laminas\Mvc\Controller\AbstractActionController;
 
 class IndexController extends AbstractActionController
 {
@@ -23,7 +23,7 @@ class IndexController extends AbstractActionController
 
     public function redirectAction()
     {
-        return $this->redirect()->toUrl('http://www.zend.com');
+        return $this->redirect()->toUrl('https://www.zend.com');
     }
 
     public function exceptionAction()
