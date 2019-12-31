@@ -1,18 +1,17 @@
 <?php
-/**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- */
-namespace ZendTest\Test\PHPUnit\Util;
 
+/**
+ * @see       https://github.com/laminas/laminas-test for the canonical source repository
+ * @copyright https://github.com/laminas/laminas-test/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminas/laminas-test/blob/master/LICENSE.md New BSD License
+ */
+namespace LaminasTest\Test\PHPUnit\Util;
+
+use Laminas\ModuleManager\Exception\RuntimeException;
+use Laminas\Test\PHPUnit\TestCaseTrait;
+use Laminas\Test\Util\ModuleLoader;
+use LaminasTest\Test\ExpectedExceptionTrait;
 use PHPUnit\Framework\TestCase;
-use Zend\ModuleManager\Exception\RuntimeException;
-use Zend\Test\PHPUnit\TestCaseTrait;
-use Zend\Test\Util\ModuleLoader;
-use ZendTest\Test\ExpectedExceptionTrait;
 
 class ModuleLoaderTest extends TestCase
 {
@@ -21,7 +20,7 @@ class ModuleLoaderTest extends TestCase
 
     public function tearDownCacheDir()
     {
-        $cacheDir = sys_get_temp_dir() . '/zf2-module-test';
+        $cacheDir = sys_get_temp_dir() . '/laminas-module-test';
         if (is_dir($cacheDir)) {
             static::rmdir($cacheDir);
         }
@@ -105,15 +104,15 @@ class ModuleLoaderTest extends TestCase
         $loader = new ModuleLoader(['Baz' => __DIR__ . '/../../_files/Baz']);
 
         $this->assertInstanceOf(
-            'Zend\ServiceManager\ServiceLocatorInterface',
+            'Laminas\ServiceManager\ServiceLocatorInterface',
             $loader->getServiceManager()
         );
         $this->assertInstanceOf(
-            'Zend\ModuleManager\ModuleManager',
+            'Laminas\ModuleManager\ModuleManager',
             $loader->getModuleManager()
         );
         $this->assertInstanceOf(
-            'Zend\Mvc\ApplicationInterface',
+            'Laminas\Mvc\ApplicationInterface',
             $loader->getApplication()
         );
     }

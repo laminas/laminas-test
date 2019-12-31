@@ -1,6 +1,6 @@
 <?php
 
-namespace Zend\Test\PHPUnit;
+namespace Laminas\Test\PHPUnit;
 
 /**
  * @internal
