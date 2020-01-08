@@ -10,4 +10,3 @@ site_description: laminas-test
 repo_url: 'https://github.com/laminas/laminas-test'
 extra:
     project: Mvc
-    project_url: 'https://docs.laminas.dev'
