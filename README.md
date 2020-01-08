@@ -1,6 +1,6 @@
 # laminas-test
 
-[![Build Status](https://travis-ci.org/laminas/laminas-test.svg?branch=master)](https://travis-ci.org/laminas/laminas-test)
+[![Build Status](https://travis-ci.com/laminas/laminas-test.svg?branch=master)](https://travis-ci.com/laminas/laminas-test)
 [![Coverage Status](https://coveralls.io/repos/github/laminas/laminas-test/badge.svg?branch=master)](https://coveralls.io/github/laminas/laminas-test?branch=master)
 
 laminas-test provides tools to facilitate unit testing of your Laminas

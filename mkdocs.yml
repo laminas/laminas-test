@@ -1,7 +1,7 @@
 docs_dir: docs/book
 site_dir: docs/html
 nav:
-    - index.md
+    - Home: index.md
     - Introduction: intro.md
     - "Unit testing with PHPUnit": phpunit.md
     - Assertions: assertions.md
@@ -10,4 +10,3 @@ site_description: laminas-test
 repo_url: 'https://github.com/laminas/laminas-test'
 extra:
     project: Mvc
-    project_url: 'https://docs.laminas.dev'
