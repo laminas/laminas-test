@@ -20,7 +20,7 @@
     <div class="container">
         
         <a class="logo-link navbar-brand offset-md-2" href="https://getlaminas.org/" data-tooltip data-placement="bottom" title="Go to the Laminas homepage">
-            <img src="../img/laminas-foundation-white.svg" height="28" alt="Lamnias">
+            <img src="../img/laminas-foundation-white.svg" height="28" alt="Laminas">
         </a>
         <a class="navbar-title" href="https://docs.laminas.dev/" data-tooltip data-placement="bottom" title="Go to the Laminas Documentation">
             Documentation
@@ -36,13 +36,17 @@
             
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a href="https://getlaminas.org/about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://getlaminas.org/blog" class="nav-link">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://docs.laminas.dev" class="nav-link">All Docs</a>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+                            All Docs
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="https://docs.laminas.dev/components">Components</a>
+                            <a class="dropdown-item" href="https://docs.mezzio.dev/">Mezzio</a>
+                            <a class="dropdown-item" href="https://api-tools.getlaminas.org/docs">API Tools</a>
+                            <a class="dropdown-item" href="https://docs.laminas.dev/mvc">MVC</a>
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a href="https://getlaminas.org/participate" class="nav-link">Community</a>
@@ -217,32 +221,31 @@ Probably the easiest way to understand what it can do is to see an example.</p>
 <p>The following is a simple test case for an <code>IndexController</code> to verify things
 such as the final HTTP status code, and the discovered controller and action
 names:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>namespace ApplicationTest\Controller;</span>
+<pre class=codehilite><code class=language-php>namespace ApplicationTest\Controller;
 
-<span class=x>use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;</span>
+use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
-<span class=x>class IndexControllerTest extends AbstractHttpControllerTestCase</span>
-<span class=x>{</span>
-<span class=x>    public function setUp()</span>
-<span class=x>    {</span>
-<span class=x>        $this-&gt;setApplicationConfig(</span>
-<span class=x>            include &#39;/path/to/application/config/test/application.config.php&#39;</span>
-<span class=x>        );</span>
-<span class=x>        parent::setUp();</span>
-<span class=x>    }</span>
+class IndexControllerTest extends AbstractHttpControllerTestCase
+{
+    public function setUp()
+    {
+        $this-&gt;setApplicationConfig(
+            include '/path/to/application/config/test/application.config.php'
+        );
+        parent::setUp();
+    }
 
-<span class=x>    public function testIndexActionCanBeAccessed()</span>
-<span class=x>    {</span>
-<span class=x>        $this-&gt;dispatch(&#39;/&#39;);</span>
-<span class=x>        $this-&gt;assertResponseStatusCode(200);</span>
+    public function testIndexActionCanBeAccessed()
+    {
+        $this-&gt;dispatch('/');
+        $this-&gt;assertResponseStatusCode(200);
 
-<span class=x>        $this-&gt;assertModuleName(&#39;application&#39;);</span>
-<span class=x>        $this-&gt;assertControllerName(&#39;application_index&#39;);</span>
-<span class=x>        $this-&gt;assertControllerClass(&#39;IndexController&#39;);</span>
-<span class=x>        $this-&gt;assertMatchedRouteName(&#39;home&#39;);</span>
-<span class=x>    }</span>
-<span class=x>}</span>
-</pre></div></p>
+        $this-&gt;assertModuleName('application');
+        $this-&gt;assertControllerName('application_index');
+        $this-&gt;assertControllerClass('IndexController');
+        $this-&gt;assertMatchedRouteName('home');
+    }
+}</code></pre>
 <p>The setup of the test case should define the application config. You can use
 several configuration files to test module dependencies or your current
 application config.</p>
@@ -254,61 +257,55 @@ you'd expect from PHPUnit, as well as some scaffolding and assertions specific
 to laminas-mvc.</p>
 <p>In order to test your MVC application, you will need to setup the application
 configuration. Use the <code>setApplicationConfig()</code> method to do this:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>public function setUp()</span>
-<span class=x>{</span>
-<span class=x>    $this-&gt;setApplicationConfig(</span>
-<span class=x>        include &#39;/path/to/application/config/test/application.config.php&#39;</span>
-<span class=x>    );</span>
-<span class=x>    parent::setUp();</span>
-<span class=x>}</span>
-</pre></div></p>
+<pre class=codehilite><code class=language-php>public function setUp()
+{
+    $this-&gt;setApplicationConfig(
+        include '/path/to/application/config/test/application.config.php'
+    );
+    parent::setUp();
+}</code></pre>
 <p>Once the application is set up, you can write your tests. To help debug tests,
 you can activate the flag <code>traceError</code> to throw MVC exceptions during test
 execution:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>namespace ApplicationTest\Controller;</span>
+<pre class=codehilite><code class=language-php>namespace ApplicationTest\Controller;
 
-<span class=x>use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;</span>
+use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
-<span class=x>class IndexControllerTest extends AbstractHttpControllerTestCase</span>
-<span class=x>{</span>
-<span class=x>    protected $traceError = true;</span>
-<span class=x>}</span>
-</pre></div></p>
+class IndexControllerTest extends AbstractHttpControllerTestCase
+{
+    protected $traceError = true;
+}</code></pre>
 <h2 id="testing-your-controllers-and-mvc-applications">Testing your Controllers and MVC Applications</h2>
 <p>Once you have your application config in place, you can begin testing. Testing
 is basically as you would expect in an PHPUnit test suite, with a few minor
 differences.</p>
 <p>First, you will need to dispatch a URL to test, using the <code>dispatch</code> method of
 the TestCase:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>public function testIndexAction()</span>
-<span class=x>{</span>
-<span class=x>    $this-&gt;dispatch(&#39;/&#39;);</span>
-<span class=x>}</span>
-</pre></div></p>
+<pre class=codehilite><code class=language-php>public function testIndexAction()
+{
+    $this-&gt;dispatch('/');
+}</code></pre>
 <p>There will be times, however, that you need to provide extra information: query
 string arguments, POST, variables, cookies, etc.  You can populate the request
 with that information:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>public function testIndexAction()</span>
-<span class=x>{</span>
-<span class=x>    $this-&gt;getRequest()</span>
-<span class=x>        -&gt;setMethod(&#39;POST&#39;)</span>
-<span class=x>        -&gt;setPost(new Parameters([&#39;argument&#39; =&gt; &#39;value&#39;]));</span>
-<span class=x>    $this-&gt;dispatch(&#39;/&#39;);</span>
-<span class=x>}</span>
-</pre></div></p>
+<pre class=codehilite><code class=language-php>public function testIndexAction()
+{
+    $this-&gt;getRequest()
+        -&gt;setMethod('POST')
+        -&gt;setPost(new Parameters(['argument' =&gt; 'value']));
+    $this-&gt;dispatch('/');
+}</code></pre>
 <p>You can populate query string arguments or POST variables directly with the
 <code>dispatch</code> method:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>public function testIndexAction()</span>
-<span class=x>{</span>
-<span class=x>    $this-&gt;dispatch(&#39;/&#39;, &#39;POST&#39;, [&#39;argument&#39; =&gt; &#39;value&#39;]);</span>
-<span class=x>}</span>
-</pre></div></p>
+<pre class=codehilite><code class=language-php>public function testIndexAction()
+{
+    $this-&gt;dispatch('/', 'POST', ['argument' =&gt; 'value']);
+}</code></pre>
 <p>Query string arguments can be provided in the URL you dispatch:</p>
-<p> <div class=codehilite><pre><span></span><span class=x>public function testIndexAction()</span>
-<span class=x>{</span>
-<span class=x>    $this-&gt;dispatch(&#39;/tests?foo=bar&amp;baz=foo&#39;);</span>
-<span class=x>}</span>
-</pre></div></p>
+<pre class=codehilite><code class=language-php>public function testIndexAction()
+{
+    $this-&gt;dispatch('/tests?foo=bar&amp;baz=foo');
+}</code></pre>
 <p>Now that the request is made, it's time to start <a href="../assertions/">making assertions</a> against it.</p>
 
 
@@ -436,9 +433,10 @@ with that information:</p>
             <div class="col-md-7 offset-md-2">
                 <h5>Laminas</h5>
                 <ul>
-                    <li>Laminas Project <a href="https://getlaminas.org/">Components and MVC for Enterprise Applications</a></li>
-                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 Middleware in Minutes</a></li>
-                    <li>Laminas API Tools: <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
+                    <li>Laminas Project <a href="https://getlaminas.org/">The new foundation for the community-supported, open source continuation of Zend Framework</a></li>
+                    <li>Laminas Components and MVC <a href="https://docs.laminas.dev/">Components and MVC for enterprise applications</a></li>
+                    <li>Mezzio <a href="https://docs.mezzio.dev/">PSR-15 middleware in minutes</a></li>
+                    <li>Laminas API Tools <a href="https://api-tools.getlaminas.org/">Build RESTful APIs in minutes</a></li>
                 </ul>
             </div>
         </div>
@@ -475,7 +473,7 @@ with that information:</p>
                 <h4 class="footer__headline">License</h4>
                 <p>
                     Code licensed under <a
-                        href="https://github.com/laminas/laminas-test//blob/master/LICENSE.md">BSD 3-Clause</a>.
+                        href="https://github.com/laminas/laminas-test/blob/master/LICENSE.md">BSD 3-Clause</a>.
                 </p>
             </div>
 
@@ -484,8 +482,8 @@ with that information:</p>
                 <h4 class="footer__headline">Copyright</h4>
                 <p>
                     <!--Built with love by the Laminas team with the help of our
-                    <a href="https://github.com/laminas/laminas-test//graphs/contributors">contributors</a>.<br>-->
-                    &copy; 2019-2019 by <a href="https://getlaminas.org/">The Laminas Project</a>.
+                    <a href="https://github.com/laminas/laminas-test/graphs/contributors">contributors</a>.<br>-->
+                    &copy; 2019-2020 by <a href="https://getlaminas.org/">The Laminas Project</a>.
                 </p>
             </div>
         </div>
