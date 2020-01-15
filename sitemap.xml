@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-     <loc>https://docs.laminas.dev/</loc>
-     <lastmod>2020-01-08</lastmod>
+     <loc>https://docs.laminas.dev/laminas-test/</loc>
+     <lastmod>2020-01-15</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://docs.laminas.dev/intro/</loc>
-     <lastmod>2020-01-08</lastmod>
+     <loc>https://docs.laminas.dev/laminas-test/intro/</loc>
+     <lastmod>2020-01-15</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://docs.laminas.dev/phpunit/</loc>
-     <lastmod>2020-01-08</lastmod>
+     <loc>https://docs.laminas.dev/laminas-test/phpunit/</loc>
+     <lastmod>2020-01-15</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://docs.laminas.dev/assertions/</loc>
-     <lastmod>2020-01-08</lastmod>
+     <loc>https://docs.laminas.dev/laminas-test/assertions/</loc>
+     <lastmod>2020-01-15</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
