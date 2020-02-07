@@ -504,7 +504,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
      * Assert against DOM/XPath selection; should contain exact number of nodes
      *
      * @param string $path CSS selector path
-     * @param string $count Number of nodes that should match
+     * @param int $count Number of nodes that should match
      * @param bool $useXpath
      */
     private function queryCountAssertion($path, $count, $useXpath = false)
@@ -526,7 +526,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
      * Assert against DOM selection; should contain exact number of nodes
      *
      * @param  string $path CSS selector path
-     * @param  string $count Number of nodes that should match
+     * @param  int $count Number of nodes that should match
      */
     public function assertQueryCount($path, $count)
     {
@@ -537,7 +537,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
      * Assert against XPath selection; should contain exact number of nodes
      *
      * @param  string $path XPath path
-     * @param  string $count Number of nodes that should match
+     * @param  int $count Number of nodes that should match
      */
     public function assertXpathQueryCount($path, $count)
     {
@@ -548,7 +548,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
      * Assert against DOM/XPath selection; should NOT contain exact number of nodes
      *
      * @param  string $path CSS selector path
-     * @param  string $count Number of nodes that should NOT match
+     * @param  int $count Number of nodes that should NOT match
      * @param bool $useXpath
      */
     private function notQueryCountAssertion($path, $count, $useXpath = false)
@@ -569,7 +569,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
      * Assert against DOM selection; should NOT contain exact number of nodes
      *
      * @param  string $path CSS selector path
-     * @param  string $count Number of nodes that should NOT match
+     * @param  int $count Number of nodes that should NOT match
      */
     public function assertNotQueryCount($path, $count)
     {
@@ -580,7 +580,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
      * Assert against XPath selection; should NOT contain exact number of nodes
      *
      * @param  string $path XPath path
-     * @param  string $count Number of nodes that should NOT match
+     * @param  int $count Number of nodes that should NOT match
      */
     public function assertNotXpathQueryCount($path, $count)
     {
@@ -591,7 +591,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
      * Assert against DOM/XPath selection; should contain at least this number of nodes
      *
      * @param string $path CSS selector path
-     * @param string $count Minimum number of nodes that should match
+     * @param int $count Minimum number of nodes that should match
      * @param bool $useXpath
      */
     private function queryCountMinAssertion($path, $count, $useXpath = false)
@@ -613,7 +613,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
      * Assert against DOM selection; should contain at least this number of nodes
      *
      * @param  string $path CSS selector path
-     * @param  string $count Minimum number of nodes that should match
+     * @param  int $count Minimum number of nodes that should match
      */
     public function assertQueryCountMin($path, $count)
     {
@@ -624,7 +624,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
      * Assert against XPath selection; should contain at least this number of nodes
      *
      * @param  string $path XPath path
-     * @param  string $count Minimum number of nodes that should match
+     * @param  int $count Minimum number of nodes that should match
      */
     public function assertXpathQueryCountMin($path, $count)
     {
@@ -635,7 +635,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
      * Assert against DOM/XPath selection; should contain no more than this number of nodes
      *
      * @param  string $path CSS selector path
-     * @param  string $count Maximum number of nodes that should match
+     * @param  int $count Maximum number of nodes that should match
      * @param bool $useXpath
      */
     private function queryCountMaxAssertion($path, $count, $useXpath = false)
@@ -657,7 +657,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
      * Assert against DOM selection; should contain no more than this number of nodes
      *
      * @param  string $path CSS selector path
-     * @param  string $count Maximum number of nodes that should match
+     * @param  int $count Maximum number of nodes that should match
      */
     public function assertQueryCountMax($path, $count)
     {
@@ -668,7 +668,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
      * Assert against XPath selection; should contain no more than this number of nodes
      *
      * @param  string $path XPath path
-     * @param  string $count Maximum number of nodes that should match
+     * @param  int $count Maximum number of nodes that should match
      */
     public function assertXpathQueryCountMax($path, $count)
     {
