@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- Nothing.
+- [#10](https://github.com/laminas/laminas-test/pull/10) Adds support for PHPUnit 9
 
 ### Changed
 
