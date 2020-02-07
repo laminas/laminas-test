@@ -2,33 +2,11 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 3.4.0 - TBD
+## 3.4.0 - 2020-02-07
 
 ### Added
 
 - [#10](https://github.com/laminas/laminas-test/pull/10) Adds support for PHPUnit 9
-
-### Changed
-
-- Nothing.
-
-### Deprecated
-
-- Nothing.
-
-### Removed
-
-- Nothing.
-
-### Fixed
-
-- Nothing.
-
-## 3.3.1 - TBD
-
-### Added
-
-- Nothing.
 
 ### Changed
 
