@@ -292,25 +292,6 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 2.6.2 - TBD
-
-### Added
-
-- [zendframework/zend-test#22](https://github.com/zendframework/zend-test/pull/22) adds and publishes
-  the documentation to https://docs.laminas.dev/laminas-test/
-
-### Deprecated
-
-- Nothing.
-
-### Removed
-
-- Nothing.
-
-### Fixed
-
-- Nothing.
-
 ## 2.6.1 - 2016-03-02
 
 ### Added
