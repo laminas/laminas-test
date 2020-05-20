@@ -24,7 +24,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 3.4.2 - TBD
+## 3.4.2 - 2020-05-20
 
 ### Added
 
@@ -44,7 +44,9 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- [#13](https://github.com/laminas/laminas-test/pull/13) updates parameter typehints in `assertApplicationException` to provide type information.
+
+- [#13](https://github.com/laminas/laminas-test/pull/13) fixes an expectation failure message in `assertApplicationException` to provide better verbiage.
 
 ## 3.4.1 - 2020-03-29
 
