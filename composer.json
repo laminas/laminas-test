@@ -22,7 +22,7 @@
     },
     "require": {
         "php": "^5.6 || ^7.0",
-        "laminas/laminas-console": "^2.6",
+        "laminas/laminas-mvc-console": "^1.1.8",
         "laminas/laminas-dom": "^2.6",
         "laminas/laminas-eventmanager": "^2.6.2 || ^3.0",
         "laminas/laminas-http": "^2.8.3",
@@ -39,7 +39,6 @@
         "laminas/laminas-i18n": "^2.6",
         "laminas/laminas-log": "^2.7.1",
         "laminas/laminas-modulemanager": "^2.7.1",
-        "laminas/laminas-mvc-console": "^1.1.8",
         "laminas/laminas-mvc-plugin-flashmessenger": "^0.1.0",
         "laminas/laminas-serializer": "^2.6.1",
         "laminas/laminas-session": "^2.8.5",
