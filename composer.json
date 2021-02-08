@@ -21,40 +21,37 @@
     "extra": {
     },
     "require": {
-        "php": "^5.6 || ^7.0",
+        "php": "^7.3 || ~8.0.0",
         "laminas/laminas-console": "^2.6",
-        "laminas/laminas-dom": "^2.6",
+        "laminas/laminas-dom": "^2.8",
         "laminas/laminas-eventmanager": "^2.6.2 || ^3.0",
         "laminas/laminas-http": "^2.8.3",
         "laminas/laminas-mvc": "^3.0",
         "laminas/laminas-servicemanager": "^2.7.5 || ^3.0.3",
-        "laminas/laminas-stdlib": "^2.7 || ^3.0",
+        "laminas/laminas-stdlib": "^3.3",
         "laminas/laminas-uri": "^2.5",
         "laminas/laminas-view": "^2.6.3",
         "laminas/laminas-zendframework-bridge": "^1.0",
-        "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0 || ^7.0 || ^8.0 || ^9.0",
         "vimeo/psalm": "^4.7.0",
-        "psalm/plugin-phpunit": "^0.15.0"
+        "psalm/plugin-phpunit": "^0.15.0",
+        "phpunit/phpunit": "^8.0 || ^9.0"
     },
     "require-dev": {
-        "laminas/laminas-coding-standard": "~1.0.0",
+        "laminas/laminas-coding-standard": "~2.2.1",
         "laminas/laminas-i18n": "^2.6",
         "laminas/laminas-log": "^2.7.1",
         "laminas/laminas-modulemanager": "^2.7.1",
         "laminas/laminas-mvc-console": "^1.1.8",
-        "laminas/laminas-mvc-plugin-flashmessenger": "^0.1.0",
+        "laminas/laminas-mvc-plugin-flashmessenger": "^1.0",
         "laminas/laminas-serializer": "^2.6.1",
         "laminas/laminas-session": "^2.8.5",
         "laminas/laminas-validator": "^2.8",
-        "mikey179/vfsstream": "~1.2"
+        "mikey179/vfsstream": "^1.6.8"
     },
     "suggest": {
         "laminas/laminas-mvc-console": "^1.1.8, to test MVC <-> console integration"
     },
     "autoload": {
-        "files": [
-            "autoload/phpunit-class-aliases.php"
-        ],
         "psr-4": {
             "Laminas\\Test\\": "src/"
         }

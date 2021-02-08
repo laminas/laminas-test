@@ -1,11 +1,12 @@
 <?php
+
 $cacheDir = sys_get_temp_dir() . '/laminas-module-test';
 if (! is_dir($cacheDir)) {
     mkdir($cacheDir);
 }
 
 return [
-    'modules' => [
+    'modules'                 => [
         'Laminas\Router',
         'Laminas\Validator',
         'Laminas\Mvc\Console',

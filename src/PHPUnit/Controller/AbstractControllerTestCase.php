@@ -2,62 +2,85 @@
 
 /**
  * @see       https://github.com/laminas/laminas-test for the canonical source repository
- * @copyright https://github.com/laminas/laminas-test/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-test/blob/master/LICENSE.md New BSD License
  */
+
 namespace Laminas\Test\PHPUnit\Controller;
 
+use Exception;
 use Laminas\Console\Console;
+use Laminas\EventManager\ResponseCollection;
 use Laminas\EventManager\StaticEventManager;
 use Laminas\Http\Request as HttpRequest;
 use Laminas\Mvc\Application;
+use Laminas\Mvc\ApplicationInterface;
 use Laminas\Mvc\MvcEvent;
+use Laminas\ServiceManager\ServiceManager;
 use Laminas\Stdlib\Exception\LogicException;
 use Laminas\Stdlib\Parameters;
+use Laminas\Stdlib\RequestInterface;
 use Laminas\Stdlib\ResponseInterface;
-use Laminas\Test\PHPUnit\TestCaseTrait;
 use Laminas\Uri\Http as HttpUri;
+use Laminas\View\Model\ModelInterface;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
+use Throwable;
+
+use function array_diff;
+use function array_intersect;
+use function array_key_exists;
+use function array_merge;
+use function class_exists;
+use function count;
+use function get_class;
+use function http_build_query;
+use function implode;
+use function in_array;
+use function method_exists;
+use function parse_str;
+use function preg_match_all;
+use function sprintf;
+use function str_replace;
+use function strpos;
+use function strrpos;
+use function strtolower;
+use function substr;
+use function trigger_error;
+
+use const E_USER_NOTICE;
 
 abstract class AbstractControllerTestCase extends TestCase
 {
-    use TestCaseTrait;
-
-    /**
-     * @var \Laminas\Mvc\ApplicationInterface
-     */
+    /** @var ApplicationInterface */
     protected $application;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $applicationConfig;
 
     /**
      * Flag to use console router or not
+     *
      * @var bool
      */
     protected $useConsoleRequest = false;
 
     /**
      * Flag console used before tests
+     *
      * @var bool
      */
     protected $usedConsoleBackup;
 
     /**
      * Trace error when exception is throwed in application
+     *
      * @var bool
      */
     protected $traceError = true;
 
     /**
      * Reset the application for isolation
-     *
-     * @internal
      */
-    protected function setUpCompat()
+    protected function setUp(): void
     {
         $this->usedConsoleBackup = Console::isConsole();
         $this->reset();
@@ -65,10 +88,8 @@ abstract class AbstractControllerTestCase extends TestCase
 
     /**
      * Restore params
-     *
-     * @internal
      */
-    protected function tearDownCompat()
+    protected function tearDown(): void
     {
         Console::overrideIsConsole($this->usedConsoleBackup);
 
@@ -91,7 +112,7 @@ abstract class AbstractControllerTestCase extends TestCase
         }
 
         $exception = $this->getApplication()->getMvcEvent()->getParam('exception');
-        if (! $exception instanceof \Throwable && ! $exception instanceof \Exception) {
+        if (! $exception instanceof Throwable && ! $exception instanceof Exception) {
             return $message;
         }
 
@@ -111,6 +132,7 @@ abstract class AbstractControllerTestCase extends TestCase
 
     /**
      * Get the trace error flag
+     *
      * @return bool
      */
     public function getTraceError()
@@ -120,6 +142,7 @@ abstract class AbstractControllerTestCase extends TestCase
 
     /**
      * Set the trace error flag
+     *
      * @param  bool                       $traceError
      * @return AbstractControllerTestCase
      */
@@ -132,6 +155,7 @@ abstract class AbstractControllerTestCase extends TestCase
 
     /**
      * Get the usage of the console router or not
+     *
      * @return bool $boolean
      */
     public function getUseConsoleRequest()
@@ -141,6 +165,7 @@ abstract class AbstractControllerTestCase extends TestCase
 
     /**
      * Set the usage of the console router or not
+     *
      * @param  bool                       $boolean
      * @return AbstractControllerTestCase
      */
@@ -153,6 +178,7 @@ abstract class AbstractControllerTestCase extends TestCase
 
     /**
      * Get the application config
+     *
      * @return array the application config
      */
     public function getApplicationConfig()
@@ -162,6 +188,7 @@ abstract class AbstractControllerTestCase extends TestCase
 
     /**
      * Set the application config
+     *
      * @param  array                      $applicationConfig
      * @return AbstractControllerTestCase
      * @throws LogicException
@@ -185,7 +212,8 @@ abstract class AbstractControllerTestCase extends TestCase
 
     /**
      * Get the application object
-     * @return \Laminas\Mvc\ApplicationInterface
+     *
+     * @return ApplicationInterface
      */
     public function getApplication()
     {
@@ -204,7 +232,8 @@ abstract class AbstractControllerTestCase extends TestCase
 
     /**
      * Get the service manager of the application object
-     * @return \Laminas\ServiceManager\ServiceManager
+     *
+     * @return ServiceManager
      */
     public function getApplicationServiceLocator()
     {
@@ -213,7 +242,8 @@ abstract class AbstractControllerTestCase extends TestCase
 
     /**
      * Get the application request object
-     * @return \Laminas\Stdlib\RequestInterface
+     *
+     * @return RequestInterface
      */
     public function getRequest()
     {
@@ -222,6 +252,7 @@ abstract class AbstractControllerTestCase extends TestCase
 
     /**
      * Get the application response object
+     *
      * @return ResponseInterface
      */
     public function getResponse()
@@ -297,11 +328,13 @@ abstract class AbstractControllerTestCase extends TestCase
      * @param  string      $url
      * @param  string|null $method
      * @param  array|null  $params
-     * @throws \Exception
+     * @param  bool        $isXmlHttpRequest
+     * @throws Exception
      */
     public function dispatch($url, $method = null, $params = [], $isXmlHttpRequest = false)
     {
-        if (! isset($method)
+        if (
+            ! isset($method)
             && $this->getRequest() instanceof HttpRequest
             && $requestMethod = $this->getRequest()->getMethod()
         ) {
@@ -322,6 +355,7 @@ abstract class AbstractControllerTestCase extends TestCase
     /**
      * Reset the request
      *
+     * @param bool $keepPersistence
      * @return AbstractControllerTestCase
      */
     public function reset($keepPersistence = false)
@@ -337,11 +371,11 @@ abstract class AbstractControllerTestCase extends TestCase
             if (array_key_exists('_SESSION', $GLOBALS)) {
                 $_SESSION = [];
             }
-            $_COOKIE  = [];
+            $_COOKIE = [];
         }
 
-        $_GET     = [];
-        $_POST    = [];
+        $_GET  = [];
+        $_POST = [];
 
         // reset singleton
         if (class_exists(StaticEventManager::class)) {
@@ -355,14 +389,14 @@ abstract class AbstractControllerTestCase extends TestCase
      * Trigger an application event
      *
      * @param  string                                $eventName
-     * @return \Laminas\EventManager\ResponseCollection
+     * @return ResponseCollection
      */
     public function triggerApplicationEvent($eventName)
     {
         $events = $this->getApplication()->getEventManager();
         $event  = $this->getApplication()->getMvcEvent();
 
-        if ($eventName != MvcEvent::EVENT_ROUTE && $eventName != MvcEvent::EVENT_DISPATCH) {
+        if ($eventName !== MvcEvent::EVENT_ROUTE && $eventName !== MvcEvent::EVENT_DISPATCH) {
             return $events->trigger($eventName, $event);
         }
 
@@ -453,7 +487,7 @@ abstract class AbstractControllerTestCase extends TestCase
             }
         }
         $match = $this->getResponseStatusCode();
-        if ($code != $match) {
+        if ($code !== $match) {
             throw new ExpectationFailedException($this->createFailureMessage(
                 sprintf('Failed asserting response code "%s", actual status code is "%s"', $code, $match)
             ));
@@ -476,7 +510,7 @@ abstract class AbstractControllerTestCase extends TestCase
             }
         }
         $match = $this->getResponseStatusCode();
-        if ($code == $match) {
+        if ($code === $match) {
             throw new ExpectationFailedException($this->createFailureMessage(
                 sprintf('Failed asserting response code was NOT "%s"', $code)
             ));
@@ -523,7 +557,7 @@ abstract class AbstractControllerTestCase extends TestCase
      */
     protected function getControllerFullClassName()
     {
-        $routeMatch           = $this->getApplication()->getMvcEvent()->getRouteMatch();
+        $routeMatch = $this->getApplication()->getMvcEvent()->getRouteMatch();
         if (! $routeMatch) {
             throw new ExpectationFailedException($this->createFailureMessage('No route matched'));
         }
@@ -545,7 +579,7 @@ abstract class AbstractControllerTestCase extends TestCase
         $match           = substr($controllerClass, 0, strpos($controllerClass, '\\'));
         $match           = strtolower($match);
         $module          = strtolower($module);
-        if ($module != $match) {
+        if ($module !== $match) {
             throw new ExpectationFailedException($this->createFailureMessage(
                 sprintf('Failed asserting module name "%s", actual module name is "%s"', $module, $match)
             ));
@@ -564,7 +598,7 @@ abstract class AbstractControllerTestCase extends TestCase
         $match           = substr($controllerClass, 0, strpos($controllerClass, '\\'));
         $match           = strtolower($match);
         $module          = strtolower($module);
-        if ($module == $match) {
+        if ($module === $match) {
             throw new ExpectationFailedException($this->createFailureMessage(
                 sprintf('Failed asserting module was NOT "%s"', $module)
             ));
@@ -583,7 +617,7 @@ abstract class AbstractControllerTestCase extends TestCase
         $match           = substr($controllerClass, strrpos($controllerClass, '\\') + 1);
         $match           = strtolower($match);
         $controller      = strtolower($controller);
-        if ($controller != $match) {
+        if ($controller !== $match) {
             throw new ExpectationFailedException($this->createFailureMessage(
                 sprintf('Failed asserting controller class "%s", actual controller class is "%s"', $controller, $match)
             ));
@@ -602,7 +636,7 @@ abstract class AbstractControllerTestCase extends TestCase
         $match           = substr($controllerClass, strrpos($controllerClass, '\\') + 1);
         $match           = strtolower($match);
         $controller      = strtolower($controller);
-        if ($controller == $match) {
+        if ($controller === $match) {
             throw new ExpectationFailedException($this->createFailureMessage(
                 sprintf('Failed asserting controller class was NOT "%s"', $controller)
             ));
@@ -624,7 +658,7 @@ abstract class AbstractControllerTestCase extends TestCase
         $match      = $routeMatch->getParam('controller');
         $match      = strtolower($match);
         $controller = strtolower($controller);
-        if ($controller != $match) {
+        if ($controller !== $match) {
             throw new ExpectationFailedException($this->createFailureMessage(
                 sprintf('Failed asserting controller name "%s", actual controller name is "%s"', $controller, $match)
             ));
@@ -646,7 +680,7 @@ abstract class AbstractControllerTestCase extends TestCase
         $match      = $routeMatch->getParam('controller');
         $match      = strtolower($match);
         $controller = strtolower($controller);
-        if ($controller == $match) {
+        if ($controller === $match) {
             throw new ExpectationFailedException($this->createFailureMessage(
                 sprintf('Failed asserting controller name was NOT "%s"', $controller)
             ));
@@ -665,10 +699,10 @@ abstract class AbstractControllerTestCase extends TestCase
         if (! $routeMatch) {
             throw new ExpectationFailedException($this->createFailureMessage('No route matched'));
         }
-        $match      = $routeMatch->getParam('action');
-        $match      = strtolower($match);
-        $action     = strtolower($action);
-        if ($action != $match) {
+        $match  = $routeMatch->getParam('action');
+        $match  = strtolower($match);
+        $action = strtolower($action);
+        if ($action !== $match) {
             throw new ExpectationFailedException($this->createFailureMessage(
                 sprintf('Failed asserting action name "%s", actual action name is "%s"', $action, $match)
             ));
@@ -687,10 +721,10 @@ abstract class AbstractControllerTestCase extends TestCase
         if (! $routeMatch) {
             throw new ExpectationFailedException($this->createFailureMessage('No route matched'));
         }
-        $match      = $routeMatch->getParam('action');
-        $match      = strtolower($match);
-        $action     = strtolower($action);
-        if ($action == $match) {
+        $match  = $routeMatch->getParam('action');
+        $match  = strtolower($match);
+        $action = strtolower($action);
+        if ($action === $match) {
             throw new ExpectationFailedException($this->createFailureMessage(
                 sprintf('Failed asserting action name was NOT "%s"', $action)
             ));
@@ -709,10 +743,10 @@ abstract class AbstractControllerTestCase extends TestCase
         if (! $routeMatch) {
             throw new ExpectationFailedException($this->createFailureMessage('No route matched'));
         }
-        $match      = $routeMatch->getMatchedRouteName();
-        $match      = strtolower($match);
-        $route      = strtolower($route);
-        if ($route != $match) {
+        $match = $routeMatch->getMatchedRouteName();
+        $match = strtolower($match);
+        $route = strtolower($route);
+        if ($route !== $match) {
             throw new ExpectationFailedException($this->createFailureMessage(
                 sprintf(
                     'Failed asserting matched route name was "%s", actual matched route name is "%s"',
@@ -735,10 +769,10 @@ abstract class AbstractControllerTestCase extends TestCase
         if (! $routeMatch) {
             throw new ExpectationFailedException($this->createFailureMessage('No route matched'));
         }
-        $match      = $routeMatch->getMatchedRouteName();
-        $match      = strtolower($match);
-        $route      = strtolower($route);
-        if ($route == $match) {
+        $match = $routeMatch->getMatchedRouteName();
+        $match = strtolower($match);
+        $route = strtolower($route);
+        if ($route === $match) {
             throw new ExpectationFailedException($this->createFailureMessage(
                 sprintf('Failed asserting route matched was NOT "%s"', $route)
             ));
@@ -753,8 +787,8 @@ abstract class AbstractControllerTestCase extends TestCase
     {
         $routeMatch = $this->getApplication()->getMvcEvent()->getRouteMatch();
         if ($routeMatch) {
-            $match      = $routeMatch->getMatchedRouteName();
-            $match      = strtolower($match);
+            $match = $routeMatch->getMatchedRouteName();
+            $match = strtolower($match);
             throw new ExpectationFailedException($this->createFailureMessage(sprintf(
                 'Failed asserting that no route matched, actual matched route name is "%s"',
                 $match
@@ -790,13 +824,13 @@ abstract class AbstractControllerTestCase extends TestCase
     /**
      * Recursively search a view model and it's children for the given templateName
      *
-     * @param  \Laminas\View\Model\ModelInterface $viewModel
+     * @param ModelInterface $viewModel
      * @param  string    $templateName
      * @return boolean
      */
     protected function searchTemplates($viewModel, $templateName)
     {
-        if ($viewModel->getTemplate($templateName) == $templateName) {
+        if ($viewModel->getTemplate($templateName) === $templateName) {
             return true;
         }
         foreach ($viewModel->getChildren() as $child) {

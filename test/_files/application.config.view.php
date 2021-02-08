@@ -7,7 +7,7 @@ if (! is_dir($cacheDir)) {
 }
 
 return [
-    'modules' => [
+    'modules'                 => [
         'Laminas\Router',
         'Laminas\Validator',
         'Laminas\Mvc\Console',
@@ -23,11 +23,11 @@ return [
             'Baz' => __DIR__ . '/Baz/',
         ],
     ],
-    'templates' => [
+    'templates'               => [
         'layout'       => 'layout/default',
         'layout_error' => 'layout/error',
         'map'          => [
-            'layout/error' => 'templates/layout/error.phtml'
-        ]
+            'layout/error' => 'templates/layout/error.phtml',
+        ],
     ],
 ];

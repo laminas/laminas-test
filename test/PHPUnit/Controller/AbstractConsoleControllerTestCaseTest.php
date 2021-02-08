@@ -2,9 +2,8 @@
 
 /**
  * @see       https://github.com/laminas/laminas-test for the canonical source repository
- * @copyright https://github.com/laminas/laminas-test/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-test/blob/master/LICENSE.md New BSD License
  */
+
 namespace LaminasTest\Test\PHPUnit\Controller;
 
 use Laminas\Router\RouteMatch;
@@ -19,12 +18,12 @@ class AbstractConsoleControllerTestCaseTest extends AbstractConsoleControllerTes
 {
     use ExpectedExceptionTrait;
 
-    protected function setUpCompat()
+    protected function setUp(): void
     {
         $this->setApplicationConfig(
             include __DIR__ . '/../../_files/application.config.php'
         );
-        parent::setUpCompat();
+        parent::setUp();
     }
 
     public function testUseOfRouter()

@@ -2,17 +2,20 @@
 
 /**
  * @see       https://github.com/laminas/laminas-test for the canonical source repository
- * @copyright https://github.com/laminas/laminas-test/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-test/blob/master/LICENSE.md New BSD License
  */
+
 namespace Laminas\Test\PHPUnit\Controller;
 
 use PHPUnit\Framework\ExpectationFailedException;
+
+use function sprintf;
+use function stripos;
 
 abstract class AbstractConsoleControllerTestCase extends AbstractControllerTestCase
 {
     /**
      * HTTP controller must use the console request
+     *
      * @var bool
      */
     protected $useConsoleRequest = true;

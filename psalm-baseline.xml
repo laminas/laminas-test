@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.7.0@d4377c0baf3ffbf0b1ec6998e8d1be2a40971005">
+<files psalm-version="4.7.3@38c452ae584467e939d55377aaf83b5a26f19dd1">
   <file src="src/PHPUnit/Controller/AbstractConsoleControllerTestCase.php">
     <InternalClass occurrences="2"/>
     <MixedArgument occurrences="5">
@@ -9,10 +9,6 @@
       <code>$response-&gt;getContent()</code>
       <code>$response-&gt;getContent()</code>
     </MixedArgument>
-    <ReservedWord occurrences="2">
-      <code>$this-&gt;assertNotSame(false, stripos($response-&gt;getContent(), $match))</code>
-      <code>$this-&gt;assertSame(false, stripos($response-&gt;getContent(), $match))</code>
-    </ReservedWord>
   </file>
   <file src="src/PHPUnit/Controller/AbstractControllerTestCase.php">
     <ArgumentTypeCoercion occurrences="1">
@@ -53,10 +49,6 @@
       <code>$usedConsoleBackup</code>
       <code>$usedConsoleBackup</code>
     </MissingConstructor>
-    <MissingParamType occurrences="2">
-      <code>$isXmlHttpRequest</code>
-      <code>$keepPersistence</code>
-    </MissingParamType>
     <MissingReturnType occurrences="21">
       <code>assertActionName</code>
       <code>assertApplicationException</code>
@@ -179,7 +171,7 @@
       <code>$this-&gt;getApplication()-&gt;getMvcEvent()-&gt;getResponse()</code>
     </MixedReturnStatement>
     <MoreSpecificReturnType occurrences="1">
-      <code>\Laminas\ServiceManager\ServiceManager</code>
+      <code>ServiceManager</code>
     </MoreSpecificReturnType>
     <PossiblyFalseArgument occurrences="2">
       <code>strpos($controllerClass, '\\')</code>
@@ -201,26 +193,6 @@
       <code>null !== $this-&gt;application &amp;&amp; null !== $this-&gt;applicationConfig</code>
       <code>null !== $this-&gt;applicationConfig</code>
     </RedundantConditionGivenDocblockType>
-    <ReservedWord occurrences="18">
-      <code>$this-&gt;assertEquals($action, $match)</code>
-      <code>$this-&gt;assertEquals($code, $match)</code>
-      <code>$this-&gt;assertEquals($controller, $match)</code>
-      <code>$this-&gt;assertEquals($controller, $match)</code>
-      <code>$this-&gt;assertEquals($module, $match)</code>
-      <code>$this-&gt;assertEquals($route, $match)</code>
-      <code>$this-&gt;assertEquals(count($list), 0)</code>
-      <code>$this-&gt;assertEquals(count($list), 0)</code>
-      <code>$this-&gt;assertFalse($this-&gt;searchTemplates($viewModel, $templateName))</code>
-      <code>$this-&gt;assertNotEquals($action, $match)</code>
-      <code>$this-&gt;assertNotEquals($code, $match)</code>
-      <code>$this-&gt;assertNotEquals($controller, $match)</code>
-      <code>$this-&gt;assertNotEquals($controller, $match)</code>
-      <code>$this-&gt;assertNotEquals($module, $match)</code>
-      <code>$this-&gt;assertNotEquals($route, $match)</code>
-      <code>$this-&gt;assertNull($routeMatch)</code>
-      <code>$this-&gt;assertTrue($this-&gt;searchTemplates($viewModel, $templateName))</code>
-      <code>$this-&gt;expectExceptionMessage($message)</code>
-    </ReservedWord>
     <TooManyArguments occurrences="1">
       <code>getTemplate</code>
     </TooManyArguments>
@@ -311,26 +283,17 @@
       <code>queryCountMinAssertion</code>
       <code>registerXpathNamespaces</code>
     </MissingReturnType>
-    <MixedArgument occurrences="6">
+    <MixedArgument occurrences="3">
       <code>$currentHeader-&gt;getFieldValue()</code>
       <code>$currentHeader-&gt;getFieldValue()</code>
-      <code>$match</code>
-      <code>$match</code>
-      <code>$match</code>
       <code>$response-&gt;getContent()</code>
     </MixedArgument>
-    <MixedAssignment occurrences="8">
+    <MixedAssignment occurrences="2">
       <code>$currentValue</code>
       <code>$headers</code>
-      <code>$match</code>
-      <code>$match</code>
-      <code>$match</code>
-      <code>$match</code>
-      <code>$match</code>
-      <code>$responseHeader</code>
     </MixedAssignment>
     <MixedInferredReturnType occurrences="1">
-      <code>\Laminas\Http\Header\HeaderInterface|false</code>
+      <code>HeaderInterface|false</code>
     </MixedInferredReturnType>
     <MixedMethodCall occurrences="5">
       <code>get</code>
@@ -343,7 +306,7 @@
       <code>$node-&gt;nodeValue</code>
     </MixedPropertyFetch>
     <MixedReturnStatement occurrences="1">
-      <code>$responseHeader</code>
+      <code>$headers-&gt;get($header, false)</code>
     </MixedReturnStatement>
     <PossiblyUndefinedVariable occurrences="5">
       <code>$currentHeader</code>
@@ -359,50 +322,13 @@
       <code>assertTrue</code>
       <code>assertTrue</code>
     </RedundantCondition>
-    <ReservedWord occurrences="23">
-      <code>$this-&gt;assertEquals($match, $count)</code>
-      <code>$this-&gt;assertEquals($match, $currentHeader-&gt;getFieldValue())</code>
-      <code>$this-&gt;assertEquals($match, $node-&gt;nodeValue)</code>
-      <code>$this-&gt;assertEquals($phrase, $this-&gt;getResponse()-&gt;getReasonPhrase())</code>
-      <code>$this-&gt;assertEquals($url, $responseHeader-&gt;getFieldValue())</code>
-      <code>$this-&gt;assertEquals(0, $match)</code>
-      <code>$this-&gt;assertFalse($headerMatched)</code>
-      <code>$this-&gt;assertFalse($responseHeader)</code>
-      <code>$this-&gt;assertFalse($responseHeader)</code>
-      <code>$this-&gt;assertFalse((bool) preg_match($pattern, $responseHeader-&gt;getFieldValue()))</code>
-      <code>$this-&gt;assertFalse((bool) preg_match($pattern, $result-&gt;current()-&gt;nodeValue))</code>
-      <code>$this-&gt;assertNotEquals($currentValue, $match)</code>
-      <code>$this-&gt;assertNotEquals($match, $count)</code>
-      <code>$this-&gt;assertNotEquals($match, $currentHeader-&gt;getFieldValue())</code>
-      <code>$this-&gt;assertNotEquals($url, $responseHeader-&gt;getFieldValue())</code>
-      <code>$this-&gt;assertNotEquals(false, $responseHeader)</code>
-      <code>$this-&gt;assertNotEquals(false, $responseHeader)</code>
-      <code>$this-&gt;assertTrue($found)</code>
-      <code>$this-&gt;assertTrue($headerMatched)</code>
-      <code>$this-&gt;assertTrue($match &lt;= $count)</code>
-      <code>$this-&gt;assertTrue($match &gt; 0)</code>
-      <code>$this-&gt;assertTrue($match &gt;= $count)</code>
-      <code>$this-&gt;assertTrue((bool) preg_match($pattern, $responseHeader-&gt;getFieldValue()))</code>
-    </ReservedWord>
     <UndefinedInterfaceMethod occurrences="2">
       <code>getHeaders</code>
       <code>getReasonPhrase</code>
     </UndefinedInterfaceMethod>
   </file>
-  <file src="src/PHPUnit/TestCaseTypeHintTrait.php">
-    <ReservedWord occurrences="4">
-      <code>void</code>
-      <code>void</code>
-      <code>void</code>
-      <code>void</code>
-    </ReservedWord>
-  </file>
   <file src="src/Util/ModuleLoader.php">
-    <MissingParamType occurrences="1">
-      <code>$moduleName</code>
-    </MissingParamType>
-    <MixedArgument occurrences="2">
-      <code>$moduleName</code>
+    <MixedArgument occurrences="1">
       <code>$smConfig</code>
     </MixedArgument>
     <MixedAssignment occurrences="4">
@@ -412,8 +338,8 @@
       <code>$smConfig</code>
     </MixedAssignment>
     <MixedInferredReturnType occurrences="2">
-      <code>\Laminas\ModuleManager\ModuleManager</code>
-      <code>\Laminas\Mvc\Application</code>
+      <code>Application</code>
+      <code>ModuleManager</code>
     </MixedInferredReturnType>
     <MixedMethodCall occurrences="1">
       <code>loadModules</code>
@@ -427,12 +353,6 @@
     <ArgumentTypeCoercion occurrences="1">
       <code>$exceptionClass</code>
     </ArgumentTypeCoercion>
-    <ReservedWord occurrences="1">
-      <code>$this-&gt;expectExceptionMessage($message)</code>
-    </ReservedWord>
-    <UndefinedMethod occurrences="1">
-      <code>setExpectedException</code>
-    </UndefinedMethod>
   </file>
   <file src="test/PHPUnit/Controller/AbstractConsoleControllerTestCaseTest.php">
     <InternalMethod occurrences="1">
@@ -467,31 +387,6 @@
       <code>assertNotNull</code>
       <code>assertNotNull</code>
     </RedundantConditionGivenDocblockType>
-    <ReservedWord occurrences="23">
-      <code>$this-&gt;assertEquals("10", $routeMatch-&gt;getParam('id'))</code>
-      <code>$this-&gt;assertEquals("10", $routeMatch-&gt;getParam('id'))</code>
-      <code>$this-&gt;assertEquals("2013-03-07 00:00:00", $routeMatch-&gt;getParam('date'))</code>
-      <code>$this-&gt;assertEquals("2013-03-07 00:00:00", $routeMatch-&gt;getParam('date'))</code>
-      <code>$this-&gt;assertEquals("custom text", $routeMatch-&gt;getParam('text'))</code>
-      <code>$this-&gt;assertEquals("custom text", $routeMatch-&gt;getParam('text'))</code>
-      <code>$this-&gt;assertEquals('arguments-mandatory', $routeMatch-&gt;getMatchedRouteName())</code>
-      <code>$this-&gt;assertEquals('arguments-mandatory', $routeMatch-&gt;getMatchedRouteName())</code>
-      <code>$this-&gt;assertEquals(true, $this-&gt;useConsoleRequest)</code>
-      <code>$this-&gt;assertFalse($routeMatch-&gt;getParam('optional'))</code>
-      <code>$this-&gt;assertFalse($routeMatch-&gt;getParam('optional'))</code>
-      <code>$this-&gt;assertInstanceOf(RouteMatch::class, $routeMatch, 'Did not receive a route match?')</code>
-      <code>$this-&gt;assertInstanceOf(RouteMatch::class, $routeMatch, 'Did not receive a route match?')</code>
-      <code>$this-&gt;assertInstanceOf(RouteMatch::class, $routeMatch, 'Did not receive a route match?')</code>
-      <code>$this-&gt;assertInstanceOf(RouteMatch::class, $routeMatch, 'Did not receive a route match?')</code>
-      <code>$this-&gt;assertNotNull($routeMatch)</code>
-      <code>$this-&gt;assertNotNull($routeMatch)</code>
-      <code>$this-&gt;assertNull($routeMatch-&gt;getParam('doo'))</code>
-      <code>$this-&gt;assertSame('test', $routeMatch-&gt;getParam('doo'))</code>
-      <code>$this-&gt;assertTrue($routeMatch-&gt;getParam('bar'))</code>
-      <code>$this-&gt;assertTrue($routeMatch-&gt;getParam('bar'))</code>
-      <code>$this-&gt;assertTrue($routeMatch-&gt;getParam('foo'))</code>
-      <code>$this-&gt;assertTrue($routeMatch-&gt;getParam('foo'))</code>
-    </ReservedWord>
     <UndefinedDocblockClass occurrences="4">
       <code>$routeMatch</code>
       <code>$routeMatch</code>
@@ -514,90 +409,39 @@
       <code>parent::tearDownCompat()</code>
       <code>parent::tearDownCompat()</code>
     </InternalMethod>
-    <MissingParamType occurrences="5">
-      <code>$dir</code>
+    <InvalidArgument occurrences="2">
       <code>$haystack</code>
       <code>$haystack</code>
-      <code>$needle</code>
-      <code>$needle</code>
-    </MissingParamType>
-    <MissingPropertyType occurrences="1">
-      <code>$traceErrorCache</code>
-    </MissingPropertyType>
-    <MissingReturnType occurrences="54">
+    </InvalidArgument>
+    <InvalidReturnType occurrences="1">
+      <code>array&lt;string, array&lt;string|null&gt;&gt;</code>
+    </InvalidReturnType>
+    <MissingReturnType occurrences="13">
       <code>assertContainsCompat</code>
       <code>assertNotContainsCompat</code>
-      <code>method</code>
-      <code>rmdir</code>
-      <code>setUpCompat</code>
-      <code>tearDownCacheDir</code>
-      <code>tearDownCompat</code>
-      <code>testActionNameWithNoRouteMatch</code>
-      <code>testApplicationClass</code>
-      <code>testApplicationClassAndTestRestoredConsoleFlag</code>
-      <code>testApplicationServiceLocatorClass</code>
-      <code>testAssertActionName</code>
-      <code>testAssertApplicationErrorsEvents</code>
-      <code>testAssertApplicationRequest</code>
-      <code>testAssertApplicationResponse</code>
-      <code>testAssertControllerClass</code>
-      <code>testAssertControllerName</code>
-      <code>testAssertExceptionDetailsNotPresentWhenTraceErrorIsDisabled</code>
-      <code>testAssertExceptionDetailsPresentWhenTraceErrorIsEnabled</code>
-      <code>testAssertMatchedRouteName</code>
-      <code>testAssertModuleName</code>
-      <code>testAssertNoMatchedRoute</code>
-      <code>testAssertNoMatchedRouteWithMatchedRoute</code>
-      <code>testAssertNotActionName</code>
-      <code>testAssertNotControllerClass</code>
-      <code>testAssertNotControllerName</code>
-      <code>testAssertNotMatchedRouteName</code>
-      <code>testAssertNotModuleName</code>
       <code>testAssertNotTemplateName</code>
       <code>testAssertTemplateName</code>
       <code>testCanHandleMultidimensionalParams</code>
-      <code>testCanNotDefineApplicationConfigWhenApplicationIsBuilt</code>
-      <code>testControllerClassWithNoRoutematch</code>
-      <code>testControllerNameWithNoRouteMatch</code>
       <code>testCustomResponseObject</code>
-      <code>testDefaultDispatchMethod</code>
-      <code>testDispatchMethodSetOnRequest</code>
-      <code>testDispatchRequestUri</code>
       <code>testDispatchWithNullParams</code>
-      <code>testExplicitDispatchMethodOverrideRequestMethod</code>
       <code>testExplicityPutParamsOverrideRequestContent</code>
-      <code>testMatchedRouteNameWithNoRouteMatch</code>
-      <code>testModuleCacheIsDisabled</code>
-      <code>testNotActionNameWithNoRouteMatch</code>
-      <code>testNotControllerNameWithNoRouteMatch</code>
-      <code>testNotMatchedRouteNameWithNoRouteMatch</code>
       <code>testPatchRequestParams</code>
       <code>testPreserveContentOfPatchRequest</code>
-      <code>testPreserveContentOfPutRequest</code>
-      <code>testPutRequestParams</code>
       <code>testQueryParamsDelete</code>
       <code>testRequestWithRouteParam</code>
       <code>testResetDoesNotCreateSessionIfNoSessionExists</code>
-      <code>testUseOfRouter</code>
     </MissingReturnType>
-    <MixedArgument occurrences="9">
-      <code>$dir</code>
-      <code>$dir</code>
-      <code>$haystack</code>
-      <code>$haystack</code>
-      <code>$haystack</code>
-      <code>$haystack</code>
-      <code>$needle</code>
-      <code>$needle</code>
+    <MixedArgument occurrences="3">
+      <code>$message</code>
+      <code>$message</code>
       <code>$this-&gt;getRequest()-&gt;getContent()</code>
     </MixedArgument>
     <MixedArrayAccess occurrences="1">
       <code>$config['module_listener_options']['cache_dir']</code>
     </MixedArrayAccess>
-    <MixedAssignment occurrences="3">
+    <MixedAssignment occurrences="2">
       <code>$config</code>
       <code>$file</code>
-      <code>$this-&gt;traceError</code>
     </MixedAssignment>
     <MixedInferredReturnType occurrences="1">
       <code>Generator</code>
@@ -611,48 +455,10 @@
     <MixedOperand occurrences="1">
       <code>$config</code>
     </MixedOperand>
-    <PossiblyUndefinedVariable occurrences="6">
-      <code>$message</code>
-      <code>$message</code>
-      <code>$message</code>
-      <code>$message</code>
+    <PossiblyUndefinedVariable occurrences="2">
       <code>$message</code>
       <code>$message</code>
     </PossiblyUndefinedVariable>
-    <ReservedWord occurrences="32">
-      <code>$this-&gt;assertContains($needle, $haystack)</code>
-      <code>$this-&gt;assertEquals($applicationClass, 'Laminas\Mvc\Application')</code>
-      <code>$this-&gt;assertEquals($smClass, 'Laminas\ServiceManager\ServiceManager')</code>
-      <code>$this-&gt;assertEquals('/tests', $this-&gt;getApplication()-&gt;getRequest()-&gt;getRequestUri())</code>
-      <code>$this-&gt;assertEquals('GET', $this-&gt;getRequest()-&gt;getMethod())</code>
-      <code>$this-&gt;assertEquals('GET', $this-&gt;getRequest()-&gt;getMethod())</code>
-      <code>$this-&gt;assertEquals('POST', $this-&gt;getRequest()-&gt;getMethod())</code>
-      <code>$this-&gt;assertEquals('a=1', $this-&gt;getRequest()-&gt;getContent())</code>
-      <code>$this-&gt;assertEquals('a=1', $this-&gt;getRequest()-&gt;getContent())</code>
-      <code>$this-&gt;assertEquals('a=1', $this-&gt;getRequest()-&gt;getContent())</code>
-      <code>$this-&gt;assertEquals('a[b]=1', urldecode($this-&gt;getRequest()-&gt;getContent()))</code>
-      <code>$this-&gt;assertEquals('foo=bar', $this-&gt;getRequest()-&gt;getQuery()-&gt;toString())</code>
-      <code>$this-&gt;assertEquals('my content', $this-&gt;getRequest()-&gt;getContent())</code>
-      <code>$this-&gt;assertEquals('my content', $this-&gt;getRequest()-&gt;getContent())</code>
-      <code>$this-&gt;assertEquals(0, count(glob($config . '/*.php')))</code>
-      <code>$this-&gt;assertEquals(Application::ERROR_ROUTER_NO_MATCH, $this-&gt;getApplication()-&gt;getMvcEvent()-&gt;getError())</code>
-      <code>$this-&gt;assertEquals(false, $this-&gt;useConsoleRequest)</code>
-      <code>$this-&gt;assertEquals(true, $result-&gt;stopped())</code>
-      <code>$this-&gt;assertEquals(true, $this-&gt;getRequest() instanceof RequestInterface)</code>
-      <code>$this-&gt;assertEquals(true, $this-&gt;getResponse() instanceof ResponseInterface)</code>
-      <code>$this-&gt;assertFalse(Console::isConsole(), '2. Console::isConsole returned true after retrieving application')</code>
-      <code>$this-&gt;assertFalse(Console::isConsole(), '4. Console::isConsole returned true after parent::setUp')</code>
-      <code>$this-&gt;assertFalse(Console::isConsole(), '5. Console::isConsole returned true after retrieving application')</code>
-      <code>$this-&gt;assertFalse(Console::isConsole(), '6. Console.isConsole returned true after parent::tearDown')</code>
-      <code>$this-&gt;assertFalse(array_key_exists('_SESSION', $GLOBALS))</code>
-      <code>$this-&gt;assertNotContains($needle, $haystack)</code>
-      <code>$this-&gt;assertStringContainsString($needle, $haystack)</code>
-      <code>$this-&gt;assertStringNotContainsString($needle, $haystack)</code>
-      <code>$this-&gt;assertTrue($caught, 'Did not catch expected exception!')</code>
-      <code>$this-&gt;assertTrue($caught, 'Did not catch expected exception!')</code>
-      <code>$this-&gt;assertTrue(Console::isConsole(), '1. Console::isConsole returned false in initial test')</code>
-      <code>$this-&gt;assertTrue(Console::isConsole(), '3. Console::isConsole returned false after tearDown')</code>
-    </ReservedWord>
     <UndefinedInterfaceMethod occurrences="12">
       <code>getMethod</code>
       <code>getMethod</code>
@@ -805,41 +611,6 @@
       <code>setPost</code>
       <code>setQuery</code>
     </MixedMethodCall>
-    <ReservedWord occurrences="33">
-      <code>$this-&gt;assertCount(0, $messages)</code>
-      <code>$this-&gt;assertCount(0, $messages)</code>
-      <code>$this-&gt;assertCount(0, $messages)</code>
-      <code>$this-&gt;assertCount(1, $messages)</code>
-      <code>$this-&gt;assertEquals($layout-&gt;getTemplate(), 'layout/layout')</code>
-      <code>$this-&gt;assertEquals($mvcEvent-&gt;getApplication(), $this-&gt;getApplication())</code>
-      <code>$this-&gt;assertEquals($request-&gt;getMethod(), 'POST')</code>
-      <code>$this-&gt;assertEquals($request-&gt;getMethod(), 'PUT')</code>
-      <code>$this-&gt;assertEquals($routeMatch-&gt;getParam('controller'), 'baz_index')</code>
-      <code>$this-&gt;assertEquals($routeMatch-&gt;getParam('subdomain'), 'my')</code>
-      <code>$this-&gt;assertEquals($this-&gt;getRequest()-&gt;getUri()-&gt;getPort(), 443)</code>
-      <code>$this-&gt;assertEquals($viewModel, current($layout-&gt;getChildren()))</code>
-      <code>$this-&gt;assertEquals($viewModel-&gt;getTemplate(), 'baz/index/unittests')</code>
-      <code>$this-&gt;assertEquals($viewModel-&gt;getTemplate(), 'baz/index/unittests')</code>
-      <code>$this-&gt;assertEquals('&lt;html&gt;&lt;/html&gt;', $this-&gt;getResponse()-&gt;getContent())</code>
-      <code>$this-&gt;assertEquals('num_post=5&amp;foo=bar', $request-&gt;getContent())</code>
-      <code>$this-&gt;assertEquals(1, $countListeners)</code>
-      <code>$this-&gt;assertEquals(false, $countListeners)</code>
-      <code>$this-&gt;assertEquals(false, $result-&gt;stopped())</code>
-      <code>$this-&gt;assertEquals(false, $this-&gt;getApplication()-&gt;getMvcEvent()-&gt;getError())</code>
-      <code>$this-&gt;assertEquals(false, $this-&gt;useConsoleRequest)</code>
-      <code>$this-&gt;assertEquals(false, StaticEventManager::hasInstance())</code>
-      <code>$this-&gt;assertEquals(true, $layout instanceof ViewModel)</code>
-      <code>$this-&gt;assertEquals(true, $mvcEvent instanceof MvcEvent)</code>
-      <code>$this-&gt;assertEquals(true, $routeMatch instanceof RouteMatch)</code>
-      <code>$this-&gt;assertEquals(true, $viewModel instanceof ViewModel)</code>
-      <code>$this-&gt;assertEquals(true, $viewModel instanceof ViewModel)</code>
-      <code>$this-&gt;assertEquals(true, StaticEventManager::hasInstance())</code>
-      <code>$this-&gt;assertFalse($request-&gt;isXmlHttpRequest())</code>
-      <code>$this-&gt;assertFalse($request-&gt;isXmlHttpRequest())</code>
-      <code>$this-&gt;assertInstanceOf('RuntimeException', $exception)</code>
-      <code>$this-&gt;assertNotEquals('&lt;html&gt;&lt;/html&gt;', $this-&gt;getResponse()-&gt;getContent())</code>
-      <code>$this-&gt;assertTrue($request-&gt;isXmlHttpRequest())</code>
-    </ReservedWord>
     <UndefinedInterfaceMethod occurrences="15">
       <code>getMethod</code>
       <code>getMethod</code>
@@ -862,69 +633,34 @@
     </UnusedVariable>
   </file>
   <file src="test/PHPUnit/Controller/MemoryLeakTest.php">
-    <MissingPropertyType occurrences="1">
-      <code>$memStart</code>
-    </MissingPropertyType>
-    <MissingReturnType occurrences="3">
-      <code>dataForMultipleTests</code>
+    <MissingReturnType occurrences="1">
       <code>setUpBeforeClassCompat</code>
-      <code>testMemoryConsumptionNotGrowing</code>
     </MissingReturnType>
-    <MixedOperand occurrences="1">
+    <MixedInferredReturnType occurrences="1">
+      <code>array</code>
+    </MixedInferredReturnType>
+    <PossiblyNullOperand occurrences="1">
       <code>self::$memStart</code>
-    </MixedOperand>
+    </PossiblyNullOperand>
     <RedundantConditionGivenDocblockType occurrences="1">
       <code>assertNull</code>
     </RedundantConditionGivenDocblockType>
-    <ReservedWord occurrences="2">
-      <code>$this-&gt;assertLessThan(5242880, memory_get_usage(true) - self::$memStart)</code>
-      <code>$this-&gt;assertNull($null)</code>
-    </ReservedWord>
   </file>
   <file src="test/PHPUnit/ModuleDependenciesTest.php">
     <MissingReturnType occurrences="2">
       <code>testBadDependenciesModules</code>
       <code>testDependenciesModules</code>
     </MissingReturnType>
-    <ReservedWord occurrences="4">
-      <code>$this-&gt;assertEquals(false, $sm-&gt;has('FooObject'))</code>
-      <code>$this-&gt;assertEquals(true, $sm-&gt;has('BarObject'))</code>
-      <code>$this-&gt;assertEquals(true, $sm-&gt;has('BarObject'))</code>
-      <code>$this-&gt;assertEquals(true, $sm-&gt;has('FooObject'))</code>
-    </ReservedWord>
   </file>
   <file src="test/PHPUnit/Util/ModuleLoaderTest.php">
-    <ArgumentTypeCoercion occurrences="9">
+    <ArgumentTypeCoercion occurrences="6">
       <code>'Baz\Module'</code>
       <code>'Baz\Module'</code>
       <code>'Baz\Module'</code>
       <code>'Baz\Module'</code>
       <code>'Foo\Module'</code>
-      <code>'Laminas\ModuleManager\ModuleManager'</code>
-      <code>'Laminas\Mvc\ApplicationInterface'</code>
-      <code>'Laminas\ServiceManager\ServiceLocatorInterface'</code>
       <code>'stdClass'</code>
     </ArgumentTypeCoercion>
-    <MissingParamType occurrences="1">
-      <code>$dir</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="11">
-      <code>rmdir</code>
-      <code>setUpCompat</code>
-      <code>tearDownCacheDir</code>
-      <code>tearDownCompat</code>
-      <code>testCanGetService</code>
-      <code>testCanLoadModule</code>
-      <code>testCanLoadModuleWithPath</code>
-      <code>testCanLoadModules</code>
-      <code>testCanLoadModulesFromConfig</code>
-      <code>testCanLoadModulesWithPath</code>
-      <code>testCanNotLoadModule</code>
-    </MissingReturnType>
-    <MixedArgument occurrences="2">
-      <code>$dir</code>
-      <code>$dir</code>
-    </MixedArgument>
     <MixedAssignment occurrences="7">
       <code>$baz</code>
       <code>$baz</code>
@@ -934,36 +670,14 @@
       <code>$foo</code>
       <code>$fooObject</code>
     </MixedAssignment>
-    <ReservedWord occurrences="9">
-      <code>$this-&gt;assertInstanceOf('Baz\Module', $baz)</code>
-      <code>$this-&gt;assertInstanceOf('Baz\Module', $baz)</code>
-      <code>$this-&gt;assertInstanceOf('Baz\Module', $baz)</code>
-      <code>$this-&gt;assertInstanceOf('Baz\Module', $baz)</code>
-      <code>$this-&gt;assertInstanceOf('Foo\Module', $foo)</code>
-      <code>$this-&gt;assertInstanceOf('stdClass', $fooObject)</code>
-    </ReservedWord>
     <UnusedVariable occurrences="1">
       <code>$loader</code>
     </UnusedVariable>
   </file>
-  <file src="test/_files/Baz/Module.php">
-    <MissingReturnType occurrences="2">
-      <code>getAutoloaderConfig</code>
-      <code>getConfig</code>
-    </MissingReturnType>
-  </file>
   <file src="test/_files/Baz/src/Baz/Controller/IndexController.php">
-    <MissingReturnType occurrences="6">
-      <code>consoleAction</code>
-      <code>customResponseAction</code>
-      <code>exceptionAction</code>
-      <code>persistencetestAction</code>
-      <code>redirectAction</code>
-      <code>unittestsAction</code>
-    </MissingReturnType>
     <MixedAssignment occurrences="2">
-      <code>$num_get</code>
-      <code>$num_post</code>
+      <code>$numGet</code>
+      <code>$numPost</code>
     </MixedAssignment>
     <MixedMethodCall occurrences="5">
       <code>addHeaderLine</code>
@@ -972,6 +686,10 @@
       <code>get</code>
       <code>get</code>
     </MixedMethodCall>
+    <MixedReturnTypeCoercion occurrences="2">
+      <code>['num_get' =&gt; $numGet, 'num_post' =&gt; $numPost]</code>
+      <code>array&lt;string, string&gt;</code>
+    </MixedReturnTypeCoercion>
     <UndefinedInterfaceMethod occurrences="3">
       <code>getHeaders</code>
       <code>getPost</code>
@@ -985,35 +703,10 @@
     <MissingClosureParamType occurrences="1">
       <code>$e</code>
     </MissingClosureParamType>
-    <MissingParamType occurrences="2">
-      <code>$e</code>
-      <code>$e</code>
-    </MissingParamType>
-    <MissingReturnType occurrences="2">
-      <code>onBootstrap</code>
-      <code>onRoute</code>
-    </MissingReturnType>
-    <MixedAssignment occurrences="6">
-      <code>$application</code>
-      <code>$application</code>
-      <code>$events</code>
-      <code>$events</code>
-      <code>$response</code>
-      <code>$routeMatch</code>
-    </MixedAssignment>
-    <MixedMethodCall occurrences="11">
+    <PossiblyNullReference occurrences="2">
       <code>attach</code>
-      <code>attach</code>
-      <code>getApplication</code>
-      <code>getApplication</code>
-      <code>getEventManager</code>
-      <code>getEventManager</code>
       <code>getMatchedRouteName</code>
-      <code>getResponse</code>
-      <code>getRouteMatch</code>
-      <code>getSharedManager</code>
-      <code>setContent</code>
-    </MixedMethodCall>
+    </PossiblyNullReference>
     <UnusedClosureParam occurrences="1">
       <code>$e</code>
     </UnusedClosureParam>
@@ -1025,11 +718,6 @@
     <MissingClosureReturnType occurrences="1">
       <code>function ($sm) {</code>
     </MissingClosureReturnType>
-    <MissingReturnType occurrences="3">
-      <code>getAutoloaderConfig</code>
-      <code>getConfig</code>
-      <code>getServiceConfig</code>
-    </MissingReturnType>
     <MixedAssignment occurrences="1">
       <code>$foo</code>
     </MixedAssignment>
@@ -1040,29 +728,12 @@
       <code>$foo</code>
     </MixedPropertyAssignment>
   </file>
-  <file src="test/_files/modules-path/with-subdir/Bar/src/Bar/Controller/IndexController.php">
-    <MissingReturnType occurrences="2">
-      <code>consoleAction</code>
-      <code>unittestsAction</code>
-    </MissingReturnType>
-  </file>
   <file src="test/_files/modules-path/with-subdir/Foo/Module.php">
     <MissingClosureParamType occurrences="1">
       <code>$sm</code>
     </MissingClosureParamType>
-    <MissingReturnType occurrences="3">
-      <code>getAutoloaderConfig</code>
-      <code>getConfig</code>
-      <code>getServiceConfig</code>
-    </MissingReturnType>
     <UnusedClosureParam occurrences="1">
       <code>$sm</code>
     </UnusedClosureParam>
-  </file>
-  <file src="test/_files/modules-path/with-subdir/Foo/src/Foo/Controller/IndexController.php">
-    <MissingReturnType occurrences="2">
-      <code>consoleAction</code>
-      <code>unittestsAction</code>
-    </MissingReturnType>
   </file>
 </files>
