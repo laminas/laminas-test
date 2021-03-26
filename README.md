@@ -1,7 +1,6 @@
 # laminas-test
 
-[![Build Status](https://travis-ci.com/laminas/laminas-test.svg?branch=master)](https://travis-ci.com/laminas/laminas-test)
-[![Coverage Status](https://coveralls.io/repos/github/laminas/laminas-test/badge.svg?branch=master)](https://coveralls.io/github/laminas/laminas-test?branch=master)
+[![Build Status](https://github.com/laminas/laminas-test/workflows/Continuous%20Integration/badge.svg)](https://github.com/laminas/laminas-test/actions?query=workflow%3A"Continuous+Integration")
 
 laminas-test provides tools to facilitate unit testing of your Laminas
 Framework applications. At this time, we offer facilities to enable testing of
