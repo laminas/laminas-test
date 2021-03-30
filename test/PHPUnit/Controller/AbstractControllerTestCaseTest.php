@@ -177,7 +177,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
     }
 
     /** @return void */
-    public function testAssertModulNameWithNamespace()
+    public function testAssertModuleNameWithNamespace()
     {
         $applicationConfig = $this->getApplicationConfig();
 
