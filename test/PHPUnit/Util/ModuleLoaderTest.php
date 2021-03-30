@@ -66,6 +66,16 @@ class ModuleLoaderTest extends TestCase
     }
 
     /** @return void */
+    public function testCanLoadModuleWithNamespace()
+    {
+        $loader = new ModuleLoader(['ModuleWithNamespace\TestModule' => __DIR__ . '/../../_files/ModuleWithNamespace/TestModule']);
+        $testModule = $loader->getModule('ModuleWithNamespace\TestModule');
+
+        $this->assertInstanceOf('ModuleWithNamespace\TestModule\Module', $testModule);
+        $this->assertInstanceOf(\ModuleWithNamespace\TestModule\Module::class, $testModule);
+    }
+
+    /** @return void */
     public function testCanNotLoadModule()
     {
         $this->expectedException(RuntimeException::class, 'could not be initialized');
