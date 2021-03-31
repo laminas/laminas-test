@@ -349,10 +349,10 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
 
         if ($urlPlugin->fromRoute($route) !== $responseHeader->getFieldValue()) {
             throw new ExpectationFailedException($this->createFailureMessage(sprintf(
-                                                                                 'Failed asserting response redirects to "%s", actual redirection is "%s"',
-                                                                                 $urlPlugin->fromRoute($route),
-                                                                                 $responseHeader->getFieldValue()
-                                                                             )));
+                'Failed asserting response redirects to "%s", actual redirection is "%s"',
+                $urlPlugin->fromRoute($route),
+                $responseHeader->getFieldValue()
+            )));
         }
 
         $this->assertEquals($urlPlugin->fromRoute($route), $responseHeader->getFieldValue());
@@ -377,9 +377,9 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
 
         if ($urlPlugin->fromRoute($route) === $responseHeader->getFieldValue()) {
             throw new ExpectationFailedException($this->createFailureMessage(sprintf(
-                                                                                 'Failed asserting response redirects to "%s"',
-                                                                                 $urlPlugin->fromRoute($route)
-                                                                             )));
+                'Failed asserting response redirects to "%s"',
+                $urlPlugin->fromRoute($route)
+            )));
         }
 
         $this->assertNotEquals($urlPlugin->fromRoute($route), $responseHeader->getFieldValue());
