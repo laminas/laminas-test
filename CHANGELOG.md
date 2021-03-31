@@ -22,7 +22,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- [#24](https://github.com/laminas/laminas-test/pull/24) When `AbstractControllerTestCase::assertResponseStatusCode` fails it is not counted as an assertion by PHPUnit
 
 ## 3.4.2 - 2020-05-20
 
