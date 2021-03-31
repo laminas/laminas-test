@@ -576,14 +576,24 @@ abstract class AbstractControllerTestCase extends TestCase
     public function assertModuleName($module)
     {
         $controllerClass = $this->getControllerFullClassName();
-        $match           = substr($controllerClass, 0, strpos($controllerClass, '\\'));
-        $match           = strtolower($match);
-        $module          = strtolower($module);
+        $match = '';
+
+        // Find Module from Controller
+        foreach ($this->applicationConfig['modules'] as $appModules) {
+            if (strpos($controllerClass, $appModules) !== false) {
+                $match = ltrim(substr($appModules, strrpos($appModules, '\\')), '\\');
+            }
+        }
+
+        $match  = strtolower($match);
+        $module = strtolower($module);
+
         if ($module !== $match) {
             throw new ExpectationFailedException($this->createFailureMessage(
                 sprintf('Failed asserting module name "%s", actual module name is "%s"', $module, $match)
             ));
         }
+
         $this->assertEquals($module, $match);
     }
 
