@@ -570,7 +570,7 @@ abstract class AbstractControllerTestCase extends TestCase
     }
 
     /**
-     * Get the full current controller class
+     * Get the current controller class
      *
      * @return object
      */
