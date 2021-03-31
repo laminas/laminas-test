@@ -97,6 +97,8 @@ handful of assertions.
 - `assertRedirect()`: assert simply that a redirect has occurred.
 - `assertRedirectTo($url)`: assert that a redirect has occurred, and that the
   value of the `Location` header is the `$url` provided.
+- `assertRedirectToRoute($route)`: assert that a redirect has occurred, and that 
+  the value of the `Location` header is the URL provided by the given `$route`.
 - `assertRedirectRegex($pattern)`: assert that a redirect has occurred, and that
   the value of the `Location` header matches the regular expression provided by
   `$pattern`.
