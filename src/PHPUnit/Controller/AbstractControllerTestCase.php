@@ -566,6 +566,17 @@ abstract class AbstractControllerTestCase extends TestCase
     protected function getControllerFullClassName()
     {
         $routeMatch = $this->getApplication()->getMvcEvent()->getRouteMatch();
+        return get_class($this->getControllerFullClass());
+    }
+
+    /**
+     * Get the full current controller class
+     *
+     * @return object
+     */
+    protected function getControllerFullClass()
+    {
+        $routeMatch           = $this->getApplication()->getMvcEvent()->getRouteMatch();
         if (! $routeMatch) {
             throw new ExpectationFailedException($this->createFailureMessage('No route matched'));
         }
@@ -573,7 +584,7 @@ abstract class AbstractControllerTestCase extends TestCase
         $controllerManager    = $this->getApplicationServiceLocator()->get('ControllerManager');
         $controllerClass      = $controllerManager->get($controllerIdentifier);
 
-        return get_class($controllerClass);
+        return $controllerClass;
     }
 
     /**

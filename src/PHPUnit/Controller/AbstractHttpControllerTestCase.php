@@ -330,6 +330,62 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
     }
 
     /**
+     * Assert that response redirects to given route name
+     *
+     * @param string $routeName
+     */
+    public function assertRedirectToRoute($routeName)
+    {
+        $responseHeader = $this->getResponseHeader('Location');
+
+        if (! $responseHeader) {
+            throw new ExpectationFailedException($this->createFailureMessage(
+                'Failed asserting response is a redirect'
+            ));
+        }
+
+        $controllerClass  = $this->getControllerFullClass();
+        $urlPlugin        = $controllerClass->plugin('url');
+
+        if ($urlPlugin->fromRoute($routeName) !== $responseHeader->getFieldValue()) {
+            throw new ExpectationFailedException($this->createFailureMessage(sprintf(
+                                                                                 'Failed asserting response redirects to "%s", actual redirection is "%s"',
+                                                                                 $urlPlugin->fromRoute($routeName),
+                                                                                 $responseHeader->getFieldValue()
+                                                                             )));
+        }
+
+        $this->assertEquals($urlPlugin->fromRoute($routeName), $responseHeader->getFieldValue());
+    }
+
+    /**
+     * Assert that response does not redirect to given URL
+     *
+     * @param  string $routeName
+     */
+    public function assertNotRedirectToRoute($routeName)
+    {
+        $responseHeader = $this->getResponseHeader('Location');
+        if (! $responseHeader) {
+            throw new ExpectationFailedException($this->createFailureMessage(
+                'Failed asserting response is a redirect'
+            ));
+        }
+
+        $controllerClass  = $this->getControllerFullClass();
+        $urlPlugin        = $controllerClass->plugin('url');
+
+        if ($urlPlugin->fromRoute($routeName) === $responseHeader->getFieldValue()) {
+            throw new ExpectationFailedException($this->createFailureMessage(sprintf(
+                                                                                 'Failed asserting response redirects to "%s"',
+                                                                                 $urlPlugin->fromRoute($routeName)
+                                                                             )));
+        }
+
+        $this->assertNotEquals($urlPlugin->fromRoute($routeName), $responseHeader->getFieldValue());
+    }
+
+    /**
      * Assert that redirect location matches pattern
      *
      * @param string $pattern

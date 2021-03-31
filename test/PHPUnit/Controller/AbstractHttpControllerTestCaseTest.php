@@ -189,6 +189,24 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertNotRedirectTo('https://www.zend.com');
     }
 
+    public function testAssertRedirectToRoute(): void
+    {
+        $this->dispatch('/redirect-to-route');
+        $this->assertRedirectToRoute('myroute');
+
+        $this->expectedException(ExpectationFailedException::class);
+        $this->assertRedirectToRoute('exception');
+    }
+
+    public function testAssertNotRedirectToRoute(): void
+    {
+        $this->dispatch('/redirect-to-route');
+        $this->assertNotRedirectToRoute('exception');
+
+        $this->expectedException(ExpectationFailedException::class);
+        $this->assertNotRedirectToRoute('myroute');
+    }
+
     public function testAssertRedirectRegex(): void
     {
         $this->dispatch('/redirect');
