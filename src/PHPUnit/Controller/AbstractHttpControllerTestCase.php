@@ -9,6 +9,7 @@ namespace Laminas\Test\PHPUnit\Controller;
 use ArrayIterator;
 use Laminas\Dom\Document;
 use Laminas\Http\Header\HeaderInterface;
+use Laminas\Test\PHPUnit\Constraint\isRedirectedRouteNameConstraint;
 use PHPUnit\Framework\ExpectationFailedException;
 
 use function count;
@@ -336,26 +337,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
      */
     public function assertRedirectToRoute($route)
     {
-        $responseHeader = $this->getResponseHeader('Location');
-
-        if (! $responseHeader) {
-            throw new ExpectationFailedException($this->createFailureMessage(
-                'Failed asserting response is a redirect'
-            ));
-        }
-
-        $controllerClass  = $this->getControllerFullClass();
-        $urlPlugin        = $controllerClass->plugin('url');
-
-        if ($urlPlugin->fromRoute($route) !== $responseHeader->getFieldValue()) {
-            throw new ExpectationFailedException($this->createFailureMessage(sprintf(
-                'Failed asserting response redirects to "%s", actual redirection is "%s"',
-                $urlPlugin->fromRoute($route),
-                $responseHeader->getFieldValue()
-            )));
-        }
-
-        $this->assertEquals($urlPlugin->fromRoute($route), $responseHeader->getFieldValue());
+        self::assertThat($route, new isRedirectedRouteNameConstraint($this));
     }
 
     /**
@@ -365,24 +347,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
      */
     public function assertNotRedirectToRoute($route)
     {
-        $responseHeader = $this->getResponseHeader('Location');
-        if (! $responseHeader) {
-            throw new ExpectationFailedException($this->createFailureMessage(
-                'Failed asserting response is a redirect'
-            ));
-        }
-
-        $controllerClass  = $this->getControllerFullClass();
-        $urlPlugin        = $controllerClass->plugin('url');
-
-        if ($urlPlugin->fromRoute($route) === $responseHeader->getFieldValue()) {
-            throw new ExpectationFailedException($this->createFailureMessage(sprintf(
-                'Failed asserting response redirects to "%s"',
-                $urlPlugin->fromRoute($route)
-            )));
-        }
-
-        $this->assertNotEquals($urlPlugin->fromRoute($route), $responseHeader->getFieldValue());
+        self::assertThat($route, self::logicalNot(new isRedirectedRouteNameConstraint($this)));
     }
 
     /**
