@@ -19,6 +19,8 @@ use Laminas\Stdlib\Exception\LogicException;
 use Laminas\Stdlib\Parameters;
 use Laminas\Stdlib\RequestInterface;
 use Laminas\Stdlib\ResponseInterface;
+use Laminas\Test\PHPUnit\Constraint\IsCurrentModuleNameConstraint;
+use Laminas\Test\PHPUnit\TestCaseTrait;
 use Laminas\Uri\Http as HttpUri;
 use Laminas\View\Model\ModelInterface;
 use PHPUnit\Framework\ExpectationFailedException;
@@ -101,6 +103,8 @@ abstract class AbstractControllerTestCase extends TestCase
      * Create a failure message.
      *
      * If $traceError is true, appends exception details, if any.
+     *
+     * @deprecated (use LaminasContraint instead)
      *
      * @param string $message
      * @return string
@@ -570,50 +574,21 @@ abstract class AbstractControllerTestCase extends TestCase
 
     /**
      * Assert that the application route match used the given module
-     *
-     * @param string $module
      */
-    public function assertModuleName($module)
+    final public function assertModuleName(string $module): void
     {
-        $controllerClass = $this->getControllerFullClassName();
-        $match = '';
-
-        // Find Module from Controller
-        foreach ($this->applicationConfig['modules'] as $appModules) {
-            if (strpos($controllerClass, $appModules) !== false) {
-                $match = ltrim(substr($appModules, strrpos($appModules, '\\')), '\\');
-            }
-        }
-
-        $match  = strtolower($match);
-        $module = strtolower($module);
-
-        if ($module !== $match) {
-            throw new ExpectationFailedException($this->createFailureMessage(
-                sprintf('Failed asserting module name "%s", actual module name is "%s"', $module, $match)
-            ));
-        }
-
-        $this->assertEquals($module, $match);
+        self::assertThat($module, new IsCurrentModuleNameConstraint($this));
     }
 
     /**
      * Assert that the application route match used NOT the given module
-     *
-     * @param string $module
      */
-    public function assertNotModuleName($module)
+    final public function assertNotModuleName(string $module): void
     {
-        $controllerClass = $this->getControllerFullClassName();
-        $match           = substr($controllerClass, 0, strpos($controllerClass, '\\'));
-        $match           = strtolower($match);
-        $module          = strtolower($module);
-        if ($module === $match) {
-            throw new ExpectationFailedException($this->createFailureMessage(
-                sprintf('Failed asserting module was NOT "%s"', $module)
-            ));
-        }
-        $this->assertNotEquals($module, $match);
+        self::assertThat(
+            $module,
+            self::logicalNot(new IsCurrentModuleNameConstraint($this))
+        );
     }
 
     /**
