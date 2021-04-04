@@ -8,6 +8,8 @@ use Laminas\Test\PHPUnit\Controller\AbstractControllerTestCase;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\ExpectationFailedException;
 use SebastianBergmann\Comparator\ComparisonFailure;
+use Exception;
+use Throwable;
 
 abstract class LaminasConstraint extends Constraint
 {
@@ -23,27 +25,16 @@ abstract class LaminasConstraint extends Constraint
         return $this->activeTestCase;
     }
 
-    protected function fail($other, $description, ComparisonFailure $comparisonFailure = null): void
+    final public function fail($other, $description, ComparisonFailure $comparisonFailure = null): void
     {
-        $failureDescription = sprintf(
-            'Failed asserting that %s.',
-            $this->failureDescription($other)
-        );
-
-        $additionalFailureDescription = $this->additionalFailureDescription($other);
-
-        if ($additionalFailureDescription) {
-            $failureDescription .= "\n" . $additionalFailureDescription;
+        try {
+            parent::fail($other, $description, $comparisonFailure);
+        } catch (ExpectationFailedException $failedException) {
+            throw new ExpectationFailedException(
+                $this->createFailureMessage($failedException->getMessage()),
+                $failedException->getComparisonFailure(),
+            );
         }
-
-        if (! empty($description)) {
-            $failureDescription = $description . "\n" . $failureDescription;
-        }
-
-        throw new ExpectationFailedException(
-            $this->createFailureMessage($failureDescription),
-            $comparisonFailure
-        );
     }
 
     final protected function getControllerFullClassName(): string
@@ -56,21 +47,19 @@ abstract class LaminasConstraint extends Constraint
         return get_class($controllerManager->get($controllerIdentifier));
     }
 
-
-
     /**
      * Create a failure message.
      *
-     * If $traceError is true, appends exception details, if any.
+     * If traceError is true, appends exception details, if any.
      */
-    final private function createFailureMessage(string $message): string
+    private function createFailureMessage(string $message): string
     {
-        if (true !== $this->activeTestCase->getTraceError()) {
+        if (! $this->activeTestCase->getTraceError()) {
             return $message;
         }
 
-        $exception = $this->activeTestCase->getApplication()->getMvcEvent()->getParam('exception');
-        if (! $exception instanceof \Throwable && ! $exception instanceof \Exception) {
+        $exception = $this->getTestCase()->getApplication()->getMvcEvent()->getParam('exception');
+        if (! $exception instanceof Throwable && ! $exception instanceof Exception) {
             return $message;
         }
 
