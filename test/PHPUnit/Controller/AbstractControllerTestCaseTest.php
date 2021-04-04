@@ -182,7 +182,8 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $applicationConfig = $this->getApplicationConfig();
 
         $applicationConfig['modules'][] = 'ModuleWithNamespace\TestModule';
-        $applicationConfig['module_listener_options']['module_paths']['ModuleWithNamespace\TestModule'] = __DIR__ . '/../../_files/ModuleWithNamespace/TestModule/';
+        $applicationConfig['module_listener_options']['module_paths']['ModuleWithNamespace\TestModule']
+            = __DIR__ . '/../../_files/ModuleWithNamespace/TestModule/';
 
         $this->setApplicationConfig($applicationConfig);
 

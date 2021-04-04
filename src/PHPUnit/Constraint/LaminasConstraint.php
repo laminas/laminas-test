@@ -37,7 +37,7 @@ abstract class LaminasConstraint extends Constraint
         }
     }
 
-    final protected function getControllerFullClassName(): string
+    final public function getControllerFullClassName(): string
     {
         $routeMatch           = $this->activeTestCase->getApplication()->getMvcEvent()->getRouteMatch();
         $controllerIdentifier = $routeMatch->getParam('controller');
