@@ -1,25 +1,12 @@
 {
     "name": "laminas/laminas-test",
     "description": "Tools to facilitate unit testing of laminas-mvc applications",
-    "license": "BSD-3-Clause",
     "keywords": [
         "laminas",
         "test"
     ],
     "homepage": "https://laminas.dev",
-    "support": {
-        "docs": "https://docs.laminas.dev/laminas-test/",
-        "issues": "https://github.com/laminas/laminas-test/issues",
-        "source": "https://github.com/laminas/laminas-test",
-        "rss": "https://github.com/laminas/laminas-test/releases.atom",
-        "chat": "https://laminas.dev/chat",
-        "forum": "https://discourse.laminas.dev"
-    },
-    "config": {
-        "sort-packages": true
-    },
-    "extra": {
-    },
+    "license": "BSD-3-Clause",
     "require": {
         "php": "^5.6 || ^7.0",
         "laminas/laminas-console": "^2.6",
@@ -33,6 +20,9 @@
         "laminas/laminas-view": "^2.6.3",
         "laminas/laminas-zendframework-bridge": "^1.0",
         "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0 || ^7.0 || ^8.0 || ^9.0"
+    },
+    "replace": {
+        "zendframework/zend-test": "^3.3.0"
     },
     "require-dev": {
         "laminas/laminas-coding-standard": "~1.0.0",
@@ -49,13 +39,17 @@
     "suggest": {
         "laminas/laminas-mvc-console": "^1.1.8, to test MVC <-> console integration"
     },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {},
     "autoload": {
-        "files": [
-            "autoload/phpunit-class-aliases.php"
-        ],
         "psr-4": {
             "Laminas\\Test\\": "src/"
-        }
+        },
+        "files": [
+            "autoload/phpunit-class-aliases.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
@@ -72,7 +66,12 @@
         "test": "phpunit --colors",
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml"
     },
-    "replace": {
-        "zendframework/zend-test": "^3.3.0"
+    "support": {
+        "issues": "https://github.com/laminas/laminas-test/issues",
+        "forum": "https://discourse.laminas.dev",
+        "chat": "https://laminas.dev/chat",
+        "source": "https://github.com/laminas/laminas-test",
+        "docs": "https://docs.laminas.dev/laminas-test/",
+        "rss": "https://github.com/laminas/laminas-test/releases.atom"
     }
 }
