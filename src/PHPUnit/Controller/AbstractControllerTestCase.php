@@ -574,16 +574,20 @@ abstract class AbstractControllerTestCase extends TestCase
 
     /**
      * Assert that the application route match used the given module
+     *
+     * @param string $module
      */
-    final public function assertModuleName(string $module): void
+    public function assertModuleName($module)
     {
         self::assertThat($module, new IsCurrentModuleNameConstraint($this));
     }
 
     /**
      * Assert that the application route match used NOT the given module
+     *
+     * @param string $module
      */
-    final public function assertNotModuleName(string $module): void
+    public function assertNotModuleName($module)
     {
         self::assertThat(
             $module,
