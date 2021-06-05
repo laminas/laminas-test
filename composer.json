@@ -21,7 +21,7 @@
     "extra": {
     },
     "require": {
-        "php": "^7.3 || ~8.0.0",
+        "php": "^7.3 || ^7.4",
         "laminas/laminas-console": "^2.6",
         "laminas/laminas-dom": "^2.8",
         "laminas/laminas-eventmanager": "^2.6.2 || ^3.0",
