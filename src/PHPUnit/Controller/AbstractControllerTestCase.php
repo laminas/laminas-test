@@ -13,7 +13,9 @@ use Laminas\EventManager\StaticEventManager;
 use Laminas\Http\Request as HttpRequest;
 use Laminas\Mvc\Application;
 use Laminas\Mvc\ApplicationInterface;
+use Laminas\Mvc\Controller\ControllerManager;
 use Laminas\Mvc\MvcEvent;
+use Laminas\Router\RouteMatch;
 use Laminas\ServiceManager\ServiceManager;
 use Laminas\Stdlib\Exception\LogicException;
 use Laminas\Stdlib\Parameters;
@@ -22,6 +24,7 @@ use Laminas\Stdlib\ResponseInterface;
 use Laminas\Test\PHPUnit\Constraint\IsCurrentModuleNameConstraint;
 use Laminas\Uri\Http as HttpUri;
 use Laminas\View\Model\ModelInterface;
+use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
 use Throwable;
@@ -565,7 +568,6 @@ abstract class AbstractControllerTestCase extends TestCase
      */
     protected function getControllerFullClassName()
     {
-        $routeMatch = $this->getApplication()->getMvcEvent()->getRouteMatch();
         return get_class($this->getControllerFullClass());
     }
 
@@ -576,15 +578,26 @@ abstract class AbstractControllerTestCase extends TestCase
      */
     protected function getControllerFullClass()
     {
-        $routeMatch           = $this->getApplication()->getMvcEvent()->getRouteMatch();
+        $routeMatch = $this->getApplication()->getMvcEvent()->getRouteMatch();
         if (! $routeMatch) {
-            throw new ExpectationFailedException($this->createFailureMessage('No route matched'));
+            Assert::fail('No route matched');
         }
-        $controllerIdentifier = $routeMatch->getParam('controller');
-        $controllerManager    = $this->getApplicationServiceLocator()->get('ControllerManager');
-        $controllerClass      = $controllerManager->get($controllerIdentifier);
 
-        return $controllerClass;
+        $controllerIdentifier = $routeMatch->getParam('controller');
+        Assert::assertIsString($controllerIdentifier, 'No string controller identifier discovered in route match');
+
+        $controllerManager = $this->getApplicationServiceLocator()->get('ControllerManager');
+        if (! $controllerManager instanceof ControllerManager) {
+            Assert::fail('Invalid ControllerManager instance in ServiceManager');
+        }
+
+        $controller = $controllerManager->get($controllerIdentifier);
+        Assert::assertIsObject(
+            $controller,
+            sprintf('Did not receive an object back for the controller %s', $controllerIdentifier)
+        );
+
+        return $controller;
     }
 
     /**
@@ -779,18 +792,26 @@ abstract class AbstractControllerTestCase extends TestCase
      */
     public function assertNotMatchedRouteName($route)
     {
-        $routeMatch = $this->getApplication()->getMvcEvent()->getRouteMatch();
-        if (! $routeMatch) {
-            throw new ExpectationFailedException($this->createFailureMessage('No route matched'));
+        $application = $this->getApplication();
+        if (! $application instanceof Application) {
+            Assert::fail(sprintf(
+                'Unexpected Application instance composed in test case; must be of type %s',
+                Application::class
+            ));
         }
+
+        $routeMatch = $application->getMvcEvent()->getRouteMatch();
+        if (! $routeMatch) {
+            Assert::fail('No route matched');
+        }
+
         $match = $routeMatch->getMatchedRouteName();
         $match = strtolower($match);
         $route = strtolower($route);
         if ($route === $match) {
-            throw new ExpectationFailedException($this->createFailureMessage(
-                sprintf('Failed asserting route matched was NOT "%s"', $route)
-            ));
+            Assert::fail(sprintf('Failed asserting route matched was NOT "%s"', $route));
         }
+
         $this->assertNotEquals($route, $match);
     }
 
@@ -801,16 +822,27 @@ abstract class AbstractControllerTestCase extends TestCase
      */
     public function assertNoMatchedRoute()
     {
-        $routeMatch = $this->getApplication()->getMvcEvent()->getRouteMatch();
-        if ($routeMatch) {
-            $match = $routeMatch->getMatchedRouteName();
-            $match = strtolower($match);
-            throw new ExpectationFailedException($this->createFailureMessage(sprintf(
-                'Failed asserting that no route matched, actual matched route name is "%s"',
-                $match
-            )));
+        $application = $this->getApplication();
+        if (! $application instanceof Application) {
+            Assert::fail(sprintf(
+                'Unexpected Application instance composed in test case; must be of type %s',
+                Application::class
+            ));
         }
-        $this->assertNull($routeMatch);
+
+        $routeMatch = $application->getMvcEvent()->getRouteMatch();
+
+        if (! $routeMatch instanceof RouteMatch) {
+            Assert::assertTrue(true);
+            return;
+        }
+
+        $match = $routeMatch->getMatchedRouteName();
+        $match = strtolower($match);
+        Assert::fail(sprintf(
+            'Failed asserting that no route matched, actual matched route name is "%s"',
+            $match
+        ));
     }
 
     /**
@@ -822,7 +854,15 @@ abstract class AbstractControllerTestCase extends TestCase
      */
     public function assertTemplateName($templateName)
     {
-        $viewModel = $this->getApplication()->getMvcEvent()->getViewModel();
+        $application = $this->getApplication();
+        if (! $application instanceof Application) {
+            $this->fail(sprintf(
+                'Unexpected Application instance composed in test case; must be of type %s',
+                Application::class
+            ));
+        }
+
+        $viewModel = $application->getMvcEvent()->getViewModel();
         $this->assertTrue($this->searchTemplates($viewModel, $templateName));
     }
 

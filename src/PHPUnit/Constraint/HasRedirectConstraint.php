@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace Laminas\Test\PHPUnit\Constraint;
 
+use Laminas\Http\Header\Location;
+use Laminas\Http\PhpEnvironment\Response;
 use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 use PHPUnit\Framework\Constraint\Constraint;
-use Laminas\Http\PhpEnvironment\Response;
-use Laminas\Http\Header\Location;
 
 final class HasRedirectConstraint extends Constraint
 {
+    /** @var AbstractHttpControllerTestCase */
     private $activeTestCase;
 
     public function __construct(AbstractHttpControllerTestCase $activeTestCase)
@@ -23,12 +24,15 @@ final class HasRedirectConstraint extends Constraint
         return 'has a redirect';
     }
 
+    /** @param mixed $other */
     public function matches($other): bool
     {
-        if (! $this->activeTestCase->getResponse() instanceof Response) {
+        $response = $this->activeTestCase->getResponse();
+
+        if (! $response instanceof Response) {
             return false;
         }
 
-        return ($this->activeTestCase->getResponse()->getHeaders()->get('Location') instanceof Location);
+        return $response->getHeaders()->get('Location') instanceof Location;
     }
 }

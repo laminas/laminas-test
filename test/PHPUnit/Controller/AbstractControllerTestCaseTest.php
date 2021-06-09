@@ -18,6 +18,7 @@ use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 use LaminasTest\Test\ExpectedExceptionTrait;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamWrapper;
+use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\ExpectationFailedException;
 use RuntimeException;
 
@@ -358,7 +359,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->dispatch('/tests');
         $this->assertNotMatchedRouteName('route');
 
-        $this->expectedException(ExpectationFailedException::class);
+        $this->expectedException(AssertionFailedError::class);
         $this->assertNotMatchedRouteName('myroute');
     }
 
@@ -373,7 +374,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
     public function testAssertNoMatchedRouteWithMatchedRoute()
     {
         $this->dispatch('/tests');
-        $this->expectedException(ExpectationFailedException::class, 'no route matched');
+        $this->expectedException(AssertionFailedError::class, 'no route matched');
         $this->assertNoMatchedRoute();
     }
 
@@ -381,7 +382,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
     public function testControllerNameWithNoRouteMatch()
     {
         $this->dispatch('/invalid');
-        $this->expectedException(ExpectationFailedException::class, 'No route matched');
+        $this->expectedException(AssertionFailedError::class, 'No route matched');
         $this->assertControllerName('something');
     }
 
@@ -421,7 +422,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
     public function testNotMatchedRouteNameWithNoRouteMatch()
     {
         $this->dispatch('/invalid');
-        $this->expectedException(ExpectationFailedException::class, 'No route matched');
+        $this->expectedException(AssertionFailedError::class, 'No route matched');
         $this->assertNotMatchedRouteName('something');
     }
 
@@ -429,7 +430,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
     public function testControllerClassWithNoRoutematch()
     {
         $this->dispatch('/invalid');
-        $this->expectedException(ExpectationFailedException::class, 'No route matched');
+        $this->expectedException(AssertionFailedError::class, 'No route matched');
         $this->assertControllerClass('something');
     }
 

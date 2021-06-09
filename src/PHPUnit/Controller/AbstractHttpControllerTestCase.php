@@ -2,10 +2,6 @@
 
 declare(strict_types=1);
 
-/**
- * @see       https://github.com/laminas/laminas-test for the canonical source repository
- */
-
 namespace Laminas\Test\PHPUnit\Controller;
 
 use ArrayIterator;
