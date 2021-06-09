@@ -12,6 +12,7 @@ use Laminas\Mvc\ApplicationInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 use Laminas\Test\Util\ModuleLoader;
 use LaminasTest\Test\ExpectedExceptionTrait;
+use ModuleWithNamespace\TestModule\Module;
 use PHPUnit\Framework\TestCase;
 
 use function array_diff;
@@ -66,10 +67,23 @@ class ModuleLoaderTest extends TestCase
     }
 
     /** @return void */
+    public function testCanLoadModuleWithNamespace()
+    {
+        $loader = new ModuleLoader([
+            'ModuleWithNamespace\TestModule' => __DIR__ . '/../../_files/ModuleWithNamespace/TestModule',
+        ]);
+
+        $testModule = $loader->getModule('ModuleWithNamespace\TestModule');
+
+        $this->assertInstanceOf('ModuleWithNamespace\TestModule\Module', $testModule);
+        $this->assertInstanceOf(Module::class, $testModule);
+    }
+
+    /** @return void */
     public function testCanNotLoadModule()
     {
         $this->expectedException(RuntimeException::class, 'could not be initialized');
-        $loader = new ModuleLoader(['FooBaz']);
+        new ModuleLoader(['FooBaz']);
     }
 
     /** @return void */

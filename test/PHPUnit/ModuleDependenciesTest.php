@@ -13,7 +13,7 @@ class ModuleDependenciesTest extends AbstractHttpControllerTestCase
 {
     use ExpectedExceptionTrait;
 
-    public function testDependenciesModules()
+    public function testDependenciesModules(): void
     {
         $this->setApplicationConfig(
             include __DIR__ . '/../_files/application.config.with.dependencies.php'
@@ -27,7 +27,7 @@ class ModuleDependenciesTest extends AbstractHttpControllerTestCase
         $this->assertModulesLoaded(['Foo', 'Bar', 'Unknow']);
     }
 
-    public function testBadDependenciesModules()
+    public function testBadDependenciesModules(): void
     {
         $this->setApplicationConfig(
             include __DIR__ . '/../_files/application.config.with.dependencies.disabled.php'

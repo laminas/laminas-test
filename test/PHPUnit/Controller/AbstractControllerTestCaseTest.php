@@ -177,6 +177,21 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
     }
 
     /** @return void */
+    public function testAssertModuleNameWithNamespace()
+    {
+        $applicationConfig = $this->getApplicationConfig();
+
+        $applicationConfig['modules'][] = 'ModuleWithNamespace\TestModule';
+        $applicationConfig['module_listener_options']['module_paths']['ModuleWithNamespace\TestModule']
+            = __DIR__ . '/../../_files/ModuleWithNamespace/TestModule/';
+
+        $this->setApplicationConfig($applicationConfig);
+
+        $this->dispatch('/namespace-test');
+        $this->assertModuleName('TestModule');
+    }
+
+    /** @return void */
     public function testAssertExceptionDetailsPresentWhenTraceErrorIsEnabled()
     {
         $this->traceError = true;
@@ -480,7 +495,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
     /**
      * @group 6399
      */
-    public function testPatchRequestParams()
+    public function testPatchRequestParams(): void
     {
         $this->dispatch('/tests', 'PATCH', ['a' => 1]);
         $this->assertEquals('a=1', $this->getRequest()->getContent());
@@ -489,7 +504,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
     /**
      * @group 6399
      */
-    public function testPreserveContentOfPatchRequest()
+    public function testPreserveContentOfPatchRequest(): void
     {
         $this->getRequest()->setMethod('PATCH');
         $this->getRequest()->setContent('my content');
@@ -497,7 +512,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertEquals('my content', $this->getRequest()->getContent());
     }
 
-    public function testExplicityPutParamsOverrideRequestContent()
+    public function testExplicityPutParamsOverrideRequestContent(): void
     {
         $this->getRequest()->setContent('my content');
         $this->dispatch('/tests', 'PUT', ['a' => 1]);
@@ -508,13 +523,13 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
      * @group 6636
      * @group 6637
      */
-    public function testCanHandleMultidimensionalParams()
+    public function testCanHandleMultidimensionalParams(): void
     {
         $this->dispatch('/tests', 'PUT', ['a' => ['b' => 1]]);
         $this->assertEquals('a[b]=1', urldecode($this->getRequest()->getContent()));
     }
 
-    public function testAssertTemplateName()
+    public function testAssertTemplateName(): void
     {
         $this->dispatch('/tests');
 
@@ -522,20 +537,20 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertTemplateName('baz/index/unittests');
     }
 
-    public function testAssertNotTemplateName()
+    public function testAssertNotTemplateName(): void
     {
         $this->dispatch('/tests');
 
         $this->assertNotTemplateName('template/does/not/exist');
     }
 
-    public function testCustomResponseObject()
+    public function testCustomResponseObject(): void
     {
         $this->dispatch('/custom-response');
         $this->assertResponseStatusCode(999);
     }
 
-    public function testResetDoesNotCreateSessionIfNoSessionExists()
+    public function testResetDoesNotCreateSessionIfNoSessionExists(): void
     {
         if (! extension_loaded('session')) {
             $this->markTestSkipped('No session extension loaded');
@@ -546,8 +561,10 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertFalse(array_key_exists('_SESSION', $GLOBALS));
     }
 
-    /** @return array<string, array<string|null>> */
-    public function method(): iterable
+    /**
+     * @psalm-return Generator<string, array{0: null|string}, mixed, void>
+     */
+    public function method(): Generator
     {
         yield 'null' => [null];
         yield 'get' => ['GET'];
@@ -561,13 +578,13 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
      * @dataProvider method
      * @param null|string $method
      */
-    public function testDispatchWithNullParams($method)
+    public function testDispatchWithNullParams($method): void
     {
         $this->dispatch('/custom-response', $method, null);
         $this->assertResponseStatusCode(999);
     }
 
-    public function testQueryParamsDelete()
+    public function testQueryParamsDelete(): void
     {
         $this->dispatch('/tests', 'DELETE', ['foo' => 'bar']);
         $this->assertEquals('foo=bar', $this->getRequest()->getQuery()->toString());
@@ -586,13 +603,13 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
      * @dataProvider routeParam
      * @param string $param
      */
-    public function testRequestWithRouteParam($param)
+    public function testRequestWithRouteParam($param): void
     {
         $this->dispatch(sprintf('/with-param/%s', $param));
         $this->assertResponseStatusCode(200);
     }
 
-    private function assertContainsCompat(string $needle, string $haystack)
+    private function assertContainsCompat(string $needle, string $haystack): void
     {
         if (method_exists($this, 'assertStringContainsString')) {
             $this->assertStringContainsString($needle, $haystack);
@@ -601,7 +618,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         }
     }
 
-    private function assertNotContainsCompat(string $needle, string $haystack)
+    private function assertNotContainsCompat(string $needle, string $haystack): void
     {
         if (method_exists($this, 'assertStringNotContainsString')) {
             $this->assertStringNotContainsString($needle, $haystack);

@@ -1,6 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="4.7.3@38c452ae584467e939d55377aaf83b5a26f19dd1">
+  <file src="src/PHPUnit/Constraint/IsCurrentModuleNameConstraint.php">
+    <MixedArgument occurrences="5">
+      <code>$appModules</code>
+      <code>$appModules</code>
+      <code>$appModules</code>
+      <code>$appModules</code>
+      <code>$other</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="1">
+      <code>$appModules</code>
+    </MixedAssignment>
+    <PossiblyFalseArgument occurrences="1">
+      <code>strrpos($appModules, '\\')</code>
+    </PossiblyFalseArgument>
+  </file>
+  <file src="src/PHPUnit/Constraint/LaminasConstraint.php">
+    <InternalClass occurrences="1"/>
+    <InternalMethod occurrences="1">
+      <code>getComparisonFailure</code>
+    </InternalMethod>
+    <MixedArgument occurrences="1">
+      <code>$controllerManager-&gt;get($controllerIdentifier)</code>
+    </MixedArgument>
+    <MixedAssignment occurrences="3">
+      <code>$controllerIdentifier</code>
+      <code>$controllerManager</code>
+      <code>$routeMatch</code>
+    </MixedAssignment>
+    <MixedMethodCall occurrences="4">
+      <code>get</code>
+      <code>getParam</code>
+      <code>getParam</code>
+      <code>getRouteMatch</code>
+    </MixedMethodCall>
+    <UndefinedInterfaceMethod occurrences="2">
+      <code>getMvcEvent</code>
+      <code>getMvcEvent</code>
+    </UndefinedInterfaceMethod>
+  </file>
   <file src="src/PHPUnit/Controller/AbstractConsoleControllerTestCase.php">
+    <DeprecatedMethod occurrences="2">
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+    </DeprecatedMethod>
     <InternalClass occurrences="2"/>
     <MixedArgument occurrences="5">
       <code>$response-&gt;getContent()</code>
@@ -14,7 +57,32 @@
     <ArgumentTypeCoercion occurrences="1">
       <code>$type</code>
     </ArgumentTypeCoercion>
-    <InternalClass occurrences="25">
+    <DeprecatedMethod occurrences="23">
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+    </DeprecatedMethod>
+    <InternalClass occurrences="23">
       <code>new ExpectationFailedException($this-&gt;createFailureMessage('No route matched'))</code>
       <code>new ExpectationFailedException($this-&gt;createFailureMessage('No route matched'))</code>
       <code>new ExpectationFailedException($this-&gt;createFailureMessage('No route matched'))</code>
@@ -29,49 +97,6 @@
     <MissingClosureParamType occurrences="1">
       <code>$r</code>
     </MissingClosureParamType>
-    <MissingClosureReturnType occurrences="1">
-      <code>function ($r) use ($event) {</code>
-    </MissingClosureReturnType>
-    <MissingConstructor occurrences="15">
-      <code>$application</code>
-      <code>$application</code>
-      <code>$application</code>
-      <code>$application</code>
-      <code>$application</code>
-      <code>$applicationConfig</code>
-      <code>$applicationConfig</code>
-      <code>$applicationConfig</code>
-      <code>$applicationConfig</code>
-      <code>$applicationConfig</code>
-      <code>$usedConsoleBackup</code>
-      <code>$usedConsoleBackup</code>
-      <code>$usedConsoleBackup</code>
-      <code>$usedConsoleBackup</code>
-      <code>$usedConsoleBackup</code>
-    </MissingConstructor>
-    <MissingReturnType occurrences="21">
-      <code>assertActionName</code>
-      <code>assertApplicationException</code>
-      <code>assertControllerClass</code>
-      <code>assertControllerName</code>
-      <code>assertMatchedRouteName</code>
-      <code>assertModuleName</code>
-      <code>assertModulesLoaded</code>
-      <code>assertNoMatchedRoute</code>
-      <code>assertNotActionName</code>
-      <code>assertNotControllerClass</code>
-      <code>assertNotControllerName</code>
-      <code>assertNotMatchedRouteName</code>
-      <code>assertNotModuleName</code>
-      <code>assertNotModulesLoaded</code>
-      <code>assertNotResponseStatusCode</code>
-      <code>assertNotTemplateName</code>
-      <code>assertResponseStatusCode</code>
-      <code>assertTemplateName</code>
-      <code>dispatch</code>
-      <code>setUpCompat</code>
-      <code>tearDownCompat</code>
-    </MissingReturnType>
     <MixedArgument occurrences="19">
       <code>$child</code>
       <code>$controllerClass</code>
@@ -173,10 +198,6 @@
     <MoreSpecificReturnType occurrences="1">
       <code>ServiceManager</code>
     </MoreSpecificReturnType>
-    <PossiblyFalseArgument occurrences="2">
-      <code>strpos($controllerClass, '\\')</code>
-      <code>strpos($controllerClass, '\\')</code>
-    </PossiblyFalseArgument>
     <PossiblyFalseOperand occurrences="2">
       <code>strrpos($controllerClass, '\\')</code>
       <code>strrpos($controllerClass, '\\')</code>
@@ -230,59 +251,43 @@
     </UndefinedMethod>
   </file>
   <file src="src/PHPUnit/Controller/AbstractHttpControllerTestCase.php">
+    <DeprecatedMethod occurrences="34">
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+      <code>createFailureMessage</code>
+    </DeprecatedMethod>
     <InternalClass occurrences="34"/>
-    <InvalidReturnStatement occurrences="1">
-      <code>$this-&gt;query($path, true)</code>
-    </InvalidReturnStatement>
-    <InvalidReturnType occurrences="1">
-      <code>array</code>
-    </InvalidReturnType>
-    <MissingReturnType occurrences="44">
-      <code>assertHasResponseHeader</code>
-      <code>assertNotHasResponseHeader</code>
-      <code>assertNotQuery</code>
-      <code>assertNotQueryContentContains</code>
-      <code>assertNotQueryContentRegex</code>
-      <code>assertNotQueryCount</code>
-      <code>assertNotRedirect</code>
-      <code>assertNotRedirectRegex</code>
-      <code>assertNotRedirectTo</code>
-      <code>assertNotResponseHeaderContains</code>
-      <code>assertNotResponseHeaderRegex</code>
-      <code>assertNotXpathQuery</code>
-      <code>assertNotXpathQueryContentContains</code>
-      <code>assertNotXpathQueryContentRegex</code>
-      <code>assertNotXpathQueryCount</code>
-      <code>assertQuery</code>
-      <code>assertQueryContentContains</code>
-      <code>assertQueryContentRegex</code>
-      <code>assertQueryCount</code>
-      <code>assertQueryCountMax</code>
-      <code>assertQueryCountMin</code>
-      <code>assertRedirect</code>
-      <code>assertRedirectRegex</code>
-      <code>assertRedirectTo</code>
-      <code>assertResponseHeaderContains</code>
-      <code>assertResponseHeaderRegex</code>
-      <code>assertResponseReasonPhrase</code>
-      <code>assertXpathQuery</code>
-      <code>assertXpathQueryContentContains</code>
-      <code>assertXpathQueryContentRegex</code>
-      <code>assertXpathQueryCount</code>
-      <code>assertXpathQueryCountMax</code>
-      <code>assertXpathQueryCountMin</code>
-      <code>notQueryAssertion</code>
-      <code>notQueryContentContainsAssertion</code>
-      <code>notQueryContentRegexAssertion</code>
-      <code>notQueryCountAssertion</code>
-      <code>queryAssertion</code>
-      <code>queryContentContainsAssertion</code>
-      <code>queryContentRegexAssertion</code>
-      <code>queryCountAssertion</code>
-      <code>queryCountMaxAssertion</code>
-      <code>queryCountMinAssertion</code>
-      <code>registerXpathNamespaces</code>
-    </MissingReturnType>
     <MixedArgument occurrences="3">
       <code>$currentHeader-&gt;getFieldValue()</code>
       <code>$currentHeader-&gt;getFieldValue()</code>
@@ -355,23 +360,6 @@
     </ArgumentTypeCoercion>
   </file>
   <file src="test/PHPUnit/Controller/AbstractConsoleControllerTestCaseTest.php">
-    <InternalMethod occurrences="1">
-      <code>parent::setUpCompat()</code>
-    </InternalMethod>
-    <MissingReturnType occurrences="12">
-      <code>setUpCompat</code>
-      <code>testAssertConsoleOutputContains</code>
-      <code>testAssertMatchedArgumentsWithLiteralFlags</code>
-      <code>testAssertMatchedArgumentsWithMandatoryValue</code>
-      <code>testAssertMatchedArgumentsWithValue</code>
-      <code>testAssertMatchedArgumentsWithValueWithoutEqualsSign</code>
-      <code>testAssertNotResponseStatusCode</code>
-      <code>testAssertNotResponseStatusCodeWithBadCode</code>
-      <code>testAssertResponseStatusCode</code>
-      <code>testAssertResponseStatusCodeWithBadCode</code>
-      <code>testNotAssertConsoleOutputContains</code>
-      <code>testUseOfRouter</code>
-    </MissingReturnType>
     <MixedAssignment occurrences="1">
       <code>$routeMatch</code>
     </MixedAssignment>
@@ -403,34 +391,10 @@
     </UndefinedInterfaceMethod>
   </file>
   <file src="test/PHPUnit/Controller/AbstractControllerTestCaseTest.php">
-    <InternalMethod occurrences="4">
-      <code>parent::setUpCompat()</code>
-      <code>parent::setUpCompat()</code>
-      <code>parent::tearDownCompat()</code>
-      <code>parent::tearDownCompat()</code>
-    </InternalMethod>
     <InvalidArgument occurrences="2">
       <code>$haystack</code>
       <code>$haystack</code>
     </InvalidArgument>
-    <InvalidReturnType occurrences="1">
-      <code>array&lt;string, array&lt;string|null&gt;&gt;</code>
-    </InvalidReturnType>
-    <MissingReturnType occurrences="13">
-      <code>assertContainsCompat</code>
-      <code>assertNotContainsCompat</code>
-      <code>testAssertNotTemplateName</code>
-      <code>testAssertTemplateName</code>
-      <code>testCanHandleMultidimensionalParams</code>
-      <code>testCustomResponseObject</code>
-      <code>testDispatchWithNullParams</code>
-      <code>testExplicityPutParamsOverrideRequestContent</code>
-      <code>testPatchRequestParams</code>
-      <code>testPreserveContentOfPatchRequest</code>
-      <code>testQueryParamsDelete</code>
-      <code>testRequestWithRouteParam</code>
-      <code>testResetDoesNotCreateSessionIfNoSessionExists</code>
-    </MissingReturnType>
     <MixedArgument occurrences="3">
       <code>$message</code>
       <code>$message</code>
@@ -439,6 +403,10 @@
     <MixedArrayAccess occurrences="1">
       <code>$config['module_listener_options']['cache_dir']</code>
     </MixedArrayAccess>
+    <MixedArrayAssignment occurrences="2">
+      <code>$applicationConfig['module_listener_options']['module_paths']</code>
+      <code>$applicationConfig['modules'][]</code>
+    </MixedArrayAssignment>
     <MixedAssignment occurrences="2">
       <code>$config</code>
       <code>$file</code>
@@ -478,76 +446,6 @@
     <ArgumentTypeCoercion occurrences="1">
       <code>'RuntimeException'</code>
     </ArgumentTypeCoercion>
-    <InternalMethod occurrences="1">
-      <code>parent::setUpCompat()</code>
-    </InternalMethod>
-    <MissingReturnType occurrences="65">
-      <code>setUpCompat</code>
-      <code>testAssertApplicationEvents</code>
-      <code>testAssertApplicationMvcEvent</code>
-      <code>testAssertExceptionAndMessageInAction</code>
-      <code>testAssertExceptionInAction</code>
-      <code>testAssertHasResponseHeader</code>
-      <code>testAssertNotHasResponseHeader</code>
-      <code>testAssertNotQuery</code>
-      <code>testAssertNotQueryContentContains</code>
-      <code>testAssertNotQueryContentRegex</code>
-      <code>testAssertNotQueryCount</code>
-      <code>testAssertNotRedirect</code>
-      <code>testAssertNotRedirectRegex</code>
-      <code>testAssertNotRedirectTo</code>
-      <code>testAssertNotResponseHeaderContains</code>
-      <code>testAssertNotResponseHeaderContainsMultipleHeaderInterface</code>
-      <code>testAssertNotResponseHeaderRegex</code>
-      <code>testAssertNotResponseHeaderRegexMultipleHeaderInterface</code>
-      <code>testAssertNotResponseStatusCode</code>
-      <code>testAssertNotXpathQuery</code>
-      <code>testAssertNotXpathQueryContentContains</code>
-      <code>testAssertNotXpathQueryContentRegex</code>
-      <code>testAssertNotXpathQueryCount</code>
-      <code>testAssertQuery</code>
-      <code>testAssertQueryContentContains</code>
-      <code>testAssertQueryContentContainsWithSecondElement</code>
-      <code>testAssertQueryContentRegex</code>
-      <code>testAssertQueryContentRegexMultipleMatches</code>
-      <code>testAssertQueryContentRegexMultipleMatchesNoFalsePositive</code>
-      <code>testAssertQueryCount</code>
-      <code>testAssertQueryCountMax</code>
-      <code>testAssertQueryCountMin</code>
-      <code>testAssertQueryWithDynamicPostParams</code>
-      <code>testAssertQueryWithDynamicPostParamsInDispatchMethod</code>
-      <code>testAssertQueryWithDynamicPutParamsInDispatchMethod</code>
-      <code>testAssertQueryWithDynamicQueryParams</code>
-      <code>testAssertQueryWithDynamicQueryParamsInDispatchMethod</code>
-      <code>testAssertQueryWithDynamicQueryParamsInUrl</code>
-      <code>testAssertQueryWithDynamicQueryParamsInUrlAnsPostInParams</code>
-      <code>testAssertRedirect</code>
-      <code>testAssertRedirectRegex</code>
-      <code>testAssertRedirectTo</code>
-      <code>testAssertResponseHeaderContains</code>
-      <code>testAssertResponseHeaderContainsMultipleHeaderInterface</code>
-      <code>testAssertResponseHeaderRegex</code>
-      <code>testAssertResponseHeaderRegexMultipleHeaderInterface</code>
-      <code>testAssertResponseReasonPhrase</code>
-      <code>testAssertResponseStatusCode</code>
-      <code>testAssertUriWithHostname</code>
-      <code>testAssertWithEventShared</code>
-      <code>testAssertWithMultiDispatch</code>
-      <code>testAssertWithMultiDispatchWithPersistence</code>
-      <code>testAssertWithMultiDispatchWithoutPersistence</code>
-      <code>testAssertXmlHttpRequestDispatch</code>
-      <code>testAssertXpathQuery</code>
-      <code>testAssertXpathQueryContentContains</code>
-      <code>testAssertXpathQueryContentRegex</code>
-      <code>testAssertXpathQueryCount</code>
-      <code>testAssertXpathQueryCountMax</code>
-      <code>testAssertXpathQueryCountMin</code>
-      <code>testAssertXpathQueryCountWithBadXpathUsage</code>
-      <code>testAssertXpathQueryWithBadXpathUsage</code>
-      <code>testGetErrorWithTraceErrorEnabled</code>
-      <code>testTraceErrorEnableByDefault</code>
-      <code>testUseOfRouter</code>
-    </MissingReturnType>
     <MixedArgument occurrences="6">
       <code>$layout-&gt;getChildren()</code>
       <code>$messages</code>
@@ -628,14 +526,8 @@
       <code>setMethod</code>
       <code>setMethod</code>
     </UndefinedInterfaceMethod>
-    <UnusedVariable occurrences="1">
-      <code>$result</code>
-    </UnusedVariable>
   </file>
   <file src="test/PHPUnit/Controller/MemoryLeakTest.php">
-    <MissingReturnType occurrences="1">
-      <code>setUpBeforeClassCompat</code>
-    </MissingReturnType>
     <MixedInferredReturnType occurrences="1">
       <code>array</code>
     </MixedInferredReturnType>
@@ -646,19 +538,14 @@
       <code>assertNull</code>
     </RedundantConditionGivenDocblockType>
   </file>
-  <file src="test/PHPUnit/ModuleDependenciesTest.php">
-    <MissingReturnType occurrences="2">
-      <code>testBadDependenciesModules</code>
-      <code>testDependenciesModules</code>
-    </MissingReturnType>
-  </file>
   <file src="test/PHPUnit/Util/ModuleLoaderTest.php">
-    <ArgumentTypeCoercion occurrences="6">
+    <ArgumentTypeCoercion occurrences="7">
       <code>'Baz\Module'</code>
       <code>'Baz\Module'</code>
       <code>'Baz\Module'</code>
       <code>'Baz\Module'</code>
       <code>'Foo\Module'</code>
+      <code>'ModuleWithNamespace\TestModule\Module'</code>
       <code>'stdClass'</code>
     </ArgumentTypeCoercion>
     <MixedAssignment occurrences="7">
@@ -670,9 +557,6 @@
       <code>$foo</code>
       <code>$fooObject</code>
     </MixedAssignment>
-    <UnusedVariable occurrences="1">
-      <code>$loader</code>
-    </UnusedVariable>
   </file>
   <file src="test/_files/Baz/src/Baz/Controller/IndexController.php">
     <MixedAssignment occurrences="2">

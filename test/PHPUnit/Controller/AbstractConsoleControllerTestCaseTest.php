@@ -26,12 +26,12 @@ class AbstractConsoleControllerTestCaseTest extends AbstractConsoleControllerTes
         parent::setUp();
     }
 
-    public function testUseOfRouter()
+    public function testUseOfRouter(): void
     {
         $this->assertEquals(true, $this->useConsoleRequest);
     }
 
-    public function testAssertResponseStatusCode()
+    public function testAssertResponseStatusCode(): void
     {
         $this->dispatch('--console');
         $this->assertResponseStatusCode(0);
@@ -43,7 +43,7 @@ class AbstractConsoleControllerTestCaseTest extends AbstractConsoleControllerTes
         $this->assertResponseStatusCode(1);
     }
 
-    public function testAssertNotResponseStatusCode()
+    public function testAssertNotResponseStatusCode(): void
     {
         $this->dispatch('--console');
         $this->assertNotResponseStatusCode(1);
@@ -52,7 +52,7 @@ class AbstractConsoleControllerTestCaseTest extends AbstractConsoleControllerTes
         $this->assertNotResponseStatusCode(0);
     }
 
-    public function testAssertResponseStatusCodeWithBadCode()
+    public function testAssertResponseStatusCodeWithBadCode(): void
     {
         $this->dispatch('--console');
         $this->expectedException(
@@ -62,7 +62,7 @@ class AbstractConsoleControllerTestCaseTest extends AbstractConsoleControllerTes
         $this->assertResponseStatusCode(2);
     }
 
-    public function testAssertNotResponseStatusCodeWithBadCode()
+    public function testAssertNotResponseStatusCodeWithBadCode(): void
     {
         $this->dispatch('--console');
         $this->expectedException(
@@ -72,7 +72,7 @@ class AbstractConsoleControllerTestCaseTest extends AbstractConsoleControllerTes
         $this->assertNotResponseStatusCode(2);
     }
 
-    public function testAssertConsoleOutputContains()
+    public function testAssertConsoleOutputContains(): void
     {
         $this->dispatch('--console');
         $this->assertConsoleOutputContains('foo');
@@ -85,7 +85,7 @@ class AbstractConsoleControllerTestCaseTest extends AbstractConsoleControllerTes
         $this->assertConsoleOutputContains('baz');
     }
 
-    public function testNotAssertConsoleOutputContains()
+    public function testNotAssertConsoleOutputContains(): void
     {
         $this->dispatch('--console');
         $this->assertNotConsoleOutputContains('baz');
@@ -94,7 +94,7 @@ class AbstractConsoleControllerTestCaseTest extends AbstractConsoleControllerTes
         $this->assertNotConsoleOutputContains('foo');
     }
 
-    public function testAssertMatchedArgumentsWithValue()
+    public function testAssertMatchedArgumentsWithValue(): void
     {
         $this->dispatch('filter --date="2013-03-07 00:00:00" --id=10 --text="custom text"');
         $routeMatch = $this->getApplication()->getMvcEvent()->getRouteMatch();
@@ -107,7 +107,7 @@ class AbstractConsoleControllerTestCaseTest extends AbstractConsoleControllerTes
     /**
      * @group 6837
      */
-    public function testAssertMatchedArgumentsWithMandatoryValue()
+    public function testAssertMatchedArgumentsWithMandatoryValue(): void
     {
         $this->dispatch("foo --bar='FOO' --baz='ARE'");
         /** @var \Laminas\Mvc\Router\Console\RouteMatch $routeMatch */
@@ -124,7 +124,7 @@ class AbstractConsoleControllerTestCaseTest extends AbstractConsoleControllerTes
         $this->assertEquals('arguments-mandatory', $routeMatch->getMatchedRouteName());
     }
 
-    public function testAssertMatchedArgumentsWithValueWithoutEqualsSign()
+    public function testAssertMatchedArgumentsWithValueWithoutEqualsSign(): void
     {
         $this->dispatch('filter --date "2013-03-07 00:00:00" --id=10 --text="custom text"');
         $routeMatch = $this->getApplication()->getMvcEvent()->getRouteMatch();
@@ -134,7 +134,7 @@ class AbstractConsoleControllerTestCaseTest extends AbstractConsoleControllerTes
         $this->assertEquals("custom text", $routeMatch->getParam('text'));
     }
 
-    public function testAssertMatchedArgumentsWithLiteralFlags()
+    public function testAssertMatchedArgumentsWithLiteralFlags(): void
     {
         $this->dispatch('literal --foo --bar');
         $routeMatch = $this->getApplication()->getMvcEvent()->getRouteMatch();
