@@ -1,14 +1,14 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-test for the canonical source repository
- */
+declare(strict_types=1);
 
 namespace Laminas\Test\PHPUnit\Controller;
 
 use ArrayIterator;
 use Laminas\Dom\Document;
 use Laminas\Http\Header\HeaderInterface;
+use Laminas\Test\PHPUnit\Constraint\HasRedirectConstraint;
+use Laminas\Test\PHPUnit\Constraint\IsRedirectedRouteNameConstraint;
 use PHPUnit\Framework\ExpectationFailedException;
 
 use function count;
@@ -327,6 +327,36 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
             )));
         }
         $this->assertNotEquals($url, $responseHeader->getFieldValue());
+    }
+
+    /**
+     * Assert that response redirects to given route
+     */
+    final public function assertRedirectToRoute(string $route): void
+    {
+        self::assertThat(
+            $route,
+            self::logicalAnd(
+                new HasRedirectConstraint($this),
+                new IsRedirectedRouteNameConstraint($this)
+            )
+        );
+    }
+
+    /**
+     * Assert that response does not redirect to given route
+     */
+    final public function assertNotRedirectToRoute(string $route): void
+    {
+        self::assertThat(
+            $route,
+            self::logicalNot(
+                self::logicalAnd(
+                    new HasRedirectConstraint($this),
+                    new IsRedirectedRouteNameConstraint($this)
+                )
+            )
+        );
     }
 
     /**

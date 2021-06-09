@@ -99,6 +99,16 @@ return [
                     ],
                 ],
             ],
+            'redirectToRoute' => [
+                'type'    => 'literal',
+                'options' => [
+                    'route'    => '/redirect-to-route',
+                    'defaults' => [
+                        'controller' => 'baz_index',
+                        'action'     => 'redirectToRoute',
+                    ],
+                ],
+            ],
             'dnsroute'        => [
                 'type'    => 'hostname',
                 'options' => [

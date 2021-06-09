@@ -40,6 +40,12 @@ class IndexController extends AbstractActionController
         return $this->redirect()->toUrl('https://www.zend.com');
     }
 
+    /** @return Response */
+    public function redirectToRouteAction()
+    {
+        return $this->redirect()->toRoute('myroute');
+    }
+
     /** @return void */
     public function exceptionAction()
     {
