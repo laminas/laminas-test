@@ -2,23 +2,26 @@
 
 /**
  * @see       https://github.com/laminas/laminas-test for the canonical source repository
- * @copyright https://github.com/laminas/laminas-test/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-test/blob/master/LICENSE.md New BSD License
  */
+
 namespace LaminasTest\Test\PHPUnit\Controller;
 
 use Laminas\Test\PHPUnit\Controller\AbstractControllerTestCase;
 
+use function array_fill;
+use function memory_get_usage;
+
 class MemoryLeakTest extends AbstractControllerTestCase
 {
+    /** @var int|null */
     public static $memStart;
 
-    protected static function setUpBeforeClassCompat()
+    public static function setUpBeforeClass(): void
     {
         self::$memStart = memory_get_usage(true);
     }
 
-    public static function dataForMultipleTests()
+    public static function dataForMultipleTests(): array
     {
         return array_fill(0, 100, [null]);
     }
@@ -26,6 +29,7 @@ class MemoryLeakTest extends AbstractControllerTestCase
     /**
      * @dataProvider dataForMultipleTests
      * @param null $null
+     * @return void
      */
     public function testMemoryConsumptionNotGrowing($null)
     {

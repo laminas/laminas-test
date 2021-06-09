@@ -1,9 +1,10 @@
 <?php
+
 return [
-    'router' => [
+    'router'       => [
         'routes' => [
             'barroute' => [
-                'type' => 'literal',
+                'type'    => 'literal',
                 'options' => [
                     'route'    => '/bar-test',
                     'defaults' => [
@@ -14,7 +15,7 @@ return [
             ],
         ],
     ],
-    'controllers' => [
+    'controllers'  => [
         'invokables' => [
             'bar_index' => 'Bar\Controller\IndexController',
         ],

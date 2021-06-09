@@ -1,6 +1,7 @@
 <?php
+
 return [
-    'modules' => [
+    'modules'                 => [
         'Laminas\Router',
         'Laminas\Validator',
         'Baz',

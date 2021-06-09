@@ -11,12 +11,6 @@ trait ExpectedExceptionTrait
      */
     public function expectedException($exceptionClass, $message = '')
     {
-        if (! method_exists($this, 'expectException')) {
-            // For old PHPUnit 4
-            $this->setExpectedException($exceptionClass, $message);
-            return;
-        }
-
         $this->expectException($exceptionClass);
 
         if (! empty($message)) {

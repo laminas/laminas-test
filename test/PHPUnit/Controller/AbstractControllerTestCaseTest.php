@@ -2,15 +2,16 @@
 
 /**
  * @see       https://github.com/laminas/laminas-test for the canonical source repository
- * @copyright https://github.com/laminas/laminas-test/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-test/blob/master/LICENSE.md New BSD License
  */
+
 namespace LaminasTest\Test\PHPUnit\Controller;
 
 use Generator;
 use Laminas\Console\Console;
 use Laminas\Mvc\Application;
 use Laminas\Mvc\MvcEvent;
+use Laminas\ServiceManager\ServiceManager;
+use Laminas\Stdlib\Exception\LogicException;
 use Laminas\Stdlib\RequestInterface;
 use Laminas\Stdlib\ResponseInterface;
 use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
@@ -20,6 +21,20 @@ use org\bovigo\vfs\vfsStreamWrapper;
 use PHPUnit\Framework\ExpectationFailedException;
 use RuntimeException;
 
+use function array_diff;
+use function array_key_exists;
+use function count;
+use function extension_loaded;
+use function get_class;
+use function glob;
+use function is_dir;
+use function method_exists;
+use function rmdir;
+use function scandir;
+use function sprintf;
+use function unlink;
+use function urldecode;
+
 /**
  * @group      Laminas_Test
  */
@@ -27,9 +42,12 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
 {
     use ExpectedExceptionTrait;
 
+    /** @var bool */
     protected $traceError = true;
+    /** @var bool */
     protected $traceErrorCache = true;
 
+    /** @return void */
     public function tearDownCacheDir()
     {
         vfsStreamWrapper::register();
@@ -39,17 +57,17 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         }
     }
 
-    public static function rmdir($dir)
+    public static function rmdir(string $dir): bool
     {
         $files = array_diff(scandir($dir), ['.', '..']);
         foreach ($files as $file) {
-            (is_dir("$dir/$file")) ? static::rmdir("$dir/$file") : unlink("$dir/$file");
+            is_dir("$dir/$file") ? static::rmdir("$dir/$file") : unlink("$dir/$file");
         }
 
         return rmdir($dir);
     }
 
-    protected function setUpCompat()
+    protected function setUp(): void
     {
         $this->traceErrorCache = $this->traceError;
         $this->tearDownCacheDir();
@@ -57,16 +75,17 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->setApplicationConfig(
             include __DIR__ . '/../../_files/application.config.php'
         );
-        parent::setUpCompat();
+        parent::setUp();
     }
 
-    protected function tearDownCompat()
+    protected function tearDown(): void
     {
         $this->traceError = $this->traceErrorCache;
         $this->tearDownCacheDir();
-        parent::tearDownCompat();
+        parent::tearDown();
     }
 
+    /** @return void */
     public function testModuleCacheIsDisabled()
     {
         $config = $this->getApplicationConfig();
@@ -74,29 +93,33 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertEquals(0, count(glob($config . '/*.php')));
     }
 
+    /** @return void */
     public function testCanNotDefineApplicationConfigWhenApplicationIsBuilt()
     {
         // cosntruct app
         $this->getApplication();
 
-        $this->expectedException('Laminas\Stdlib\Exception\LogicException');
+        $this->expectedException(LogicException::class);
         $this->setApplicationConfig(
             include __DIR__ . '/../../_files/application.config.php'
         );
     }
 
+    /** @return void */
     public function testUseOfRouter()
     {
         // default value
         $this->assertEquals(false, $this->useConsoleRequest);
     }
 
+    /** @return void */
     public function testApplicationClass()
     {
         $applicationClass = get_class($this->getApplication());
-        $this->assertEquals($applicationClass, 'Laminas\Mvc\Application');
+        $this->assertEquals($applicationClass, Application::class);
     }
 
+    /** @return void */
     public function testApplicationClassAndTestRestoredConsoleFlag()
     {
         $this->assertTrue(Console::isConsole(), '1. Console::isConsole returned false in initial test');
@@ -106,33 +129,37 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertTrue(Console::isConsole(), '3. Console::isConsole returned false after tearDown');
 
         Console::overrideIsConsole(false);
-        parent::setUpCompat();
+        parent::setUp();
 
         $this->assertFalse(Console::isConsole(), '4. Console::isConsole returned true after parent::setUp');
         $this->getApplication();
         $this->assertFalse(Console::isConsole(), '5. Console::isConsole returned true after retrieving application');
 
-        parent::tearDownCompat();
+        parent::tearDown();
 
         $this->assertFalse(Console::isConsole(), '6. Console.isConsole returned true after parent::tearDown');
     }
 
+    /** @return void */
     public function testApplicationServiceLocatorClass()
     {
         $smClass = get_class($this->getApplicationServiceLocator());
-        $this->assertEquals($smClass, 'Laminas\ServiceManager\ServiceManager');
+        $this->assertEquals($smClass, ServiceManager::class);
     }
 
+    /** @return void */
     public function testAssertApplicationRequest()
     {
         $this->assertEquals(true, $this->getRequest() instanceof RequestInterface);
     }
 
+    /** @return void */
     public function testAssertApplicationResponse()
     {
         $this->assertEquals(true, $this->getResponse() instanceof ResponseInterface);
     }
 
+    /** @return void */
     public function testAssertModuleName()
     {
         $this->dispatch('/tests');
@@ -149,6 +176,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertModuleName('Application');
     }
 
+    /** @return void */
     public function testAssertExceptionDetailsPresentWhenTraceErrorIsEnabled()
     {
         $this->traceError = true;
@@ -162,7 +190,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         try {
             $this->assertModuleName('Application');
         } catch (ExpectationFailedException $ex) {
-            $caught = true;
+            $caught  = true;
             $message = $ex->getMessage();
         }
 
@@ -173,6 +201,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertContainsCompat(__FILE__, $message);
     }
 
+    /** @return void */
     public function testAssertExceptionDetailsNotPresentWhenTraceErrorIsDisabled()
     {
         $this->traceError = false;
@@ -186,7 +215,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         try {
             $this->assertModuleName('Application');
         } catch (ExpectationFailedException $ex) {
-            $caught = true;
+            $caught  = true;
             $message = $ex->getMessage();
         }
 
@@ -200,6 +229,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertNotContainsCompat(__FILE__, $message);
     }
 
+    /** @return void */
     public function testAssertNotModuleName()
     {
         $this->dispatch('/tests');
@@ -209,6 +239,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertNotModuleName('baz');
     }
 
+    /** @return void */
     public function testAssertControllerClass()
     {
         $this->dispatch('/tests');
@@ -225,6 +256,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertControllerClass('Index');
     }
 
+    /** @return void */
     public function testAssertNotControllerClass()
     {
         $this->dispatch('/tests');
@@ -234,6 +266,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertNotControllerClass('IndexController');
     }
 
+    /** @return void */
     public function testAssertControllerName()
     {
         $this->dispatch('/tests');
@@ -250,6 +283,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertControllerName('baz');
     }
 
+    /** @return void */
     public function testAssertNotControllerName()
     {
         $this->dispatch('/tests');
@@ -259,6 +293,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertNotControllerName('baz_index');
     }
 
+    /** @return void */
     public function testAssertActionName()
     {
         $this->dispatch('/tests');
@@ -275,6 +310,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertActionName('unit');
     }
 
+    /** @return void */
     public function testAssertNotActionName()
     {
         $this->dispatch('/tests');
@@ -284,6 +320,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertNotActionName('unittests');
     }
 
+    /** @return void */
     public function testAssertMatchedRouteName()
     {
         $this->dispatch('/tests');
@@ -300,6 +337,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertMatchedRouteName('route');
     }
 
+    /** @return void */
     public function testAssertNotMatchedRouteName()
     {
         $this->dispatch('/tests');
@@ -309,12 +347,14 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertNotMatchedRouteName('myroute');
     }
 
+    /** @return void */
     public function testAssertNoMatchedRoute()
     {
         $this->dispatch('/invalid');
         $this->assertNoMatchedRoute();
     }
 
+    /** @return void */
     public function testAssertNoMatchedRouteWithMatchedRoute()
     {
         $this->dispatch('/tests');
@@ -322,6 +362,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertNoMatchedRoute();
     }
 
+    /** @return void */
     public function testControllerNameWithNoRouteMatch()
     {
         $this->dispatch('/invalid');
@@ -329,6 +370,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertControllerName('something');
     }
 
+    /** @return void */
     public function testNotControllerNameWithNoRouteMatch()
     {
         $this->dispatch('/invalid');
@@ -336,6 +378,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertNotControllerName('something');
     }
 
+    /** @return void */
     public function testActionNameWithNoRouteMatch()
     {
         $this->dispatch('/invalid');
@@ -343,6 +386,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertActionName('something');
     }
 
+    /** @return void */
     public function testNotActionNameWithNoRouteMatch()
     {
         $this->dispatch('/invalid');
@@ -350,6 +394,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertNotActionName('something');
     }
 
+    /** @return void */
     public function testMatchedRouteNameWithNoRouteMatch()
     {
         $this->dispatch('/invalid');
@@ -357,6 +402,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertMatchedRouteName('something');
     }
 
+    /** @return void */
     public function testNotMatchedRouteNameWithNoRouteMatch()
     {
         $this->dispatch('/invalid');
@@ -364,6 +410,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertNotMatchedRouteName('something');
     }
 
+    /** @return void */
     public function testControllerClassWithNoRoutematch()
     {
         $this->dispatch('/invalid');
@@ -373,6 +420,8 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
 
     /**
      * Sample tests on Application errors events
+     *
+     * @return void
      */
     public function testAssertApplicationErrorsEvents()
     {
@@ -382,18 +431,21 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertEquals(Application::ERROR_ROUTER_NO_MATCH, $this->getApplication()->getMvcEvent()->getError());
     }
 
+    /** @return void */
     public function testDispatchRequestUri()
     {
         $this->dispatch('/tests');
         $this->assertEquals('/tests', $this->getApplication()->getRequest()->getRequestUri());
     }
 
+    /** @return void */
     public function testDefaultDispatchMethod()
     {
         $this->dispatch('/tests');
         $this->assertEquals('GET', $this->getRequest()->getMethod());
     }
 
+    /** @return void */
     public function testDispatchMethodSetOnRequest()
     {
         $this->getRequest()->setMethod('POST');
@@ -401,6 +453,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertEquals('POST', $this->getRequest()->getMethod());
     }
 
+    /** @return void */
     public function testExplicitDispatchMethodOverrideRequestMethod()
     {
         $this->getRequest()->setMethod('POST');
@@ -408,12 +461,14 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertEquals('GET', $this->getRequest()->getMethod());
     }
 
+    /** @return void */
     public function testPutRequestParams()
     {
         $this->dispatch('/tests', 'PUT', ['a' => 1]);
         $this->assertEquals('a=1', $this->getRequest()->getContent());
     }
 
+    /** @return void */
     public function testPreserveContentOfPutRequest()
     {
         $this->getRequest()->setMethod('PUT');
@@ -491,7 +546,8 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertFalse(array_key_exists('_SESSION', $GLOBALS));
     }
 
-    public function method()
+    /** @return array<string, array<string|null>> */
+    public function method(): iterable
     {
         yield 'null' => [null];
         yield 'get' => ['GET'];
@@ -503,7 +559,6 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
 
     /**
      * @dataProvider method
-     *
      * @param null|string $method
      */
     public function testDispatchWithNullParams($method)
@@ -529,7 +584,6 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
 
     /**
      * @dataProvider routeParam
-     *
      * @param string $param
      */
     public function testRequestWithRouteParam($param)
@@ -538,7 +592,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertResponseStatusCode(200);
     }
 
-    private function assertContainsCompat($needle, $haystack)
+    private function assertContainsCompat(string $needle, string $haystack)
     {
         if (method_exists($this, 'assertStringContainsString')) {
             $this->assertStringContainsString($needle, $haystack);
@@ -547,7 +601,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         }
     }
 
-    private function assertNotContainsCompat($needle, $haystack)
+    private function assertNotContainsCompat(string $needle, string $haystack)
     {
         if (method_exists($this, 'assertStringNotContainsString')) {
             $this->assertStringNotContainsString($needle, $haystack);

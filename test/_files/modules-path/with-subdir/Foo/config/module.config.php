@@ -1,9 +1,10 @@
 <?php
+
 return [
-    'router' => [
+    'router'       => [
         'routes' => [
             'fooroute' => [
-                'type' => 'literal',
+                'type'    => 'literal',
                 'options' => [
                     'route'    => '/foo-test',
                     'defaults' => [
@@ -14,7 +15,7 @@ return [
             ],
         ],
     ],
-    'controllers' => [
+    'controllers'  => [
         'invokables' => [
             'foo_index' => 'Foo\Controller\IndexController',
         ],

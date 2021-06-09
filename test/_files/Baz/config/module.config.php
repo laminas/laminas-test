@@ -1,10 +1,11 @@
 <?php
+
 return [
-    'console' => [
+    'console'      => [
         'router' => [
             'routes' => [
-                'consoleroute' => [
-                    'type' => 'simple',
+                'consoleroute'        => [
+                    'type'    => 'simple',
                     'options' => [
                         'route'    => '--console',
                         'defaults' => [
@@ -13,8 +14,8 @@ return [
                         ],
                     ],
                 ],
-                'arguments' => [
-                    'type' => 'simple',
+                'arguments'           => [
+                    'type'    => 'simple',
                     'options' => [
                         'route'    => 'filter --date= --id= --text=',
                         'defaults' => [
@@ -24,7 +25,7 @@ return [
                     ],
                 ],
                 'arguments-mandatory' => [
-                    'type' => 'simple',
+                    'type'    => 'simple',
                     'options' => [
                         'route'    => 'foo --bar= --baz=',
                         'defaults' => [
@@ -33,8 +34,8 @@ return [
                         ],
                     ],
                 ],
-                'arguments-literal' => [
-                    'type' => 'simple',
+                'arguments-literal'   => [
+                    'type'    => 'simple',
                     'options' => [
                         'route'    => 'literal --foo [--bar] [--doo=] [--optional]',
                         'defaults' => [
@@ -46,10 +47,10 @@ return [
             ],
         ],
     ],
-    'router' => [
+    'router'       => [
         'routes' => [
-            'myroute' => [
-                'type' => 'literal',
+            'myroute'         => [
+                'type'    => 'literal',
                 'options' => [
                     'route'    => '/tests',
                     'defaults' => [
@@ -58,8 +59,8 @@ return [
                     ],
                 ],
             ],
-            'myroutebis' => [
-                'type' => 'literal',
+            'myroutebis'      => [
+                'type'    => 'literal',
                 'options' => [
                     'route'    => '/tests-bis',
                     'defaults' => [
@@ -68,8 +69,8 @@ return [
                     ],
                 ],
             ],
-            'persistence' => [
-                'type' => 'literal',
+            'persistence'     => [
+                'type'    => 'literal',
                 'options' => [
                     'route'    => '/tests-persistence',
                     'defaults' => [
@@ -78,8 +79,8 @@ return [
                     ],
                 ],
             ],
-            'exception' => [
-                'type' => 'literal',
+            'exception'       => [
+                'type'    => 'literal',
                 'options' => [
                     'route'    => '/exception',
                     'defaults' => [
@@ -88,8 +89,8 @@ return [
                     ],
                 ],
             ],
-            'redirect' => [
-                'type' => 'literal',
+            'redirect'        => [
+                'type'    => 'literal',
                 'options' => [
                     'route'    => '/redirect',
                     'defaults' => [
@@ -98,21 +99,21 @@ return [
                     ],
                 ],
             ],
-            'dnsroute' => [
-                'type' => 'hostname',
+            'dnsroute'        => [
+                'type'    => 'hostname',
                 'options' => [
-                    'route' => ':subdomain.domain.tld',
+                    'route'       => ':subdomain.domain.tld',
                     'constraints' => [
-                        'subdomain' => '\w+'
+                        'subdomain' => '\w+',
                     ],
-                    'defaults' => [
+                    'defaults'    => [
                         'controller' => 'baz_index',
                         'action'     => 'unittests',
                     ],
                 ],
             ],
             'custom-response' => [
-                'type' => 'literal',
+                'type'    => 'literal',
                 'options' => [
                     'route'    => '/custom-response',
                     'defaults' => [
@@ -121,8 +122,8 @@ return [
                     ],
                 ],
             ],
-            'parametrized' => [
-                'type' => 'segment',
+            'parametrized'    => [
+                'type'    => 'segment',
                 'options' => [
                     'route'    => '/with-param/:param',
                     'defaults' => [
@@ -133,14 +134,14 @@ return [
             ],
         ],
     ],
-    'controllers' => [
+    'controllers'  => [
         'invokables' => [
             'baz_index' => 'Baz\Controller\IndexController',
         ],
     ],
     'view_manager' => [
-        'template_map' => [
-            '404' => __DIR__ . '/../view/baz/error/404.phtml',
+        'template_map'        => [
+            '404'   => __DIR__ . '/../view/baz/error/404.phtml',
             'error' => __DIR__ . '/../view/baz/error/error.phtml',
         ],
         'template_path_stack' => [

@@ -2,12 +2,13 @@
 
 /**
  * @see       https://github.com/laminas/laminas-test for the canonical source repository
- * @copyright https://github.com/laminas/laminas-test/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-test/blob/master/LICENSE.md New BSD License
  */
+
 namespace LaminasTest\Test\PHPUnit\Controller;
 
+use Exception;
 use Laminas\EventManager\StaticEventManager;
+use Laminas\Mvc\Application;
 use Laminas\Mvc\MvcEvent;
 use Laminas\Router\Http\RouteMatch;
 use Laminas\Stdlib\Parameters;
@@ -16,6 +17,11 @@ use Laminas\View\Model\ViewModel;
 use LaminasTest\Test\ExpectedExceptionTrait;
 use PHPUnit\Framework\ExpectationFailedException;
 
+use function class_exists;
+use function count;
+use function current;
+use function extension_loaded;
+
 /**
  * @group      Laminas_Test
  */
@@ -23,12 +29,12 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
 {
     use ExpectedExceptionTrait;
 
-    protected function setUpCompat()
+    protected function setUp(): void
     {
         $this->setApplicationConfig(
             include __DIR__ . '/../../_files/application.config.php'
         );
-        parent::setUpCompat();
+        parent::setUp();
     }
 
     public function testUseOfRouter()
@@ -581,22 +587,22 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
 
         $this->dispatch('/tests-persistence');
 
-        $controller = $this->getApplicationServiceLocator()
+        $controller     = $this->getApplicationServiceLocator()
                             ->get('ControllerManager')
                             ->get('baz_index');
         $flashMessenger = $controller->flashMessenger();
-        $messages = $flashMessenger->getMessages();
+        $messages       = $flashMessenger->getMessages();
         $this->assertCount(0, $messages);
 
         $this->reset(false);
 
         $this->dispatch('/tests');
 
-        $controller = $this->getApplicationServiceLocator()
+        $controller     = $this->getApplicationServiceLocator()
                             ->get('ControllerManager')
                             ->get('baz_index');
         $flashMessenger = $controller->flashMessenger();
-        $messages = $flashMessenger->getMessages();
+        $messages       = $flashMessenger->getMessages();
 
         $this->assertCount(0, $messages);
     }
@@ -609,22 +615,22 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
 
         $this->dispatch('/tests-persistence');
 
-        $controller = $this->getApplicationServiceLocator()
+        $controller     = $this->getApplicationServiceLocator()
                             ->get('ControllerManager')
                             ->get('baz_index');
         $flashMessenger = $controller->flashMessenger();
-        $messages = $flashMessenger->getMessages();
+        $messages       = $flashMessenger->getMessages();
         $this->assertCount(0, $messages);
 
         $this->reset(true);
 
         $this->dispatch('/tests');
 
-        $controller = $this->getApplicationServiceLocator()
+        $controller     = $this->getApplicationServiceLocator()
                             ->get('ControllerManager')
                             ->get('baz_index');
         $flashMessenger = $controller->flashMessenger();
-        $messages = $flashMessenger->getMessages();
+        $messages       = $flashMessenger->getMessages();
 
         $this->assertCount(1, $messages);
     }
@@ -647,7 +653,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
 
         $this->assertEquals(true, StaticEventManager::hasInstance());
         $countListeners = count(StaticEventManager::getInstance()->getListeners(
-            'Laminas\Mvc\Application',
+            Application::class,
             MvcEvent::EVENT_FINISH
         ));
         $this->assertEquals(1, $countListeners);
@@ -656,7 +662,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
 
         $this->assertEquals(false, StaticEventManager::hasInstance());
         $countListeners = StaticEventManager::getInstance()->getListeners(
-            'Laminas\Mvc\Application',
+            Application::class,
             MvcEvent::EVENT_FINISH
         );
         $this->assertEquals(false, $countListeners);
@@ -691,7 +697,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         try {
             // force exception throwing
             parent::tearDown();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->getApplication()->getMvcEvent()->setParam('exception', null);
             $this->expectedException('RuntimeException', 'Foo error');
             throw $e;
@@ -743,14 +749,14 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
     {
         $this->url('/tests');
 
-        $result = $this->triggerApplicationEvent(MvcEvent::EVENT_ROUTE);
+        $result     = $this->triggerApplicationEvent(MvcEvent::EVENT_ROUTE);
         $routeMatch = $result->last();
         $this->assertEquals(false, $result->stopped());
         $this->assertEquals(false, $this->getApplication()->getMvcEvent()->getError());
         $this->assertEquals(true, $routeMatch instanceof RouteMatch);
         $this->assertEquals($routeMatch->getParam('controller'), 'baz_index');
 
-        $result = $this->triggerApplicationEvent(MvcEvent::EVENT_DISPATCH);
+        $result    = $this->triggerApplicationEvent(MvcEvent::EVENT_DISPATCH);
         $viewModel = $this->getApplication()->getMvcEvent()->getResult();
         $this->assertEquals(true, $viewModel instanceof ViewModel);
         $this->assertEquals($viewModel->getTemplate(), 'baz/index/unittests');

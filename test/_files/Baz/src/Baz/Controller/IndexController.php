@@ -4,9 +4,11 @@ namespace Baz\Controller;
 
 use Laminas\Http\Response;
 use Laminas\Mvc\Controller\AbstractActionController;
+use RuntimeException;
 
 class IndexController extends AbstractActionController
 {
+    /** @return array<string, string> */
     public function unittestsAction()
     {
         $this->getResponse()
@@ -14,32 +16,37 @@ class IndexController extends AbstractActionController
             ->addHeaderLine('Content-Type: text/html')
             ->addHeaderLine('WWW-Authenticate: Basic realm="Laminas"');
 
-        $num_get = $this->getRequest()->getQuery()->get('num_get', 0);
-        $num_post = $this->getRequest()->getPost()->get('num_post', 0);
+        $numGet  = $this->getRequest()->getQuery()->get('num_get', 0);
+        $numPost = $this->getRequest()->getPost()->get('num_post', 0);
 
-        return ['num_get' => $num_get, 'num_post' => $num_post];
+        return ['num_get' => $numGet, 'num_post' => $numPost];
     }
 
+    /** @return string */
     public function consoleAction()
     {
         return 'foo, bar';
     }
 
+    /** @return void */
     public function persistencetestAction()
     {
         $this->flashMessenger()->addMessage('test');
     }
 
+    /** @return Response */
     public function redirectAction()
     {
         return $this->redirect()->toUrl('https://www.zend.com');
     }
 
+    /** @return void */
     public function exceptionAction()
     {
-        throw new \RuntimeException('Foo error !');
+        throw new RuntimeException('Foo error !');
     }
 
+    /** @return Response */
     public function customResponseAction()
     {
         $response = new Response();

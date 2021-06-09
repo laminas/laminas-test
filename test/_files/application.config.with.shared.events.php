@@ -1,6 +1,7 @@
 <?php
+
 return [
-    'modules' => [
+    'modules'                 => [
         'Laminas\Router',
         'Laminas\Validator',
         'Baz',
@@ -9,7 +10,7 @@ return [
     'module_listener_options' => [
         'config_static_paths' => [],
         'module_paths'        => [
-            'Baz' => __DIR__ . '/Baz/',
+            'Baz'              => __DIR__ . '/Baz/',
             'ModuleWithEvents' => __DIR__ . '/ModuleWithEvents/',
         ],
     ],
