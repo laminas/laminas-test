@@ -1,9 +1,10 @@
 <?php
+
 return [
-    'router' => [
+    'router'      => [
         'routes' => [
             'namespace_route' => [
-                'type' => 'literal',
+                'type'    => 'literal',
                 'options' => [
                     'route'    => '/namespace-test',
                     'defaults' => [

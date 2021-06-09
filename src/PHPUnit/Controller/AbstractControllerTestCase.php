@@ -20,7 +20,6 @@ use Laminas\Stdlib\Parameters;
 use Laminas\Stdlib\RequestInterface;
 use Laminas\Stdlib\ResponseInterface;
 use Laminas\Test\PHPUnit\Constraint\IsCurrentModuleNameConstraint;
-use Laminas\Test\PHPUnit\TestCaseTrait;
 use Laminas\Uri\Http as HttpUri;
 use Laminas\View\Model\ModelInterface;
 use PHPUnit\Framework\ExpectationFailedException;
@@ -42,7 +41,6 @@ use function parse_str;
 use function preg_match_all;
 use function sprintf;
 use function str_replace;
-use function strpos;
 use function strrpos;
 use function strtolower;
 use function substr;
@@ -329,10 +327,11 @@ abstract class AbstractControllerTestCase extends TestCase
      *
      * The URL provided set the request URI in the request object.
      *
-     * @param  string      $url
-     * @param  string|null $method
-     * @param  array|null  $params
-     * @param  bool        $isXmlHttpRequest
+     * @param string      $url
+     * @param string|null $method
+     * @param array|null  $params
+     * @param bool        $isXmlHttpRequest
+     * @return void
      * @throws Exception
      */
     public function dispatch($url, $method = null, $params = [], $isXmlHttpRequest = false)
@@ -404,7 +403,7 @@ abstract class AbstractControllerTestCase extends TestCase
             return $events->trigger($eventName, $event);
         }
 
-        $shortCircuit = function ($r) use ($event) {
+        $shortCircuit = function ($r) use ($event): bool {
             if ($r instanceof ResponseInterface) {
                 return true;
             }
@@ -424,6 +423,7 @@ abstract class AbstractControllerTestCase extends TestCase
      * Assert modules were loaded with the module manager
      *
      * @param array $modules
+     * @return void
      */
     public function assertModulesLoaded(array $modules)
     {
@@ -442,6 +442,7 @@ abstract class AbstractControllerTestCase extends TestCase
      * Assert modules were not loaded with the module manager
      *
      * @param array $modules
+     * @return void
      */
     public function assertNotModulesLoaded(array $modules)
     {
@@ -480,6 +481,7 @@ abstract class AbstractControllerTestCase extends TestCase
      * Assert response status code
      *
      * @param int $code
+     * @return void
      */
     public function assertResponseStatusCode($code)
     {
@@ -503,6 +505,7 @@ abstract class AbstractControllerTestCase extends TestCase
      * Assert not response status code
      *
      * @param int $code
+     * @return void
      */
     public function assertNotResponseStatusCode($code)
     {
@@ -527,6 +530,7 @@ abstract class AbstractControllerTestCase extends TestCase
      *
      * @param string $type application exception type
      * @param string|null $message application exception message
+     * @psalm-return never
      */
     public function assertApplicationException($type, $message = null)
     {
@@ -576,6 +580,7 @@ abstract class AbstractControllerTestCase extends TestCase
      * Assert that the application route match used the given module
      *
      * @param string $module
+     * @return void
      */
     public function assertModuleName($module)
     {
@@ -586,6 +591,7 @@ abstract class AbstractControllerTestCase extends TestCase
      * Assert that the application route match used NOT the given module
      *
      * @param string $module
+     * @return void
      */
     public function assertNotModuleName($module)
     {
@@ -599,6 +605,7 @@ abstract class AbstractControllerTestCase extends TestCase
      * Assert that the application route match used the given controller class
      *
      * @param string $controller
+     * @return void
      */
     public function assertControllerClass($controller)
     {
@@ -618,6 +625,7 @@ abstract class AbstractControllerTestCase extends TestCase
      * Assert that the application route match used NOT the given controller class
      *
      * @param string $controller
+     * @return void
      */
     public function assertNotControllerClass($controller)
     {
@@ -637,6 +645,7 @@ abstract class AbstractControllerTestCase extends TestCase
      * Assert that the application route match used the given controller name
      *
      * @param string $controller
+     * @return void
      */
     public function assertControllerName($controller)
     {
@@ -659,6 +668,7 @@ abstract class AbstractControllerTestCase extends TestCase
      * Assert that the application route match used NOT the given controller name
      *
      * @param string $controller
+     * @return void
      */
     public function assertNotControllerName($controller)
     {
@@ -681,6 +691,7 @@ abstract class AbstractControllerTestCase extends TestCase
      * Assert that the application route match used the given action
      *
      * @param string $action
+     * @return void
      */
     public function assertActionName($action)
     {
@@ -703,6 +714,7 @@ abstract class AbstractControllerTestCase extends TestCase
      * Assert that the application route match used NOT the given action
      *
      * @param string $action
+     * @return void
      */
     public function assertNotActionName($action)
     {
@@ -725,6 +737,7 @@ abstract class AbstractControllerTestCase extends TestCase
      * Assert that the application route match used the given route name
      *
      * @param string $route
+     * @return void
      */
     public function assertMatchedRouteName($route)
     {
@@ -751,6 +764,7 @@ abstract class AbstractControllerTestCase extends TestCase
      * Assert that the application route match used NOT the given route name
      *
      * @param string $route
+     * @return void
      */
     public function assertNotMatchedRouteName($route)
     {
@@ -771,6 +785,8 @@ abstract class AbstractControllerTestCase extends TestCase
 
     /**
      * Assert that the application did not match any route
+     *
+     * @return void
      */
     public function assertNoMatchedRoute()
     {
@@ -791,6 +807,7 @@ abstract class AbstractControllerTestCase extends TestCase
      * Assert that a template was used somewhere in the view model tree
      *
      * @param string $templateName
+     * @return void
      */
     public function assertTemplateName($templateName)
     {
@@ -803,6 +820,7 @@ abstract class AbstractControllerTestCase extends TestCase
      * Assert that a template was not used somewhere in the view model tree
      *
      * @param string $templateName
+     * @return void
      */
     public function assertNotTemplateName($templateName)
     {

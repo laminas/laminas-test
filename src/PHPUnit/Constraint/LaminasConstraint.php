@@ -4,15 +4,21 @@ declare(strict_types=1);
 
 namespace Laminas\Test\PHPUnit\Constraint;
 
+use Exception;
 use Laminas\Test\PHPUnit\Controller\AbstractControllerTestCase;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\ExpectationFailedException;
 use SebastianBergmann\Comparator\ComparisonFailure;
-use Exception;
 use Throwable;
 
+use function get_class;
+use function implode;
+use function sprintf;
+
+// @codingStandardsIgnoreLine
 abstract class LaminasConstraint extends Constraint
 {
+    /** @var AbstractControllerTestCase */
     protected $activeTestCase;
 
     public function __construct(AbstractControllerTestCase $activeTestCase)
@@ -25,7 +31,12 @@ abstract class LaminasConstraint extends Constraint
         return $this->activeTestCase;
     }
 
-    final public function fail($other, $description, ComparisonFailure $comparisonFailure = null): void
+    /**
+     * @param mixed $other
+     * @param string $description
+     * @psalm-return never
+     */
+    final public function fail($other, $description, ?ComparisonFailure $comparisonFailure = null): void
     {
         try {
             parent::fail($other, $description, $comparisonFailure);
@@ -42,7 +53,7 @@ abstract class LaminasConstraint extends Constraint
         $routeMatch           = $this->activeTestCase->getApplication()->getMvcEvent()->getRouteMatch();
         $controllerIdentifier = $routeMatch->getParam('controller');
 
-        $controllerManager    = $this->activeTestCase->getApplicationServiceLocator()->get('ControllerManager');
+        $controllerManager = $this->activeTestCase->getApplicationServiceLocator()->get('ControllerManager');
 
         return get_class($controllerManager->get($controllerIdentifier));
     }

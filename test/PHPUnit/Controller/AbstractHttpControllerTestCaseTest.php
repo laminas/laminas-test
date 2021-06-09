@@ -37,12 +37,12 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         parent::setUp();
     }
 
-    public function testUseOfRouter()
+    public function testUseOfRouter(): void
     {
         $this->assertEquals(false, $this->useConsoleRequest);
     }
 
-    public function testAssertResponseStatusCode()
+    public function testAssertResponseStatusCode(): void
     {
         $this->dispatch('/tests');
         $this->assertResponseStatusCode(200);
@@ -54,7 +54,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertResponseStatusCode(302);
     }
 
-    public function testAssertNotResponseStatusCode()
+    public function testAssertNotResponseStatusCode(): void
     {
         $this->dispatch('/tests');
         $this->assertNotResponseStatusCode(302);
@@ -63,7 +63,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertNotResponseStatusCode(200);
     }
 
-    public function testAssertHasResponseHeader()
+    public function testAssertHasResponseHeader(): void
     {
         $this->dispatch('/tests');
         $this->assertHasResponseHeader('Content-Type');
@@ -72,7 +72,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertHasResponseHeader('Unknow-header');
     }
 
-    public function testAssertNotHasResponseHeader()
+    public function testAssertNotHasResponseHeader(): void
     {
         $this->dispatch('/tests');
         $this->assertNotHasResponseHeader('Unknow-header');
@@ -81,7 +81,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertNotHasResponseHeader('Content-Type');
     }
 
-    public function testAssertResponseHeaderContains()
+    public function testAssertResponseHeaderContains(): void
     {
         $this->dispatch('/tests');
         $this->assertResponseHeaderContains('Content-Type', 'text/html');
@@ -93,13 +93,13 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertResponseHeaderContains('Content-Type', 'text/json');
     }
 
-    public function testAssertResponseHeaderContainsMultipleHeaderInterface()
+    public function testAssertResponseHeaderContainsMultipleHeaderInterface(): void
     {
         $this->dispatch('/tests');
         $this->assertResponseHeaderContains('WWW-Authenticate', 'Basic realm="Laminas"');
     }
 
-    public function testAssertNotResponseHeaderContains()
+    public function testAssertNotResponseHeaderContains(): void
     {
         $this->dispatch('/tests');
         $this->assertNotResponseHeaderContains('Content-Type', 'text/json');
@@ -108,13 +108,13 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertNotResponseHeaderContains('Content-Type', 'text/html');
     }
 
-    public function testAssertNotResponseHeaderContainsMultipleHeaderInterface()
+    public function testAssertNotResponseHeaderContainsMultipleHeaderInterface(): void
     {
         $this->dispatch('/tests');
         $this->assertNotResponseHeaderContains('WWW-Authenticate', 'Basic realm="LaminasProject"');
     }
 
-    public function testAssertResponseHeaderRegex()
+    public function testAssertResponseHeaderRegex(): void
     {
         $this->dispatch('/tests');
         $this->assertResponseHeaderRegex('Content-Type', '#html$#');
@@ -126,13 +126,13 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertResponseHeaderRegex('Content-Type', '#json#');
     }
 
-    public function testAssertResponseHeaderRegexMultipleHeaderInterface()
+    public function testAssertResponseHeaderRegexMultipleHeaderInterface(): void
     {
         $this->dispatch('/tests');
         $this->assertResponseHeaderRegex('WWW-Authenticate', '#"Laminas"$#');
     }
 
-    public function testAssertNotResponseHeaderRegex()
+    public function testAssertNotResponseHeaderRegex(): void
     {
         $this->dispatch('/tests');
         $this->assertNotResponseHeaderRegex('Content-Type', '#json#');
@@ -141,13 +141,13 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertNotResponseHeaderRegex('Content-Type', '#html$#');
     }
 
-    public function testAssertNotResponseHeaderRegexMultipleHeaderInterface()
+    public function testAssertNotResponseHeaderRegexMultipleHeaderInterface(): void
     {
         $this->dispatch('/tests');
         $this->assertNotResponseHeaderRegex('WWW-Authenticate', '#"LaminasProject"$#');
     }
 
-    public function testAssertRedirect()
+    public function testAssertRedirect(): void
     {
         $this->dispatch('/redirect');
         $this->assertRedirect();
@@ -159,7 +159,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertNotRedirect();
     }
 
-    public function testAssertNotRedirect()
+    public function testAssertNotRedirect(): void
     {
         $this->dispatch('/test');
         $this->assertNotRedirect();
@@ -168,7 +168,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertRedirect();
     }
 
-    public function testAssertRedirectTo()
+    public function testAssertRedirectTo(): void
     {
         $this->dispatch('/redirect');
         $this->assertRedirectTo('https://www.zend.com');
@@ -180,7 +180,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertRedirectTo('http://www.laminas.fr');
     }
 
-    public function testAssertNotRedirectTo()
+    public function testAssertNotRedirectTo(): void
     {
         $this->dispatch('/redirect');
         $this->assertNotRedirectTo('http://www.laminas.fr');
@@ -189,7 +189,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertNotRedirectTo('https://www.zend.com');
     }
 
-    public function testAssertRedirectRegex()
+    public function testAssertRedirectRegex(): void
     {
         $this->dispatch('/redirect');
         $this->assertRedirectRegex('#zend\.com$#');
@@ -201,7 +201,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertRedirectRegex('#laminas\.fr$#');
     }
 
-    public function testAssertNotRedirectRegex()
+    public function testAssertNotRedirectRegex(): void
     {
         $this->dispatch('/redirect');
         $this->assertNotRedirectRegex('#laminas\.fr#');
@@ -210,7 +210,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertNotRedirectRegex('#zend\.com$#');
     }
 
-    public function testAssertQuery()
+    public function testAssertQuery(): void
     {
         $this->dispatch('/tests');
         $this->assertQuery('form#myform');
@@ -219,7 +219,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertQuery('form#id');
     }
 
-    public function testAssertXpathQuery()
+    public function testAssertXpathQuery(): void
     {
         $this->dispatch('/tests');
         $this->assertXpathQuery('//form[@id="myform"]');
@@ -228,7 +228,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertXpathQuery('//form[@id="id"]');
     }
 
-    public function testAssertXpathQueryWithBadXpathUsage()
+    public function testAssertXpathQueryWithBadXpathUsage(): void
     {
         $this->dispatch('/tests');
 
@@ -236,7 +236,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertXpathQuery('form#myform');
     }
 
-    public function testAssertNotQuery()
+    public function testAssertNotQuery(): void
     {
         $this->dispatch('/tests');
         $this->assertNotQuery('form#id');
@@ -245,7 +245,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertNotQuery('form#myform');
     }
 
-    public function testAssertNotXpathQuery()
+    public function testAssertNotXpathQuery(): void
     {
         $this->dispatch('/tests');
         $this->assertNotXpathQuery('//form[@id="id"]');
@@ -254,7 +254,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertNotXpathQuery('//form[@id="myform"]');
     }
 
-    public function testAssertQueryCount()
+    public function testAssertQueryCount(): void
     {
         $this->dispatch('/tests');
         $this->assertQueryCount('div.top', 3);
@@ -266,7 +266,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertQueryCount('div.top', 2);
     }
 
-    public function testAssertXpathQueryCount()
+    public function testAssertXpathQueryCount(): void
     {
         $this->dispatch('/tests');
         $this->assertXpathQueryCount('//div[@class="top"]', 3);
@@ -278,13 +278,13 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertXpathQueryCount('//div[@class="top"]', 2);
     }
 
-    public function testAssertXpathQueryCountWithBadXpathUsage()
+    public function testAssertXpathQueryCountWithBadXpathUsage(): void
     {
         $this->dispatch('/tests');
         $this->assertXpathQueryCount('div.top', 0);
     }
 
-    public function testAssertNotQueryCount()
+    public function testAssertNotQueryCount(): void
     {
         $this->dispatch('/tests');
         $this->assertNotQueryCount('div.top', 1);
@@ -294,7 +294,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertNotQueryCount('div.top', 3);
     }
 
-    public function testAssertNotXpathQueryCount()
+    public function testAssertNotXpathQueryCount(): void
     {
         $this->dispatch('/tests');
         $this->assertNotXpathQueryCount('//div[@class="top"]', 1);
@@ -304,7 +304,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertNotXpathQueryCount('//div[@class="top"]', 3);
     }
 
-    public function testAssertQueryCountMin()
+    public function testAssertQueryCountMin(): void
     {
         $this->dispatch('/tests');
         $this->assertQueryCountMin('div.top', 1);
@@ -318,7 +318,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertQueryCountMin('div.top', 4);
     }
 
-    public function testAssertXpathQueryCountMin()
+    public function testAssertXpathQueryCountMin(): void
     {
         $this->dispatch('/tests');
         $this->assertXpathQueryCountMin('//div[@class="top"]', 1);
@@ -332,7 +332,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertXpathQueryCountMin('//div[@class="top"]', 4);
     }
 
-    public function testAssertQueryCountMax()
+    public function testAssertQueryCountMax(): void
     {
         $this->dispatch('/tests');
         $this->assertQueryCountMax('div.top', 5);
@@ -346,7 +346,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertQueryCountMax('div.top', 2);
     }
 
-    public function testAssertXpathQueryCountMax()
+    public function testAssertXpathQueryCountMax(): void
     {
         $this->dispatch('/tests');
         $this->assertXpathQueryCountMax('//div[@class="top"]', 5);
@@ -360,7 +360,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertXpathQueryCountMax('//div[@class="top"]', 2);
     }
 
-    public function testAssertQueryContentContains()
+    public function testAssertQueryContentContains(): void
     {
         $this->dispatch('/tests');
         $this->assertQueryContentContains('div#content', 'foo');
@@ -371,7 +371,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertQueryContentContains('div#content', 'bar');
     }
 
-    public function testAssertQueryContentContainsWithSecondElement()
+    public function testAssertQueryContentContainsWithSecondElement(): void
     {
         $this->dispatch('/tests');
         $this->assertQueryContentContains('div#content', 'foo');
@@ -382,7 +382,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertQueryContentContains('div.top', 'bar');
     }
 
-    public function testAssertXpathQueryContentContains()
+    public function testAssertXpathQueryContentContains(): void
     {
         $this->dispatch('/tests');
         $this->assertXpathQueryContentContains('//div[@class="top"]', 'foo');
@@ -393,7 +393,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertXpathQueryContentContains('//div[@class="top"]', 'bar');
     }
 
-    public function testAssertNotQueryContentContains()
+    public function testAssertNotQueryContentContains(): void
     {
         $this->dispatch('/tests');
         $this->assertNotQueryContentContains('div#content', 'bar');
@@ -402,7 +402,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertNotQueryContentContains('div#content', 'foo');
     }
 
-    public function testAssertNotXpathQueryContentContains()
+    public function testAssertNotXpathQueryContentContains(): void
     {
         $this->dispatch('/tests');
         $this->assertNotXpathQueryContentContains('//div[@id="content"]', 'bar');
@@ -411,7 +411,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertNotXpathQueryContentContains('//div[@id="content"]', 'foo');
     }
 
-    public function testAssertQueryContentRegex()
+    public function testAssertQueryContentRegex(): void
     {
         $this->dispatch('/tests');
         $this->assertQueryContentRegex('div#content', '#o{2}#');
@@ -423,7 +423,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertQueryContentRegex('div#content', '#o{3,}#');
     }
 
-    public function testAssertQueryContentRegexMultipleMatches()
+    public function testAssertQueryContentRegexMultipleMatches(): void
     {
         $this->dispatch('/tests');
         $this->assertQueryContentRegex('div.top', '#o{2}#');
@@ -435,7 +435,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertQueryContentRegex('div.top', '#o{3,}#');
     }
 
-    public function testAssertQueryContentRegexMultipleMatchesNoFalsePositive()
+    public function testAssertQueryContentRegexMultipleMatchesNoFalsePositive(): void
     {
         $this->dispatch('/tests');
 
@@ -446,7 +446,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertQueryContentRegex('div', '/foobar/');
     }
 
-    public function testAssertXpathQueryContentRegex()
+    public function testAssertXpathQueryContentRegex(): void
     {
         $this->dispatch('/tests');
         $this->assertXpathQueryContentRegex('//div[@id="content"]', '#o{2}#');
@@ -458,7 +458,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertXpathQueryContentRegex('//div[@id="content"]', '#o{3,}#');
     }
 
-    public function testAssertNotQueryContentRegex()
+    public function testAssertNotQueryContentRegex(): void
     {
         $this->dispatch('/tests');
         $this->assertNotQueryContentRegex('div#content', '#o{3,}#');
@@ -467,7 +467,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertNotQueryContentRegex('div#content', '#o{2}#');
     }
 
-    public function testAssertNotXpathQueryContentRegex()
+    public function testAssertNotXpathQueryContentRegex(): void
     {
         $this->dispatch('/tests');
         $this->assertNotXpathQueryContentRegex('//div[@id="content"]', '#o{3,}#');
@@ -476,7 +476,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertNotXpathQueryContentRegex('//div[@id="content"]', '#o{2}#');
     }
 
-    public function testAssertQueryWithDynamicQueryParams()
+    public function testAssertQueryWithDynamicQueryParams(): void
     {
         $this->getRequest()
             ->setMethod('GET')
@@ -488,7 +488,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertXpathQueryCount('//div[@class="post"]', 0);
     }
 
-    public function testAssertQueryWithDynamicQueryParamsInDispatchMethod()
+    public function testAssertQueryWithDynamicQueryParamsInDispatchMethod(): void
     {
         $this->dispatch('/tests', 'GET', ['num_get' => 5]);
         $this->assertQueryCount('div.get', 5);
@@ -497,7 +497,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertXpathQueryCount('//div[@class="post"]', 0);
     }
 
-    public function testAssertQueryWithDynamicQueryParamsInUrl()
+    public function testAssertQueryWithDynamicQueryParamsInUrl(): void
     {
         $this->dispatch('/tests?foo=bar&num_get=5');
         $this->assertQueryCount('div.get', 5);
@@ -506,7 +506,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertXpathQueryCount('//div[@class="post"]', 0);
     }
 
-    public function testAssertQueryWithDynamicQueryParamsInUrlAnsPostInParams()
+    public function testAssertQueryWithDynamicQueryParamsInUrlAnsPostInParams(): void
     {
         $this->dispatch('/tests?foo=bar&num_get=5', 'POST', ['num_post' => 5]);
         $this->assertQueryCount('div.get', 5);
@@ -515,7 +515,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertXpathQueryCount('//div[@class="post"]', 5);
     }
 
-    public function testAssertQueryWithDynamicPostParams()
+    public function testAssertQueryWithDynamicPostParams(): void
     {
         $this->getRequest()
             ->setMethod('POST')
@@ -527,7 +527,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertXpathQueryCount('//div[@class="get"]', 0);
     }
 
-    public function testAssertQueryWithDynamicPostParamsInDispatchMethod()
+    public function testAssertQueryWithDynamicPostParamsInDispatchMethod(): void
     {
         $this->dispatch('/tests', 'POST', ['num_post' => 5]);
         $request = $this->getRequest();
@@ -538,7 +538,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertXpathQueryCount('//div[@class="get"]', 0);
     }
 
-    public function testAssertQueryWithDynamicPutParamsInDispatchMethod()
+    public function testAssertQueryWithDynamicPutParamsInDispatchMethod(): void
     {
         $this->dispatch('/tests', 'PUT', ['num_post' => 5, 'foo' => 'bar']);
         $request = $this->getRequest();
@@ -546,7 +546,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertEquals('num_post=5&foo=bar', $request->getContent());
     }
 
-    public function testAssertUriWithHostname()
+    public function testAssertUriWithHostname(): void
     {
         $this->dispatch('http://my.domain.tld:443');
         $routeMatch = $this->getApplication()->getMvcEvent()->getRouteMatch();
@@ -554,7 +554,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertEquals($this->getRequest()->getUri()->getPort(), 443);
     }
 
-    public function testAssertWithMultiDispatch()
+    public function testAssertWithMultiDispatch(): void
     {
         $this->dispatch('/tests');
         $this->assertQueryCount('div.get', 0);
@@ -579,7 +579,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertXpathQueryCount('//div[@class="post"]', 0);
     }
 
-    public function testAssertWithMultiDispatchWithoutPersistence()
+    public function testAssertWithMultiDispatchWithoutPersistence(): void
     {
         if (! extension_loaded('session')) {
             $this->markTestSkipped('No session extension loaded');
@@ -607,7 +607,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertCount(0, $messages);
     }
 
-    public function testAssertWithMultiDispatchWithPersistence()
+    public function testAssertWithMultiDispatchWithPersistence(): void
     {
         if (! extension_loaded('session')) {
             $this->markTestSkipped('No session extension loaded');
@@ -635,7 +635,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertCount(1, $messages);
     }
 
-    public function testAssertWithEventShared()
+    public function testAssertWithEventShared(): void
     {
         if (! class_exists(StaticEventManager::class)) {
             $this->markTestSkipped(
@@ -673,7 +673,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertNotEquals('<html></html>', $this->getResponse()->getContent());
     }
 
-    public function testAssertExceptionInAction()
+    public function testAssertExceptionInAction(): void
     {
         $this->setTraceError(true);
 
@@ -682,14 +682,14 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertApplicationException('RuntimeException');
     }
 
-    public function testAssertExceptionAndMessageInAction()
+    public function testAssertExceptionAndMessageInAction(): void
     {
         $this->dispatch('/exception');
         $this->assertResponseStatusCode(500);
         $this->assertApplicationException('RuntimeException', 'Foo error');
     }
 
-    public function testTraceErrorEnableByDefault()
+    public function testTraceErrorEnableByDefault(): void
     {
         $this->dispatch('/exception');
         $this->assertResponseStatusCode(500);
@@ -704,7 +704,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         }
     }
 
-    public function testGetErrorWithTraceErrorEnabled()
+    public function testGetErrorWithTraceErrorEnabled(): void
     {
         $this->dispatch('/exception');
         $this->assertResponseStatusCode(500);
@@ -719,7 +719,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
     /**
      * Sample tests on MvcEvent
      */
-    public function testAssertApplicationMvcEvent()
+    public function testAssertApplicationMvcEvent(): void
     {
         $this->dispatch('/tests');
 
@@ -745,7 +745,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
     /**
      * Sample tests on Application events
      */
-    public function testAssertApplicationEvents()
+    public function testAssertApplicationEvents(): void
     {
         $this->url('/tests');
 
@@ -756,13 +756,13 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertEquals(true, $routeMatch instanceof RouteMatch);
         $this->assertEquals($routeMatch->getParam('controller'), 'baz_index');
 
-        $result    = $this->triggerApplicationEvent(MvcEvent::EVENT_DISPATCH);
+        $this->triggerApplicationEvent(MvcEvent::EVENT_DISPATCH);
         $viewModel = $this->getApplication()->getMvcEvent()->getResult();
         $this->assertEquals(true, $viewModel instanceof ViewModel);
         $this->assertEquals($viewModel->getTemplate(), 'baz/index/unittests');
     }
 
-    public function testAssertResponseReasonPhrase()
+    public function testAssertResponseReasonPhrase(): void
     {
         $this->dispatch('/tests');
         $this->assertResponseReasonPhrase('OK');
@@ -771,7 +771,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertResponseReasonPhrase('NOT OK');
     }
 
-    public function testAssertXmlHttpRequestDispatch()
+    public function testAssertXmlHttpRequestDispatch(): void
     {
         $request = $this->getRequest();
         $this->assertFalse($request->isXmlHttpRequest());

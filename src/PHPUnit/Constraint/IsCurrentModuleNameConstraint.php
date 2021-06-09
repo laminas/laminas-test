@@ -4,6 +4,12 @@ declare(strict_types=1);
 
 namespace Laminas\Test\PHPUnit\Constraint;
 
+use function ltrim;
+use function strpos;
+use function strrpos;
+use function strtolower;
+use function substr;
+
 final class IsCurrentModuleNameConstraint extends LaminasConstraint
 {
     public function toString(): string
@@ -11,20 +17,24 @@ final class IsCurrentModuleNameConstraint extends LaminasConstraint
         return 'is the actual module name';
     }
 
+    /** @param mixed $other */
     public function failureDescription($other): string
     {
+        $other = (string) $other;
         return "\"$other\" {$this->toString()}, actual module name is \"{$this->getCurrentModuleName()}\"";
     }
 
+    /** @param mixed $other */
     public function matches($other): bool
     {
-        return  (strtolower($other) === $this->getCurrentModuleName());
+        $other = (string) $other;
+        return strtolower($other) === $this->getCurrentModuleName();
     }
 
     public function getCurrentModuleName(): string
     {
         $controllerClass = $this->getControllerFullClassName();
-        $match = '';
+        $match           = '';
 
         $applicationConfig = $this->getTestCase()->getApplicationConfig();
 

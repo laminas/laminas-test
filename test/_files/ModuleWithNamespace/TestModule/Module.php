@@ -2,23 +2,30 @@
 
 /**
  * @see       https://github.com/laminas/laminas-test for the canonical source repository
- * @copyright https://github.com/laminas/laminas-test/blob/master/COPYRIGHT.md
- * @license   https://github.com/laminas/laminas-test/blob/master/LICENSE.md New BSD License
  */
 
 namespace ModuleWithNamespace\TestModule;
 
+use Laminas\Loader\StandardAutoloader;
+
 class Module
 {
-    public function getConfig()
+    /**
+     * @psalm-return array<string, mixed>
+     */
+    public function getConfig(): array
     {
         return include __DIR__ . '/config/module.config.php';
     }
 
-    public function getAutoloaderConfig()
+    /**
+     * @return string[][][]
+     * @psalm-return array<string, array<string, array<string, string>>>
+     */
+    public function getAutoloaderConfig(): array
     {
         return [
-            'Laminas\Loader\StandardAutoloader' => [
+            StandardAutoloader::class => [
                 'namespaces' => [
                     __NAMESPACE__ => __DIR__ . '/src/',
                 ],
