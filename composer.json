@@ -32,8 +32,6 @@
         "laminas/laminas-uri": "^2.5",
         "laminas/laminas-view": "^2.6.3",
         "laminas/laminas-zendframework-bridge": "^1.1",
-        "vimeo/psalm": "^4.7.0",
-        "psalm/plugin-phpunit": "^0.15.0",
         "phpunit/phpunit": "^8.0 || ^9.0"
     },
     "require-dev": {
@@ -46,7 +44,9 @@
         "laminas/laminas-serializer": "^2.6.1",
         "laminas/laminas-session": "^2.8.5",
         "laminas/laminas-validator": "^2.8",
-        "mikey179/vfsstream": "^1.6.8"
+        "mikey179/vfsstream": "^1.6.8",
+        "psalm/plugin-phpunit": "^0.16.0",
+        "vimeo/psalm": "^4.7"
     },
     "suggest": {
         "laminas/laminas-mvc-console": "^1.1.8, to test MVC <-> console integration"
