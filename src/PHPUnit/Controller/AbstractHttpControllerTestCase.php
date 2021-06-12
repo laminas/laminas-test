@@ -19,13 +19,6 @@ use function sprintf;
 abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
 {
     /**
-     * HTTP controller must not use the console request
-     *
-     * @var bool
-     */
-    protected $useConsoleRequest = false;
-
-    /**
      * XPath namespaces
      *
      * @var array
@@ -40,9 +33,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
      */
     protected function getResponseHeader($header)
     {
-        $response = $this->getResponse();
-        $headers  = $response->getHeaders();
-        return $headers->get($header, false);
+        return $this->getResponse()->getHeaders()->get($header);
     }
 
     /**

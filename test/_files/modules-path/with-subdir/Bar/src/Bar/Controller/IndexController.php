@@ -10,9 +10,4 @@ class IndexController extends AbstractActionController
     public function unittestsAction()
     {
     }
-
-    /** @return void */
-    public function consoleAction()
-    {
-    }
 }

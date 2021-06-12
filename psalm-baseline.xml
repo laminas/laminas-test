@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="4.7.3@38c452ae584467e939d55377aaf83b5a26f19dd1">
   <file src="src/PHPUnit/Constraint/IsCurrentModuleNameConstraint.php">
-    <MixedArgument occurrences="5">
+    <MixedArgument occurrences="4">
       <code>$appModules</code>
       <code>$appModules</code>
       <code>$appModules</code>
       <code>$appModules</code>
-      <code>$other</code>
     </MixedArgument>
     <MixedAssignment occurrences="1">
       <code>$appModules</code>
@@ -39,31 +38,11 @@
       <code>getMvcEvent</code>
     </UndefinedInterfaceMethod>
   </file>
-  <file src="src/PHPUnit/Controller/AbstractConsoleControllerTestCase.php">
-    <DeprecatedMethod occurrences="2">
-      <code>createFailureMessage</code>
-      <code>createFailureMessage</code>
-    </DeprecatedMethod>
-    <InternalClass occurrences="2"/>
-    <MixedArgument occurrences="5">
-      <code>$response-&gt;getContent()</code>
-      <code>$response-&gt;getContent()</code>
-      <code>$response-&gt;getContent()</code>
-      <code>$response-&gt;getContent()</code>
-      <code>$response-&gt;getContent()</code>
-    </MixedArgument>
-  </file>
   <file src="src/PHPUnit/Controller/AbstractControllerTestCase.php">
     <ArgumentTypeCoercion occurrences="1">
       <code>$type</code>
     </ArgumentTypeCoercion>
-    <DeprecatedMethod occurrences="23">
-      <code>createFailureMessage</code>
-      <code>createFailureMessage</code>
-      <code>createFailureMessage</code>
-      <code>createFailureMessage</code>
-      <code>createFailureMessage</code>
-      <code>createFailureMessage</code>
+    <DeprecatedMethod occurrences="17">
       <code>createFailureMessage</code>
       <code>createFailureMessage</code>
       <code>createFailureMessage</code>
@@ -82,9 +61,7 @@
       <code>createFailureMessage</code>
       <code>createFailureMessage</code>
     </DeprecatedMethod>
-    <InternalClass occurrences="23">
-      <code>new ExpectationFailedException($this-&gt;createFailureMessage('No route matched'))</code>
-      <code>new ExpectationFailedException($this-&gt;createFailureMessage('No route matched'))</code>
+    <InternalClass occurrences="17">
       <code>new ExpectationFailedException($this-&gt;createFailureMessage('No route matched'))</code>
       <code>new ExpectationFailedException($this-&gt;createFailureMessage('No route matched'))</code>
       <code>new ExpectationFailedException($this-&gt;createFailureMessage('No route matched'))</code>
@@ -97,13 +74,10 @@
     <MissingClosureParamType occurrences="1">
       <code>$r</code>
     </MissingClosureParamType>
-    <MixedArgument occurrences="19">
+    <MixedArgument occurrences="15">
       <code>$child</code>
-      <code>$controllerClass</code>
       <code>$event</code>
       <code>$event</code>
-      <code>$match</code>
-      <code>$match</code>
       <code>$match</code>
       <code>$match</code>
       <code>$match</code>
@@ -116,19 +90,12 @@
       <code>$query</code>
       <code>$query</code>
       <code>$viewModel</code>
-      <code>$viewModel</code>
     </MixedArgument>
-    <MixedAssignment occurrences="32">
+    <MixedAssignment occurrences="24">
       <code>$child</code>
-      <code>$controllerClass</code>
-      <code>$controllerIdentifier</code>
-      <code>$controllerManager</code>
       <code>$event</code>
       <code>$exception</code>
       <code>$headers</code>
-      <code>$match</code>
-      <code>$match</code>
-      <code>$match</code>
       <code>$match</code>
       <code>$match</code>
       <code>$match</code>
@@ -148,22 +115,12 @@
       <code>$routeMatch</code>
       <code>$routeMatch</code>
       <code>$routeMatch</code>
-      <code>$routeMatch</code>
-      <code>$viewModel</code>
       <code>$viewModel</code>
     </MixedAssignment>
-    <MixedInferredReturnType occurrences="2">
-      <code>ResponseInterface</code>
-      <code>int</code>
-    </MixedInferredReturnType>
-    <MixedMethodCall occurrences="32">
+    <MixedMethodCall occurrences="25">
       <code>addHeaderLine</code>
       <code>detach</code>
-      <code>exchangeArray</code>
-      <code>get</code>
       <code>getError</code>
-      <code>getMatchedRouteName</code>
-      <code>getMatchedRouteName</code>
       <code>getMatchedRouteName</code>
       <code>getModules</code>
       <code>getModules</code>
@@ -181,20 +138,12 @@
       <code>getRouteMatch</code>
       <code>getRouteMatch</code>
       <code>getRouteMatch</code>
-      <code>getRouteMatch</code>
-      <code>getRouteMatch</code>
-      <code>getViewModel</code>
       <code>getViewModel</code>
       <code>setName</code>
       <code>setParam</code>
       <code>toArray</code>
       <code>toArray</code>
     </MixedMethodCall>
-    <MixedReturnStatement occurrences="3">
-      <code>$match</code>
-      <code>$response-&gt;getStatusCode()</code>
-      <code>$this-&gt;getApplication()-&gt;getMvcEvent()-&gt;getResponse()</code>
-    </MixedReturnStatement>
     <MoreSpecificReturnType occurrences="1">
       <code>ServiceManager</code>
     </MoreSpecificReturnType>
@@ -205,9 +154,6 @@
     <PossiblyNullPropertyAssignmentValue occurrences="1">
       <code>null</code>
     </PossiblyNullPropertyAssignmentValue>
-    <RedundantCastGivenDocblockType occurrences="1">
-      <code>(bool) $boolean</code>
-    </RedundantCastGivenDocblockType>
     <RedundantConditionGivenDocblockType occurrences="4">
       <code>$this-&gt;application</code>
       <code>null !== $this-&gt;application</code>
@@ -217,8 +163,7 @@
     <TooManyArguments occurrences="1">
       <code>getTemplate</code>
     </TooManyArguments>
-    <UndefinedInterfaceMethod occurrences="27">
-      <code>getErrorLevel</code>
+    <UndefinedInterfaceMethod occurrences="21">
       <code>getHeaders</code>
       <code>getMethod</code>
       <code>getMvcEvent</code>
@@ -233,13 +178,8 @@
       <code>getMvcEvent</code>
       <code>getMvcEvent</code>
       <code>getMvcEvent</code>
-      <code>getMvcEvent</code>
-      <code>getMvcEvent</code>
-      <code>getMvcEvent</code>
       <code>getPost</code>
       <code>getQuery</code>
-      <code>getStatusCode</code>
-      <code>params</code>
       <code>setMethod</code>
       <code>setPost</code>
       <code>setQuery</code>
@@ -288,20 +228,21 @@
       <code>createFailureMessage</code>
     </DeprecatedMethod>
     <InternalClass occurrences="34"/>
+    <InvalidReturnStatement occurrences="1">
+      <code>$this-&gt;getResponse()-&gt;getHeaders()-&gt;get($header)</code>
+    </InvalidReturnStatement>
+    <InvalidReturnType occurrences="1">
+      <code>HeaderInterface|false</code>
+    </InvalidReturnType>
     <MixedArgument occurrences="3">
       <code>$currentHeader-&gt;getFieldValue()</code>
       <code>$currentHeader-&gt;getFieldValue()</code>
       <code>$response-&gt;getContent()</code>
     </MixedArgument>
-    <MixedAssignment occurrences="2">
+    <MixedAssignment occurrences="1">
       <code>$currentValue</code>
-      <code>$headers</code>
     </MixedAssignment>
-    <MixedInferredReturnType occurrences="1">
-      <code>HeaderInterface|false</code>
-    </MixedInferredReturnType>
-    <MixedMethodCall occurrences="5">
-      <code>get</code>
+    <MixedMethodCall occurrences="4">
       <code>getFieldValue</code>
       <code>getFieldValue</code>
       <code>getFieldValue</code>
@@ -310,9 +251,6 @@
     <MixedPropertyFetch occurrences="1">
       <code>$node-&gt;nodeValue</code>
     </MixedPropertyFetch>
-    <MixedReturnStatement occurrences="1">
-      <code>$headers-&gt;get($header, false)</code>
-    </MixedReturnStatement>
     <PossiblyUndefinedVariable occurrences="5">
       <code>$currentHeader</code>
       <code>$currentHeader</code>
@@ -327,10 +265,6 @@
       <code>assertTrue</code>
       <code>assertTrue</code>
     </RedundantCondition>
-    <UndefinedInterfaceMethod occurrences="2">
-      <code>getHeaders</code>
-      <code>getReasonPhrase</code>
-    </UndefinedInterfaceMethod>
   </file>
   <file src="src/Util/ModuleLoader.php">
     <MixedArgument occurrences="1">
@@ -358,37 +292,6 @@
     <ArgumentTypeCoercion occurrences="1">
       <code>$exceptionClass</code>
     </ArgumentTypeCoercion>
-  </file>
-  <file src="test/PHPUnit/Controller/AbstractConsoleControllerTestCaseTest.php">
-    <MixedAssignment occurrences="1">
-      <code>$routeMatch</code>
-    </MixedAssignment>
-    <MixedMethodCall occurrences="6">
-      <code>getRouteMatch</code>
-      <code>getRouteMatch</code>
-      <code>getRouteMatch</code>
-      <code>getRouteMatch</code>
-      <code>getRouteMatch</code>
-      <code>getRouteMatch</code>
-    </MixedMethodCall>
-    <RedundantConditionGivenDocblockType occurrences="2">
-      <code>assertNotNull</code>
-      <code>assertNotNull</code>
-    </RedundantConditionGivenDocblockType>
-    <UndefinedDocblockClass occurrences="4">
-      <code>$routeMatch</code>
-      <code>$routeMatch</code>
-      <code>$routeMatch</code>
-      <code>$routeMatch</code>
-    </UndefinedDocblockClass>
-    <UndefinedInterfaceMethod occurrences="6">
-      <code>getMvcEvent</code>
-      <code>getMvcEvent</code>
-      <code>getMvcEvent</code>
-      <code>getMvcEvent</code>
-      <code>getMvcEvent</code>
-      <code>getMvcEvent</code>
-    </UndefinedInterfaceMethod>
   </file>
   <file src="test/PHPUnit/Controller/AbstractControllerTestCaseTest.php">
     <InvalidArgument occurrences="2">
@@ -446,19 +349,18 @@
     <ArgumentTypeCoercion occurrences="1">
       <code>'RuntimeException'</code>
     </ArgumentTypeCoercion>
-    <MixedArgument occurrences="6">
+    <MixedArgument occurrences="5">
       <code>$layout-&gt;getChildren()</code>
       <code>$messages</code>
       <code>$messages</code>
       <code>$messages</code>
       <code>$messages</code>
     </MixedArgument>
-    <MixedAssignment occurrences="20">
+    <MixedAssignment occurrences="19">
       <code>$controller</code>
       <code>$controller</code>
       <code>$controller</code>
       <code>$controller</code>
-      <code>$countListeners</code>
       <code>$exception</code>
       <code>$flashMessenger</code>
       <code>$flashMessenger</code>
@@ -475,7 +377,7 @@
       <code>$viewModel</code>
       <code>$viewModel</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="32">
+    <MixedMethodCall occurrences="30">
       <code>flashMessenger</code>
       <code>flashMessenger</code>
       <code>flashMessenger</code>
@@ -487,8 +389,6 @@
       <code>getApplication</code>
       <code>getChildren</code>
       <code>getError</code>
-      <code>getListeners</code>
-      <code>getListeners</code>
       <code>getMessages</code>
       <code>getMessages</code>
       <code>getMessages</code>
