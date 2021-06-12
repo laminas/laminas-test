@@ -1,8 +1,6 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-test for the canonical source repository
- */
+declare(strict_types=1);
 
 namespace Laminas\Test\Util;
 
@@ -55,20 +53,16 @@ class ModuleLoader
 
     /**
      * Get the application
-     *
-     * @return Application
      */
-    public function getApplication()
+    public function getApplication(): Application
     {
         return $this->getServiceManager()->get('Application');
     }
 
     /**
      * Get the module manager
-     *
-     * @return ModuleManager
      */
-    public function getModuleManager()
+    public function getModuleManager(): ModuleManager
     {
         return $this->getServiceManager()->get('ModuleManager');
     }
@@ -76,20 +70,17 @@ class ModuleLoader
     /**
      * Get module by name
      *
-     * @param string $moduleName
      * @return mixed
      */
-    public function getModule($moduleName)
+    public function getModule(string $moduleName)
     {
         return $this->getModuleManager()->getModule($moduleName);
     }
 
     /**
      * Get the service manager
-     *
-     * @return ServiceManager
      */
-    public function getServiceManager()
+    public function getServiceManager(): ServiceManager
     {
         return $this->serviceManager;
     }
