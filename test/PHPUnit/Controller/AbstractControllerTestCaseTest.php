@@ -163,6 +163,24 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
     }
 
     /** @return void */
+    public function testAssertModuleWithSimilarName()
+    {
+        $applicationConfig = $this->getApplicationConfig();
+
+        $applicationConfig['modules'][] = 'ModuleWithSimilarName\TestModule';
+        $applicationConfig['modules'][] = 'ModuleWithSimilarName\Test';
+        $applicationConfig['module_listener_options']['module_paths']['ModuleWithSimilarName\TestModule']
+            = __DIR__ . '/../../_files/ModuleWithSimilarName/TestModule/';
+        $applicationConfig['module_listener_options']['module_paths']['ModuleWithSimilarName\Test']
+            = __DIR__ . '/../../_files/ModuleWithSimilarName/Test/';
+
+        $this->setApplicationConfig($applicationConfig);
+
+        $this->dispatch('/similar-name-2-test');
+        $this->assertModuleName('TestModule');
+    }
+
+    /** @return void */
     public function testAssertExceptionDetailsPresentWhenTraceErrorIsEnabled()
     {
         $this->traceError = true;
