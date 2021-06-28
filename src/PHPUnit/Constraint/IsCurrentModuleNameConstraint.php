@@ -40,7 +40,7 @@ final class IsCurrentModuleNameConstraint extends LaminasConstraint
 
         // Find Module from Controller
         foreach ($applicationConfig['modules'] as $appModules) {
-            if (strpos($controllerClass, $appModules) !== false) {
+            if (strpos($controllerClass, $appModules.'\\') !== false) {
                 if (strpos($appModules, '\\') !== false) {
                     $match = ltrim(substr($appModules, strrpos($appModules, '\\')), '\\');
                 } else {
