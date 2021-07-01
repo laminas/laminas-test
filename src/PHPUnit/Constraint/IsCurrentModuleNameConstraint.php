@@ -39,6 +39,7 @@ final class IsCurrentModuleNameConstraint extends LaminasConstraint
         $applicationConfig = $this->getTestCase()->getApplicationConfig();
 
         // Find Module from Controller
+        /** @var string $appModules */
         foreach ($applicationConfig['modules'] as $appModules) {
             if (strpos($controllerClass, $appModules . '\\') !== false) {
                 if (strpos($appModules, '\\') !== false) {
