@@ -23,6 +23,7 @@ use RuntimeException;
 
 use function array_diff;
 use function array_key_exists;
+use function array_merge_recursive;
 use function count;
 use function extension_loaded;
 use function get_class;
@@ -167,17 +168,20 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
     {
         $applicationConfig = $this->getApplicationConfig();
 
-        /** @var array $modules */
-        $modules = $applicationConfig['modules'];
-        $modules[] = 'ModuleWithSimilarName\TestModule';
-        $modules[] = 'ModuleWithSimilarName\Test';
+        $testConfig = [
+            'modules'                 => [
+                'ModuleWithSimilarName\TestModule',
+                'ModuleWithSimilarName\Test',
+            ],
+            'module_listener_options' => [
+                'module_paths' => [
+                    'ModuleWithSimilarName\TestModule' => __DIR__ . '/../../_files/ModuleWithSimilarName/TestModule/',
+                    'ModuleWithSimilarName\Test'       => __DIR__ . '/../../_files/ModuleWithSimilarName/Test/',
+                ],
+            ],
+        ];
 
-        /** @var array $modulePaths */
-        $modulePaths = $applicationConfig['module_listener_options']['module_paths'];
-        $modulePaths['ModuleWithSimilarName\TestModule'] = __DIR__ . '/../../_files/ModuleWithSimilarName/TestModule/';
-        $modulePaths['ModuleWithSimilarName\Test']       = __DIR__ . '/../../_files/ModuleWithSimilarName/Test/';
-
-        $this->setApplicationConfig($applicationConfig);
+        $this->setApplicationConfig(array_merge_recursive($testConfig, $applicationConfig));
 
         $this->dispatch('/similar-name-2-test');
         $this->assertModuleName('TestModule');
