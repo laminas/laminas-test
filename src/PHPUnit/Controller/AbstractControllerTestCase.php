@@ -14,7 +14,6 @@ use Laminas\Mvc\ApplicationInterface;
 use Laminas\Mvc\Controller\ControllerManager;
 use Laminas\Mvc\MvcEvent;
 use Laminas\Router\RouteMatch;
-use Laminas\ServiceManager\ServiceLocatorInterface;
 use Laminas\Stdlib\Exception\LogicException;
 use Laminas\Stdlib\Parameters;
 use Laminas\Stdlib\RequestInterface;
@@ -25,6 +24,7 @@ use Laminas\View\Model\ModelInterface;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
+use Psr\Container\ContainerInterface;
 use Throwable;
 
 use function array_diff;
@@ -184,7 +184,7 @@ abstract class AbstractControllerTestCase extends TestCase
     /**
      * Get the service manager of the application object
      */
-    public function getApplicationServiceLocator(): ServiceLocatorInterface
+    public function getApplicationServiceLocator(): ContainerInterface
     {
         return $this->getApplication()->getServiceManager();
     }
