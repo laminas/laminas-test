@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.7.3@38c452ae584467e939d55377aaf83b5a26f19dd1">
+<files psalm-version="4.8.1@f73f2299dbc59a3e6c4d66cff4605176e728ee69">
   <file src="src/PHPUnit/Constraint/IsCurrentModuleNameConstraint.php">
     <MixedArgument occurrences="4">
       <code>$appModules</code>
@@ -16,7 +16,7 @@
   </file>
   <file src="src/PHPUnit/Constraint/LaminasConstraint.php">
     <InternalClass occurrences="1"/>
-    <InternalMethod occurrences="1">
+    <InternalMethod occurrences="2">
       <code>getComparisonFailure</code>
     </InternalMethod>
     <MixedArgument occurrences="1">
@@ -68,6 +68,13 @@
       <code>new ExpectationFailedException($this-&gt;createFailureMessage('No route matched'))</code>
       <code>new ExpectationFailedException($this-&gt;createFailureMessage('No route matched'))</code>
     </InternalClass>
+    <InternalMethod occurrences="17">
+      <code>new ExpectationFailedException($this-&gt;createFailureMessage('No route matched'))</code>
+      <code>new ExpectationFailedException($this-&gt;createFailureMessage('No route matched'))</code>
+      <code>new ExpectationFailedException($this-&gt;createFailureMessage('No route matched'))</code>
+      <code>new ExpectationFailedException($this-&gt;createFailureMessage('No route matched'))</code>
+      <code>new ExpectationFailedException($this-&gt;createFailureMessage('No route matched'))</code>
+    </InternalMethod>
     <LessSpecificReturnStatement occurrences="1">
       <code>$this-&gt;getApplication()-&gt;getServiceManager()</code>
     </LessSpecificReturnStatement>
@@ -228,6 +235,7 @@
       <code>createFailureMessage</code>
     </DeprecatedMethod>
     <InternalClass occurrences="34"/>
+    <InternalMethod occurrences="34"/>
     <InvalidReturnStatement occurrences="1">
       <code>$this-&gt;getResponse()-&gt;getHeaders()-&gt;get($header)</code>
     </InvalidReturnStatement>
