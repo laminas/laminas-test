@@ -14,7 +14,7 @@ use Laminas\Mvc\ApplicationInterface;
 use Laminas\Mvc\Controller\ControllerManager;
 use Laminas\Mvc\MvcEvent;
 use Laminas\Router\RouteMatch;
-use Laminas\ServiceManager\ServiceManager;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 use Laminas\Stdlib\Exception\LogicException;
 use Laminas\Stdlib\Parameters;
 use Laminas\Stdlib\RequestInterface;
@@ -184,7 +184,7 @@ abstract class AbstractControllerTestCase extends TestCase
     /**
      * Get the service manager of the application object
      */
-    public function getApplicationServiceLocator(): ServiceManager
+    public function getApplicationServiceLocator(): ServiceLocatorInterface
     {
         return $this->getApplication()->getServiceManager();
     }
