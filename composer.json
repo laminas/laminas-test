@@ -22,7 +22,6 @@
     },
     "require": {
         "php": "^7.3 || ~8.0.0",
-        "laminas/laminas-console": "^2.6",
         "laminas/laminas-dom": "^2.8",
         "laminas/laminas-eventmanager": "^3.0",
         "laminas/laminas-http": "^2.13",
@@ -39,7 +38,6 @@
         "laminas/laminas-i18n": "^2.6",
         "laminas/laminas-log": "^2.7.1",
         "laminas/laminas-modulemanager": "^2.7.1",
-        "laminas/laminas-mvc-console": "^1.1.8",
         "laminas/laminas-mvc-plugin-flashmessenger": "^1.0",
         "laminas/laminas-serializer": "^2.6.1",
         "laminas/laminas-session": "^2.8.5",
@@ -47,9 +45,6 @@
         "mikey179/vfsstream": "^1.6.8",
         "psalm/plugin-phpunit": "^0.16.0",
         "vimeo/psalm": "^4.7"
-    },
-    "suggest": {
-        "laminas/laminas-mvc-console": "^1.1.8, to test MVC <-> console integration"
     },
     "autoload": {
         "psr-4": {

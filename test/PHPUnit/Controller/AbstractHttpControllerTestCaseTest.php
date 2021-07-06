@@ -7,8 +7,6 @@
 namespace LaminasTest\Test\PHPUnit\Controller;
 
 use Exception;
-use Laminas\EventManager\StaticEventManager;
-use Laminas\Mvc\Application;
 use Laminas\Mvc\MvcEvent;
 use Laminas\Router\Http\RouteMatch;
 use Laminas\Stdlib\Parameters;
@@ -17,8 +15,6 @@ use Laminas\View\Model\ViewModel;
 use LaminasTest\Test\ExpectedExceptionTrait;
 use PHPUnit\Framework\ExpectationFailedException;
 
-use function class_exists;
-use function count;
 use function current;
 use function extension_loaded;
 
@@ -35,11 +31,6 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
             include __DIR__ . '/../../_files/application.config.php'
         );
         parent::setUp();
-    }
-
-    public function testUseOfRouter(): void
-    {
-        $this->assertEquals(false, $this->useConsoleRequest);
     }
 
     public function testAssertResponseStatusCode(): void
@@ -651,44 +642,6 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $messages       = $flashMessenger->getMessages();
 
         $this->assertCount(1, $messages);
-    }
-
-    public function testAssertWithEventShared(): void
-    {
-        if (! class_exists(StaticEventManager::class)) {
-            $this->markTestSkipped(
-                'StaticEventManager tests are unnecessary and impossible under laminas-servicemanager v3'
-            );
-        }
-
-        $this->setApplicationConfig(
-            include __DIR__ . '/../../_files/application.config.with.shared.events.php'
-        );
-        $this->dispatch('/tests');
-        $this->assertNotQuery('div#content');
-        $this->assertNotXpathQuery('//div[@id="content"]');
-        $this->assertEquals('<html></html>', $this->getResponse()->getContent());
-
-        $this->assertEquals(true, StaticEventManager::hasInstance());
-        $countListeners = count(StaticEventManager::getInstance()->getListeners(
-            Application::class,
-            MvcEvent::EVENT_FINISH
-        ));
-        $this->assertEquals(1, $countListeners);
-
-        $this->reset();
-
-        $this->assertEquals(false, StaticEventManager::hasInstance());
-        $countListeners = StaticEventManager::getInstance()->getListeners(
-            Application::class,
-            MvcEvent::EVENT_FINISH
-        );
-        $this->assertEquals(false, $countListeners);
-
-        $this->dispatch('/tests-bis');
-        $this->assertQuery('div#content');
-        $this->assertXpathQuery('//div[@id="content"]');
-        $this->assertNotEquals('<html></html>', $this->getResponse()->getContent());
     }
 
     public function testAssertExceptionInAction(): void

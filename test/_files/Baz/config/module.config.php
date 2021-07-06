@@ -1,52 +1,6 @@
 <?php
 
 return [
-    'console'      => [
-        'router' => [
-            'routes' => [
-                'consoleroute'        => [
-                    'type'    => 'simple',
-                    'options' => [
-                        'route'    => '--console',
-                        'defaults' => [
-                            'controller' => 'baz_index',
-                            'action'     => 'console',
-                        ],
-                    ],
-                ],
-                'arguments'           => [
-                    'type'    => 'simple',
-                    'options' => [
-                        'route'    => 'filter --date= --id= --text=',
-                        'defaults' => [
-                            'controller' => 'baz_index',
-                            'action'     => 'console',
-                        ],
-                    ],
-                ],
-                'arguments-mandatory' => [
-                    'type'    => 'simple',
-                    'options' => [
-                        'route'    => 'foo --bar= --baz=',
-                        'defaults' => [
-                            'controller' => 'baz_index',
-                            'action'     => 'console',
-                        ],
-                    ],
-                ],
-                'arguments-literal'   => [
-                    'type'    => 'simple',
-                    'options' => [
-                        'route'    => 'literal --foo [--bar] [--doo=] [--optional]',
-                        'defaults' => [
-                            'controller' => 'baz_index',
-                            'action'     => 'console',
-                        ],
-                    ],
-                ],
-            ],
-        ],
-    ],
     'router'       => [
         'routes' => [
             'myroute'         => [

@@ -7,10 +7,10 @@
 namespace Laminas\Test\PHPUnit\Controller;
 
 use Exception;
-use Laminas\Console\Console;
 use Laminas\EventManager\ResponseCollection;
 use Laminas\EventManager\StaticEventManager;
 use Laminas\Http\Request as HttpRequest;
+use Laminas\Http\Response;
 use Laminas\Mvc\Application;
 use Laminas\Mvc\ApplicationInterface;
 use Laminas\Mvc\Controller\ControllerManager;
@@ -33,17 +33,15 @@ use function array_diff;
 use function array_intersect;
 use function array_key_exists;
 use function array_merge;
+use function assert;
 use function class_exists;
 use function count;
 use function get_class;
 use function http_build_query;
 use function implode;
-use function in_array;
 use function method_exists;
 use function parse_str;
-use function preg_match_all;
 use function sprintf;
-use function str_replace;
 use function strrpos;
 use function strtolower;
 use function substr;
@@ -60,20 +58,6 @@ abstract class AbstractControllerTestCase extends TestCase
     protected $applicationConfig;
 
     /**
-     * Flag to use console router or not
-     *
-     * @var bool
-     */
-    protected $useConsoleRequest = false;
-
-    /**
-     * Flag console used before tests
-     *
-     * @var bool
-     */
-    protected $usedConsoleBackup;
-
-    /**
      * Trace error when exception is throwed in application
      *
      * @var bool
@@ -85,7 +69,6 @@ abstract class AbstractControllerTestCase extends TestCase
      */
     protected function setUp(): void
     {
-        $this->usedConsoleBackup = Console::isConsole();
         $this->reset();
     }
 
@@ -94,8 +77,6 @@ abstract class AbstractControllerTestCase extends TestCase
      */
     protected function tearDown(): void
     {
-        Console::overrideIsConsole($this->usedConsoleBackup);
-
         // Prevent memory leak
         $this->reset();
     }
@@ -159,29 +140,6 @@ abstract class AbstractControllerTestCase extends TestCase
     }
 
     /**
-     * Get the usage of the console router or not
-     *
-     * @return bool $boolean
-     */
-    public function getUseConsoleRequest()
-    {
-        return $this->useConsoleRequest;
-    }
-
-    /**
-     * Set the usage of the console router or not
-     *
-     * @param  bool                       $boolean
-     * @return AbstractControllerTestCase
-     */
-    public function setUseConsoleRequest($boolean)
-    {
-        $this->useConsoleRequest = (bool) $boolean;
-
-        return $this;
-    }
-
-    /**
      * Get the application config
      *
      * @return array the application config
@@ -225,8 +183,7 @@ abstract class AbstractControllerTestCase extends TestCase
         if ($this->application) {
             return $this->application;
         }
-        $appConfig = $this->applicationConfig;
-        Console::overrideIsConsole($this->getUseConsoleRequest());
+        $appConfig         = $this->applicationConfig;
         $this->application = Application::init($appConfig);
 
         $events = $this->application->getEventManager();
@@ -258,11 +215,15 @@ abstract class AbstractControllerTestCase extends TestCase
     /**
      * Get the application response object
      *
-     * @return ResponseInterface
+     * @return Response
      */
     public function getResponse()
     {
-        return $this->getApplication()->getMvcEvent()->getResponse();
+        $response = $this->getApplication()->getMvcEvent()->getResponse();
+
+        assert($response instanceof Response);
+
+        return $response;
     }
 
     /**
@@ -275,15 +236,7 @@ abstract class AbstractControllerTestCase extends TestCase
      */
     public function url($url, $method = HttpRequest::METHOD_GET, $params = [])
     {
-        $request = $this->getRequest();
-        if ($this->useConsoleRequest) {
-            preg_match_all('/(--\S+[= ]"[^\s"]*\s*[^\s"]*")|(\S+)/', $url, $matches);
-            $params = str_replace([' "', '"'], ['=', ''], $matches[0]);
-            $request->params()->exchangeArray($params);
-
-            return $this;
-        }
-
+        $request     = $this->getRequest();
         $query       = $request->getQuery()->toArray();
         $post        = $request->getPost()->toArray();
         $uri         = new HttpUri($url);
@@ -326,7 +279,7 @@ abstract class AbstractControllerTestCase extends TestCase
 
     /**
      * Dispatch the MVC with a URL
-     * Accept a HTTP (simulate a customer action) or console route.
+     * Accept a HTTP (simulate a customer action)
      *
      * The URL provided set the request URI in the request object.
      *
@@ -467,17 +420,7 @@ abstract class AbstractControllerTestCase extends TestCase
      */
     protected function getResponseStatusCode()
     {
-        $response = $this->getResponse();
-        if (! $this->useConsoleRequest) {
-            return $response->getStatusCode();
-        }
-
-        $match = $response->getErrorLevel();
-        if (null === $match) {
-            $match = 0;
-        }
-
-        return $match;
+        return $this->getResponse()->getStatusCode();
     }
 
     /**
@@ -488,13 +431,6 @@ abstract class AbstractControllerTestCase extends TestCase
      */
     public function assertResponseStatusCode($code)
     {
-        if ($this->useConsoleRequest) {
-            if (! in_array($code, [0, 1])) {
-                throw new ExpectationFailedException($this->createFailureMessage(
-                    'Console status code assert value must be O (valid) or 1 (error)'
-                ));
-            }
-        }
         $match = $this->getResponseStatusCode();
         if ($code !== $match) {
             throw new ExpectationFailedException($this->createFailureMessage(
@@ -512,13 +448,6 @@ abstract class AbstractControllerTestCase extends TestCase
      */
     public function assertNotResponseStatusCode($code)
     {
-        if ($this->useConsoleRequest) {
-            if (! in_array($code, [0, 1])) {
-                throw new ExpectationFailedException($this->createFailureMessage(
-                    'Console status code assert value must be O (valid) or 1 (error)'
-                ));
-            }
-        }
         $match = $this->getResponseStatusCode();
         if ($code === $match) {
             throw new ExpectationFailedException($this->createFailureMessage(
