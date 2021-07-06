@@ -1,8 +1,6 @@
 <?php
 
-/**
- * @see       https://github.com/laminas/laminas-test for the canonical source repository
- */
+declare(strict_types=1);
 
 namespace LaminasTest\Test\PHPUnit\Controller;
 
@@ -551,7 +549,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
      */
     public function testDispatchWithNullParams($method): void
     {
-        $this->dispatch('/custom-response', $method, null);
+        $this->dispatch('/custom-response', $method, []);
         $this->assertResponseStatusCode(999);
     }
 

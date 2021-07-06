@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Foo;
 
 use Laminas\Loader\StandardAutoloader;

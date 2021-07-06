@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 $cacheDir = sys_get_temp_dir() . '/laminas-module-test';
 if (! is_dir($cacheDir)) {
     mkdir($cacheDir);
