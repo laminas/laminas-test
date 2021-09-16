@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Laminas\Test\PHPUnit\Constraint;
 
+use function is_object;
 use function ltrim;
 use function strpos;
 use function strrpos;
@@ -39,7 +40,10 @@ final class IsCurrentModuleNameConstraint extends LaminasConstraint
         $applicationConfig = $this->getTestCase()->getApplicationConfig();
 
         // Find Module from Controller
-        foreach ($applicationConfig['modules'] as $appModules) {
+        foreach ($applicationConfig['modules'] as $moduleName => $appModules) {
+            if (is_object($appModules)) {
+                $appModules = $moduleName;
+            }
             if (strpos($controllerClass, $appModules) !== false) {
                 if (strpos($appModules, '\\') !== false) {
                     $match = ltrim(substr($appModules, strrpos($appModules, '\\')), '\\');
