@@ -586,6 +586,34 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertEquals('foo=bar', $this->getRequest()->getQuery()->toString());
     }
 
+    public function testRegisterXpathNamespaceAndFound(): void
+    {
+        $this->dispatch('/register-xpath-namespace');
+
+        $this->registerXpathNamespaces(['m' => 'http://search.yahoo.com/mrss/']);
+
+        $this->assertXpathQueryCount('//m:group//yt:aspectRatio', 1);
+        $this->assertXpathQueryContentContains('//m:group//yt:aspectRatio', 'widescreen');
+    }
+
+    public function testRegisterXpathNamespaceAndNotFound(): void
+    {
+        $this->dispatch('/register-xpath-namespace');
+
+        $this->registerXpathNamespaces(['m' => 'http://search.yahoo.com/mrss/']);
+
+        $this->assertXpathQueryCount('//m:group//yt:aspectRatios', 0);
+    }
+
+    public function testRegisterNotExistingXpathNamespace(): void
+    {
+        $this->dispatch('/register-xpath-namespace');
+
+        $this->registerXpathNamespaces(['m' => 'https://getlaminas.org/']);
+
+        $this->assertXpathQueryCount('//m:group//yt:aspectRatio', 0);
+    }
+
     /**
      * @return Generator
      */

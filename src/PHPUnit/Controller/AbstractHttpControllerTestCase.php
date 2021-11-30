@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Laminas\Test\PHPUnit\Controller;
 
 use ArrayIterator;
-use Laminas\Dom\Document;
 use Laminas\Http\Header\HeaderInterface;
 use Laminas\Test\PHPUnit\Constraint\HasRedirectConstraint;
 use Laminas\Test\PHPUnit\Constraint\IsRedirectedRouteNameConstraint;
 use PHPUnit\Framework\ExpectationFailedException;
+use Symfony\Component\DomCrawler\Crawler;
 
 use function count;
 use function implode;
@@ -21,7 +21,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
     /**
      * XPath namespaces
      *
-     * @var array
+     * @var array<string,string>
      */
     protected $xpathNamespaces = [];
 
@@ -400,7 +400,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
     /**
      * Register XPath namespaces
      *
-     * @param array $xpathNamespaces
+     * @param array<string,string> $xpathNamespaces
      * @return void
      */
     public function registerXpathNamespaces(array $xpathNamespaces)
@@ -413,22 +413,20 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
      *
      * @param  string $path
      * @param  bool $useXpath
-     * @return Document\NodeList
+     * @return Crawler
      */
     private function query($path, $useXpath = false)
     {
         $response = $this->getResponse();
-        $document = new Document($response->getContent());
+        $document = new Crawler($response->getContent());
 
         if ($useXpath) {
-            $document->registerXpathNamespaces($this->xpathNamespaces);
+            foreach ($this->xpathNamespaces as $prefix => $namespace) {
+                $document->registerNamespace($prefix, $namespace);
+            }
         }
 
-        return Document\Query::execute(
-            $path,
-            $document,
-            $useXpath ? Document\Query::TYPE_XPATH : Document\Query::TYPE_CSS
-        );
+        return $useXpath ? $document->filterXPath($path) : $document->filter($path);
     }
 
     /**
@@ -436,7 +434,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
      *
      * @param string $path
      */
-    private function xpathQuery($path): Document\NodeList
+    private function xpathQuery($path): Crawler
     {
         return $this->query($path, true);
     }
@@ -460,7 +458,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
      */
     private function xpathQueryCount($path)
     {
-        return count($this->xpathQuery($path));
+        return $this->xpathQuery($path)->count();
     }
 
     /**
@@ -929,14 +927,17 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
                 $path
             )));
         }
-        if (preg_match($pattern, $result->current()->nodeValue)) {
+        $node      = $result->getNode(0);
+        $nodeValue = $node ? $node->nodeValue : null;
+
+        if ($nodeValue === null || preg_match($pattern, $nodeValue)) {
             throw new ExpectationFailedException($this->createFailureMessage(sprintf(
                 'Failed asserting node DENOTED BY %s DOES NOT CONTAIN content MATCHING "%s"',
                 $path,
                 $pattern
             )));
         }
-        $this->assertFalse((bool) preg_match($pattern, $result->current()->nodeValue));
+        $this->assertFalse((bool) preg_match($pattern, $nodeValue));
     }
 
     /**

@@ -54,4 +54,9 @@ class IndexController extends AbstractActionController
 
         return $response;
     }
+
+    /** @return void */
+    public function registerxpathnamespaceAction()
+    {
+    }
 }
