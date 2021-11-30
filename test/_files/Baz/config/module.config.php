@@ -49,7 +49,7 @@ return [
     ],
     'router'       => [
         'routes' => [
-            'myroute'         => [
+            'myroute'                  => [
                 'type'    => 'literal',
                 'options' => [
                     'route'    => '/tests',
@@ -59,7 +59,7 @@ return [
                     ],
                 ],
             ],
-            'myroutebis'      => [
+            'myroutebis'               => [
                 'type'    => 'literal',
                 'options' => [
                     'route'    => '/tests-bis',
@@ -69,7 +69,7 @@ return [
                     ],
                 ],
             ],
-            'persistence'     => [
+            'persistence'              => [
                 'type'    => 'literal',
                 'options' => [
                     'route'    => '/tests-persistence',
@@ -79,7 +79,7 @@ return [
                     ],
                 ],
             ],
-            'exception'       => [
+            'exception'                => [
                 'type'    => 'literal',
                 'options' => [
                     'route'    => '/exception',
@@ -89,7 +89,7 @@ return [
                     ],
                 ],
             ],
-            'redirect'        => [
+            'redirect'                 => [
                 'type'    => 'literal',
                 'options' => [
                     'route'    => '/redirect',
@@ -99,7 +99,7 @@ return [
                     ],
                 ],
             ],
-            'redirectToRoute' => [
+            'redirectToRoute'          => [
                 'type'    => 'literal',
                 'options' => [
                     'route'    => '/redirect-to-route',
@@ -109,7 +109,7 @@ return [
                     ],
                 ],
             ],
-            'dnsroute'        => [
+            'dnsroute'                 => [
                 'type'    => 'hostname',
                 'options' => [
                     'route'       => ':subdomain.domain.tld',
@@ -122,7 +122,7 @@ return [
                     ],
                 ],
             ],
-            'custom-response' => [
+            'custom-response'          => [
                 'type'    => 'literal',
                 'options' => [
                     'route'    => '/custom-response',
@@ -132,7 +132,17 @@ return [
                     ],
                 ],
             ],
-            'parametrized'    => [
+            'register-xpath-namespace' => [
+                'type'    => 'literal',
+                'options' => [
+                    'route'    => '/register-xpath-namespace',
+                    'defaults' => [
+                        'controller' => 'baz_index',
+                        'action'     => 'registerxpathnamespace',
+                    ],
+                ],
+            ],
+            'parametrized'             => [
                 'type'    => 'segment',
                 'options' => [
                     'route'    => '/with-param/:param',
