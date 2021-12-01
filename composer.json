@@ -1,6 +1,6 @@
 {
     "name": "laminas/laminas-test",
-    "description": "Tools to facilitate unit testing of laminas-mvc applications",
+    "description": "Tools to facilitate integration testing of laminas-mvc applications",
     "license": "BSD-3-Clause",
     "keywords": [
         "laminas",
