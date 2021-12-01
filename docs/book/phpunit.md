@@ -1,4 +1,4 @@
-# Unit testing with PHPUnit
+# Integration Testing with PHPUnit
 
 `Laminas\Test\PHPUnit` provides an abstract `TestCase` for laminas-mvc applications
 that contains assertions for testing against a variety of responsibilities.
