@@ -250,7 +250,8 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
     {
         $this->dispatch('/tests');
 
-        $this->expectedException('ErrorException');
+        $this->expectError();
+
         $this->assertXpathQuery('form#myform');
     }
 
@@ -548,8 +549,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
     public function testAssertQueryWithDynamicPostParamsInDispatchMethod(): void
     {
         $this->dispatch('/tests', 'POST', ['num_post' => 5]);
-        $request = $this->getRequest();
-        $this->assertEquals($request->getMethod(), 'POST');
+
         $this->assertQueryCount('div.post', 5);
         $this->assertXpathQueryCount('//div[@class="post"]', 5);
         $this->assertQueryCount('div.get', 0);
