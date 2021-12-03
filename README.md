@@ -2,7 +2,7 @@
 
 [![Build Status](https://github.com/laminas/laminas-test/workflows/Continuous%20Integration/badge.svg)](https://github.com/laminas/laminas-test/actions?query=workflow%3A"Continuous+Integration")
 
-laminas-test provides tools to facilitate unit testing of your Laminas
+laminas-test provides tools to facilitate integration testing of your Laminas
 Framework applications. At this time, we offer facilities to enable testing of
 your Laminas MVC applications. [PHPUnit](https://phpunit.de/) is the only
 library supported currently.

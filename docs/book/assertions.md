@@ -1,6 +1,6 @@
 # Assertions
 
-Assertions are at the heart of unit testing; you use them to verify that the
+Assertions are at the heart of testing; you use them to verify that the
 results are what you expect. To this end, `Laminas\Test\PHPUnit\AbstractControllerTestCase`
 provides a number of assertions to make testing your MVC apps and controllers
 simpler.
