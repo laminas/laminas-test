@@ -3,10 +3,10 @@ site_dir: docs/html
 nav:
     - Home: index.md
     - Introduction: intro.md
-    - "Unit testing with PHPUnit": phpunit.md
+    - "Integration testing with PHPUnit": phpunit.md
     - Assertions: assertions.md
 site_name: laminas-test
-site_description: laminas-test
+site_description: "Tools to facilitate integration testing of laminas-mvc applications"
 repo_url: 'https://github.com/laminas/laminas-test'
 extra:
     project: MVC
