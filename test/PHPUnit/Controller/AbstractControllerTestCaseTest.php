@@ -23,6 +23,7 @@ use RuntimeException;
 
 use function array_diff;
 use function array_key_exists;
+use function array_merge_recursive;
 use function count;
 use function extension_loaded;
 use function get_class;
@@ -159,6 +160,30 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->setApplicationConfig($applicationConfig);
 
         $this->dispatch('/namespace-test');
+        $this->assertModuleName('TestModule');
+    }
+
+    /** @return void */
+    public function testAssertModuleWithSimilarName()
+    {
+        $applicationConfig = $this->getApplicationConfig();
+
+        $testConfig = [
+            'modules'                 => [
+                'ModuleWithSimilarName\TestModule',
+                'ModuleWithSimilarName\Test',
+            ],
+            'module_listener_options' => [
+                'module_paths' => [
+                    'ModuleWithSimilarName\TestModule' => __DIR__ . '/../../_files/ModuleWithSimilarName/TestModule/',
+                    'ModuleWithSimilarName\Test'       => __DIR__ . '/../../_files/ModuleWithSimilarName/Test/',
+                ],
+            ],
+        ];
+
+        $this->setApplicationConfig(array_merge_recursive($testConfig, $applicationConfig));
+
+        $this->dispatch('/similar-name-2-test');
         $this->assertModuleName('TestModule');
     }
 
@@ -559,6 +584,34 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
     {
         $this->dispatch('/tests', 'DELETE', ['foo' => 'bar']);
         $this->assertEquals('foo=bar', $this->getRequest()->getQuery()->toString());
+    }
+
+    public function testRegisterXpathNamespaceAndFound(): void
+    {
+        $this->dispatch('/register-xpath-namespace');
+
+        $this->registerXpathNamespaces(['m' => 'http://search.yahoo.com/mrss/']);
+
+        $this->assertXpathQueryCount('//m:group//yt:aspectRatio', 1);
+        $this->assertXpathQueryContentContains('//m:group//yt:aspectRatio', 'widescreen');
+    }
+
+    public function testRegisterXpathNamespaceAndNotFound(): void
+    {
+        $this->dispatch('/register-xpath-namespace');
+
+        $this->registerXpathNamespaces(['m' => 'http://search.yahoo.com/mrss/']);
+
+        $this->assertXpathQueryCount('//m:group//yt:aspectRatios', 0);
+    }
+
+    public function testRegisterNotExistingXpathNamespace(): void
+    {
+        $this->dispatch('/register-xpath-namespace');
+
+        $this->registerXpathNamespaces(['m' => 'https://getlaminas.org/']);
+
+        $this->assertXpathQueryCount('//m:group//yt:aspectRatio', 0);
     }
 
     /**
