@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.8.1@f73f2299dbc59a3e6c4d66cff4605176e728ee69">
+<files psalm-version="4.13.1@5cf660f63b548ccd4a56f62d916ee4d6028e01a3">
   <file src="src/PHPUnit/Constraint/IsCurrentModuleNameConstraint.php">
-    <MixedArgument occurrences="4">
-      <code>$appModules</code>
-      <code>$appModules</code>
-      <code>$appModules</code>
-      <code>$appModules</code>
-    </MixedArgument>
-    <MixedAssignment occurrences="1">
-      <code>$appModules</code>
-    </MixedAssignment>
     <PossiblyFalseArgument occurrences="1">
       <code>strrpos($appModules, '\\')</code>
     </PossiblyFalseArgument>
@@ -98,6 +89,10 @@
       <code>$query</code>
       <code>$viewModel</code>
     </MixedArgument>
+    <MixedArgumentTypeCoercion occurrences="2">
+      <code>$list</code>
+      <code>$list</code>
+    </MixedArgumentTypeCoercion>
     <MixedAssignment occurrences="24">
       <code>$child</code>
       <code>$event</code>
@@ -161,7 +156,8 @@
     <PossiblyNullPropertyAssignmentValue occurrences="1">
       <code>null</code>
     </PossiblyNullPropertyAssignmentValue>
-    <RedundantConditionGivenDocblockType occurrences="4">
+    <RedundantConditionGivenDocblockType occurrences="5">
+      <code>$this-&gt;application</code>
       <code>$this-&gt;application</code>
       <code>null !== $this-&gt;application</code>
       <code>null !== $this-&gt;application &amp;&amp; null !== $this-&gt;applicationConfig</code>
@@ -417,8 +413,7 @@
       <code>setPost</code>
       <code>setQuery</code>
     </MixedMethodCall>
-    <UndefinedInterfaceMethod occurrences="15">
-      <code>getMethod</code>
+    <UndefinedInterfaceMethod occurrences="14">
       <code>getMethod</code>
       <code>getMvcEvent</code>
       <code>getMvcEvent</code>
