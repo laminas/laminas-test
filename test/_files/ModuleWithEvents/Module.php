@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace ModuleWithEvents;
 
 use Laminas\Mvc\Application;

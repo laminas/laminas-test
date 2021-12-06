@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Baz\Controller;
 
 use Laminas\Http\Response;
