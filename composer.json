@@ -18,6 +18,9 @@
     "config": {
         "sort-packages": true
     },
+    "conflict": {
+        "zendframework/zend-test": "*"
+    },
     "extra": {
     },
     "require": {
@@ -29,7 +32,6 @@
         "laminas/laminas-stdlib": "^3.3",
         "laminas/laminas-uri": "^2.5",
         "laminas/laminas-view": "^2.6.3",
-        "laminas/laminas-zendframework-bridge": "^1.1",
         "phpunit/phpunit": "^8.4.3 || ^9.0",
         "symfony/css-selector": "^5.4 || ^6.0",
         "symfony/dom-crawler": "^5.4 || ^6.0"
@@ -67,8 +69,5 @@
         "test": "phpunit --colors",
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml",
         "static-analysis": "psalm --shepherd --stats"
-    },
-    "replace": {
-        "zendframework/zend-test": "^3.3.0"
     }
 }
