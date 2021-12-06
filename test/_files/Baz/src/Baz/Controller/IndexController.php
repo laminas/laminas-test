@@ -22,12 +22,6 @@ class IndexController extends AbstractActionController
         return ['num_get' => $numGet, 'num_post' => $numPost];
     }
 
-    /** @return string */
-    public function consoleAction()
-    {
-        return 'foo, bar';
-    }
-
     /** @return void */
     public function persistencetestAction()
     {

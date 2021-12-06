@@ -9,7 +9,6 @@ return [
     'modules'                 => [
         'Laminas\Router',
         'Laminas\Validator',
-        'Laminas\Mvc\Console',
         'Laminas\Mvc\Plugin\FlashMessenger',
         'Baz',
     ],

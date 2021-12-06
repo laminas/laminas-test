@@ -7,7 +7,6 @@
 namespace LaminasTest\Test\PHPUnit\Controller;
 
 use Generator;
-use Laminas\Console\Console;
 use Laminas\Mvc\Application;
 use Laminas\Mvc\MvcEvent;
 use Laminas\ServiceManager\ServiceManager;
@@ -73,7 +72,6 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
     {
         $this->traceErrorCache = $this->traceError;
         $this->tearDownCacheDir();
-        Console::overrideIsConsole(null);
         $this->setApplicationConfig(
             include __DIR__ . '/../../_files/application.config.php'
         );
@@ -108,38 +106,10 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
     }
 
     /** @return void */
-    public function testUseOfRouter()
-    {
-        // default value
-        $this->assertEquals(false, $this->useConsoleRequest);
-    }
-
-    /** @return void */
     public function testApplicationClass()
     {
         $applicationClass = get_class($this->getApplication());
         $this->assertEquals($applicationClass, Application::class);
-    }
-
-    /** @return void */
-    public function testApplicationClassAndTestRestoredConsoleFlag()
-    {
-        $this->assertTrue(Console::isConsole(), '1. Console::isConsole returned false in initial test');
-        $this->getApplication();
-        $this->assertFalse(Console::isConsole(), '2. Console::isConsole returned true after retrieving application');
-        $this->tearDown();
-        $this->assertTrue(Console::isConsole(), '3. Console::isConsole returned false after tearDown');
-
-        Console::overrideIsConsole(false);
-        parent::setUp();
-
-        $this->assertFalse(Console::isConsole(), '4. Console::isConsole returned true after parent::setUp');
-        $this->getApplication();
-        $this->assertFalse(Console::isConsole(), '5. Console::isConsole returned true after retrieving application');
-
-        parent::tearDown();
-
-        $this->assertFalse(Console::isConsole(), '6. Console.isConsole returned true after parent::tearDown');
     }
 
     /** @return void */
