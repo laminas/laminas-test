@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "87d78ef78395ad632cc9308168c608d1",
+    "content-hash": "dae01c14f908d825ca912b1ca574a1e5",
     "packages": [
         {
             "name": "brick/varexporter",
