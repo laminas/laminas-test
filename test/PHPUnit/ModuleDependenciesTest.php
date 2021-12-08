@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LaminasTest\Test\PHPUnit;
 
 use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
