@@ -52,7 +52,7 @@
         "laminas/laminas-stdlib": "^3.6.0",
         "laminas/laminas-validator": "^2.8",
         "mikey179/vfsstream": "^1.6.8",
-        "psalm/plugin-phpunit": "^0.16.0",
+        "psalm/plugin-phpunit": "^0.17.0",
         "vimeo/psalm": "^4.7"
     },
     "autoload": {
