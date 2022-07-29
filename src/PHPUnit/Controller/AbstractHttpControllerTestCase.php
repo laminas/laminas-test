@@ -869,7 +869,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
 
         foreach ($result as $node) {
             $nodeValues[] = $node->nodeValue;
-            if (preg_match($pattern, $node->nodeValue)) {
+            if (preg_match($pattern, (string) $node->nodeValue)) {
                 $found = true;
                 break;
             }
