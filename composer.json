@@ -37,7 +37,7 @@
         "laminas/laminas-servicemanager": "^3.0.3",
         "laminas/laminas-uri": "^2.5",
         "laminas/laminas-view": "^2.13.1",
-        "phpunit/phpunit": "^8.5.14 || ^9.0",
+        "phpunit/phpunit": "^9.5.23",
         "symfony/css-selector": "^5.4 || ^6.0",
         "symfony/dom-crawler": "^5.4 || ^6.0"
     },
