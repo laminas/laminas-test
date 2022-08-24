@@ -42,7 +42,7 @@
         "symfony/dom-crawler": "^5.4 || ^6.0"
     },
     "require-dev": {
-        "laminas/laminas-coding-standard": "~2.3.0",
+        "laminas/laminas-coding-standard": "~2.4.0",
         "laminas/laminas-i18n": "^2.6",
         "laminas/laminas-modulemanager": "^2.7.1",
         "laminas/laminas-mvc-plugin-flashmessenger": "^1.4.0",
