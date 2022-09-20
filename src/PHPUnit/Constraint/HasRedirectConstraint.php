@@ -11,8 +11,7 @@ use PHPUnit\Framework\Constraint\Constraint;
 
 final class HasRedirectConstraint extends Constraint
 {
-    /** @var AbstractHttpControllerTestCase */
-    private $activeTestCase;
+    private AbstractHttpControllerTestCase $activeTestCase;
 
     public function __construct(AbstractHttpControllerTestCase $activeTestCase)
     {

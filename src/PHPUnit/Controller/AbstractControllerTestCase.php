@@ -357,7 +357,7 @@ abstract class AbstractControllerTestCase extends TestCase
             return $events->trigger($eventName, $event);
         }
 
-        $shortCircuit = function ($r) use ($event): bool {
+        $shortCircuit = static function ($r) use ($event): bool {
             if ($r instanceof ResponseInterface) {
                 return true;
             }

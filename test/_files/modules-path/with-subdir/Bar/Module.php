@@ -33,7 +33,7 @@ class Module
             // Legacy Zend Framework aliases
             'aliases'   => [],
             'factories' => [
-                'BarObject' => function ($sm) {
+                'BarObject' => static function ($sm) {
                     $foo      = $sm->get('FooObject');
                     $foo->bar = 'baz';
 

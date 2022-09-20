@@ -23,8 +23,7 @@ use function sprintf;
 
 final class IsRedirectedRouteNameConstraint extends Constraint
 {
-    /** @var AbstractHttpControllerTestCase */
-    private $activeTestCase;
+    private AbstractHttpControllerTestCase $activeTestCase;
 
     public function __construct(AbstractHttpControllerTestCase $activeTestCase)
     {
