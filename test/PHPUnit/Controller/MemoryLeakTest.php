@@ -40,6 +40,6 @@ class MemoryLeakTest extends AbstractControllerTestCase
         $this->assertNull($null);
 
         // Test memory consumption is limited to 5 MB for 100 tests
-        $this->assertLessThan(5242880, memory_get_usage(true) - self::$memStart);
+        $this->assertLessThan(5_242_880, memory_get_usage(true) - self::$memStart);
     }
 }

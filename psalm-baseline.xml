@@ -502,8 +502,8 @@
     <MissingClosureParamType occurrences="1">
       <code>$sm</code>
     </MissingClosureParamType>
-    <MissingClosureReturnType occurrences="1">
-      <code>function ($sm) {</code>
+    <MissingClosureReturnType occurrences="2">
+      <code>static function($sm) {</code>
     </MissingClosureReturnType>
     <MixedAssignment occurrences="1">
       <code>$foo</code>

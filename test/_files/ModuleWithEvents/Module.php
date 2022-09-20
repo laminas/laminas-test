@@ -27,9 +27,9 @@ class Module
 
         $application = $e->getApplication();
         $events      = $application->getEventManager()->getSharedManager();
-        $events->attach(Application::class, MvcEvent::EVENT_FINISH, function ($e) use ($application) {
+        $events->attach(Application::class, MvcEvent::EVENT_FINISH, static function ($e) use ($application): void {
             $response = $application->getResponse();
             $response->setContent("<html></html>");
-        }, 1000000);
+        }, 1_000_000);
     }
 }
