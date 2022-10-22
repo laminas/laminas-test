@@ -15,7 +15,6 @@ use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 use PHPUnit\Framework\Constraint\Constraint;
 use RuntimeException;
 
-use function get_class;
 use function gettype;
 use function is_object;
 use function is_string;
@@ -92,7 +91,7 @@ final class IsRedirectedRouteNameConstraint extends Constraint
             throw new RuntimeException(sprintf(
                 'Invalid controller pulled from ControllerManager by identifier "%s"; received "%s"',
                 $controllerIdentifier,
-                is_object($controller) ? get_class($controller) : gettype($controller)
+                is_object($controller) ? $controller::class : gettype($controller)
             ));
         }
 

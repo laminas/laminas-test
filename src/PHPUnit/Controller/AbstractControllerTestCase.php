@@ -104,7 +104,7 @@ abstract class AbstractControllerTestCase extends TestCase
         do {
             $messages[] = sprintf(
                 "Exception '%s' with message '%s' in %s:%d",
-                get_class($exception),
+                $exception::class,
                 $exception->getMessage(),
                 $exception->getFile(),
                 $exception->getLine()
