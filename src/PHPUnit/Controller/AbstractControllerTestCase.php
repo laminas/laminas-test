@@ -84,7 +84,7 @@ abstract class AbstractControllerTestCase extends TestCase
      */
     protected function createFailureMessage(string $message): string
     {
-        if (true !== $this->traceError) {
+        if (! $this->traceError) {
             return $message;
         }
 
