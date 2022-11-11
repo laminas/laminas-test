@@ -41,10 +41,9 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
 {
     use ExpectedExceptionTrait;
 
-    /** @var bool */
-    protected $traceError = true;
-    /** @var bool */
-    protected $traceErrorCache = true;
+    protected bool $traceError = true;
+
+    protected bool $traceErrorCache = true;
 
     /** @return void */
     public function tearDownCacheDir()
