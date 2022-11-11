@@ -203,8 +203,11 @@ abstract class AbstractControllerTestCase extends TestCase
     /**
      * Set the request URL
      */
-    public function url(string $url, ? string $method = HttpRequest::METHOD_GET, ? array $params = []): AbstractControllerTestCase
-    {
+    public function url(
+        string $url,
+        ?string $method = HttpRequest::METHOD_GET,
+        ?array $params = []
+    ): AbstractControllerTestCase {
         $request     = $this->getRequest();
         $query       = $request->getQuery()->toArray();
         $post        = $request->getPost()->toArray();
@@ -254,8 +257,12 @@ abstract class AbstractControllerTestCase extends TestCase
      *
      * @throws Exception
      */
-    public function dispatch(string $url, ? string $method = null, ? array $params = [], bool $isXmlHttpRequest = false): void
-    {
+    public function dispatch(
+        string $url,
+        ?string $method = null,
+        ?array $params = [],
+        bool $isXmlHttpRequest = false
+    ): void {
         if (
             ! $method
             && $this->getRequest() instanceof HttpRequest
@@ -336,7 +343,6 @@ abstract class AbstractControllerTestCase extends TestCase
      * Assert modules were loaded with the module manager
      *
      * @throws ContainerExceptionInterface
-     *
      * @throws ExpectationFailedException
      */
     public function assertModulesLoaded(array $modules): void
@@ -354,8 +360,8 @@ abstract class AbstractControllerTestCase extends TestCase
 
     /**
      * Assert modules were not loaded with the module manager
-     * @throws ContainerExceptionInterface
      *
+     * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
     public function assertNotModulesLoaded(array $modules): void
@@ -418,7 +424,7 @@ abstract class AbstractControllerTestCase extends TestCase
      * @param string|null $message application exception message
      * @psalm-return never
      */
-    public function assertApplicationException(string $type, ? string $message = null)
+    public function assertApplicationException(string $type, ?string $message = null)
     {
         $exception = $this->getApplication()->getMvcEvent()->getParam('exception');
         if (! $exception) {
