@@ -82,8 +82,11 @@ abstract class AbstractControllerTestCase extends TestCase
      * If $traceError is true, appends exception details, if any.
      *
      * @deprecated (use LaminasContraint instead)
+     *
+     * @param string $message
+     * @return string
      */
-    protected function createFailureMessage(string $message): string
+    protected function createFailureMessage($message)
     {
         if (! $this->traceError) {
             return $message;
@@ -743,8 +746,12 @@ abstract class AbstractControllerTestCase extends TestCase
 
     /**
      * Recursively search a view model and it's children for the given templateName
+     *
+     * @param ModelInterface $viewModel
+     * @param  string    $templateName
+     * @return boolean
      */
-    protected function searchTemplates(ModelInterface $viewModel, string $templateName): bool
+    protected function searchTemplates($viewModel, $templateName)
     {
         if ($viewModel->getTemplate($templateName) === $templateName) {
             return true;
