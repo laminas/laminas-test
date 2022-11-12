@@ -51,10 +51,11 @@ use const E_USER_NOTICE;
 
 abstract class AbstractControllerTestCase extends TestCase
 {
-    /** @var ApplicationInterface */
+    /** @var ApplicationInterface|null */
     protected $application;
 
-    protected array $applicationConfig;
+    /** @var array */
+    protected $applicationConfig;
 
     protected bool $traceError = true;
 
@@ -140,7 +141,7 @@ abstract class AbstractControllerTestCase extends TestCase
      */
     public function setApplicationConfig(array $applicationConfig): AbstractControllerTestCase
     {
-        if (null !== $this->application && null !== $this->applicationConfig) {
+        if ($this->application && $this->applicationConfig) {
             throw new LogicException(
                 'Application config can not be set, the application is already built'
             );
