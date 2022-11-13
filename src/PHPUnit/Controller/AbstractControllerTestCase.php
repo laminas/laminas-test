@@ -291,12 +291,11 @@ abstract class AbstractControllerTestCase extends TestCase
     public function dispatch($url, $method = null, $params = [], $isXmlHttpRequest = false)
     {
         if (
-            ! isset($method)
+            ! $method
             && $this->getRequest() instanceof HttpRequest
-            && $requestMethod = $this->getRequest()->getMethod()
         ) {
-            $method = $requestMethod;
-        } elseif (! isset($method)) {
+            $method = $this->getRequest()->getMethod();
+        } elseif (! $method) {
             $method = HttpRequest::METHOD_GET;
         }
 
