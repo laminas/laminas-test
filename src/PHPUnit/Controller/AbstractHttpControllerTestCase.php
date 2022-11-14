@@ -62,7 +62,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
                 $header
             )));
         }
-        $this->assertTrue($responseHeader);
+        $this->assertNotEquals(false, $responseHeader);
     }
 
     /**
@@ -80,7 +80,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
                 $header
             )));
         }
-        $this->assertFalse($responseHeader);
+        $this->assertEquals(false, $responseHeader);
     }
 
     /**
@@ -253,7 +253,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
                 'Failed asserting response is a redirect'
             ));
         }
-        $this->assertTrue($responseHeader);
+        $this->assertNotEquals(false, $responseHeader);
     }
 
     /**
@@ -270,7 +270,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
                 $responseHeader->getFieldValue()
             )));
         }
-        $this->assertFalse($responseHeader);
+        $this->assertEquals(false, $responseHeader);
     }
 
     /**
