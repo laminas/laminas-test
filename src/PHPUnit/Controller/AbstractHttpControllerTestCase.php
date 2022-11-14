@@ -56,13 +56,13 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
     public function assertHasResponseHeader($header)
     {
         $responseHeader = $this->getResponseHeader($header);
-        if (false === $responseHeader) {
+        if (! $responseHeader) {
             throw new ExpectationFailedException($this->createFailureMessage(sprintf(
                 'Failed asserting response header "%s" found',
                 $header
             )));
         }
-        $this->assertNotEquals(false, $responseHeader);
+        $this->assertTrue($responseHeader);
     }
 
     /**
@@ -74,7 +74,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
     public function assertNotHasResponseHeader($header)
     {
         $responseHeader = $this->getResponseHeader($header);
-        if (false !== $responseHeader) {
+        if ($responseHeader) {
             throw new ExpectationFailedException($this->createFailureMessage(sprintf(
                 'Failed asserting response header "%s" WAS NOT found',
                 $header
@@ -248,12 +248,12 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
     public function assertRedirect()
     {
         $responseHeader = $this->getResponseHeader('Location');
-        if (false === $responseHeader) {
+        if (! $responseHeader) {
             throw new ExpectationFailedException($this->createFailureMessage(
                 'Failed asserting response is a redirect'
             ));
         }
-        $this->assertNotEquals(false, $responseHeader);
+        $this->assertTrue($responseHeader);
     }
 
     /**
@@ -264,7 +264,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
     public function assertNotRedirect()
     {
         $responseHeader = $this->getResponseHeader('Location');
-        if (false !== $responseHeader) {
+        if ($responseHeader) {
             throw new ExpectationFailedException($this->createFailureMessage(sprintf(
                 'Failed asserting response is NOT a redirect, actual redirection is "%s"',
                 $responseHeader->getFieldValue()
@@ -744,7 +744,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
     {
         $result = $this->query($path, $useXpath);
 
-        if ($result->count() === 0) {
+        if (! $result->count()) {
             throw new ExpectationFailedException($this->createFailureMessage(sprintf(
                 'Failed asserting node DENOTED BY %s EXISTS',
                 $path
@@ -804,7 +804,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
     private function notQueryContentContainsAssertion($path, $match, $useXpath = false): void
     {
         $result = $this->query($path, $useXpath);
-        if ($result->count() === 0) {
+        if (! $result->count()) {
             throw new ExpectationFailedException($this->createFailureMessage(sprintf(
                 'Failed asserting node DENOTED BY %s EXISTS',
                 $path
@@ -857,7 +857,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
     private function queryContentRegexAssertion($path, $pattern, $useXpath = false): void
     {
         $result = $this->query($path, $useXpath);
-        if ($result->count() === 0) {
+        if (! $result->count()) {
             throw new ExpectationFailedException($this->createFailureMessage(sprintf(
                 'Failed asserting node DENOTED BY %s EXISTS',
                 $path
@@ -921,7 +921,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
     private function notQueryContentRegexAssertion($path, $pattern, $useXpath = false): void
     {
         $result = $this->query($path, $useXpath);
-        if ($result->count() === 0) {
+        if (! $result->count()) {
             throw new ExpectationFailedException($this->createFailureMessage(sprintf(
                 'Failed asserting node DENOTED BY %s EXISTS',
                 $path
