@@ -12,6 +12,7 @@ use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 use Laminas\View\Model\ViewModel;
 use LaminasTest\Test\ExpectedExceptionTrait;
 use PHPUnit\Framework\ExpectationFailedException;
+use RuntimeException;
 
 use function current;
 use function extension_loaded;
@@ -679,7 +680,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->assertResponseStatusCode(500);
 
         $exception = $this->getApplication()->getMvcEvent()->getParam('exception');
-        $this->assertInstanceOf('RuntimeException', $exception);
+        $this->assertInstanceOf(RuntimeException::class, $exception);
 
         // set to null to avoid the throwing of the exception
         $this->getApplication()->getMvcEvent()->setParam('exception', null);
