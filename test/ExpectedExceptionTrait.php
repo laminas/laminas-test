@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace LaminasTest\Test;
 
+use Throwable;
+
 trait ExpectedExceptionTrait
 {
     /**
-     * @param string $exceptionClass Expected exception class
+     * @param class-string<Throwable> $exceptionClass Expected exception class
      * @param string $message String expected within exception message, if any
      * @return void
      */
