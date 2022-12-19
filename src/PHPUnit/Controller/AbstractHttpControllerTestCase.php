@@ -930,14 +930,14 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
         $node      = $result->getNode(0);
         $nodeValue = $node ? $node->nodeValue : null;
 
-        if ($nodeValue === null || preg_match($pattern, (string) $nodeValue)) {
+        if ($nodeValue === null || preg_match($pattern, $nodeValue)) {
             throw new ExpectationFailedException($this->createFailureMessage(sprintf(
                 'Failed asserting node DENOTED BY %s DOES NOT CONTAIN content MATCHING "%s"',
                 $path,
                 $pattern
             )));
         }
-        $this->assertFalse((bool) preg_match($pattern, (string) $nodeValue));
+        $this->assertFalse((bool) preg_match($pattern, $nodeValue));
     }
 
     /**
