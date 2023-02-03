@@ -13,6 +13,7 @@ use Laminas\View\Model\ViewModel;
 use LaminasTest\Test\ExpectedExceptionTrait;
 use PHPUnit\Framework\ExpectationFailedException;
 use RuntimeException;
+use Throwable;
 
 use function current;
 use function extension_loaded;
@@ -245,7 +246,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
 
         try {
             $this->assertXpathQuery('form#myform');
-        } catch (\Throwable) {
+        } catch (Throwable) {
             $this->assertTrue(true);
             return;
         }
