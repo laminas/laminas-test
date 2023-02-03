@@ -32,11 +32,9 @@ abstract class LaminasConstraint extends Constraint
     }
 
     /**
-     * @param mixed $other
-     * @param string $description
      * @psalm-return never
      */
-    final public function fail($other, $description, ?ComparisonFailure $comparisonFailure = null): void
+    final public function fail(mixed $other, string $description, ?ComparisonFailure $comparisonFailure = null): never
     {
         try {
             parent::fail($other, $description, $comparisonFailure);

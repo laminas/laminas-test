@@ -240,7 +240,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
     {
         $this->dispatch('/tests');
 
-        $this->expectError();
+        $this->expectedException(ExpectationFailedException::class);
 
         $this->assertXpathQuery('form#myform');
     }
