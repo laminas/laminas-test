@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace LaminasTest\Test\PHPUnit\Controller;
 
 use Exception;
+use Exception as BaseException;
 use Laminas\Mvc\MvcEvent;
 use Laminas\Router\Http\RouteMatch;
 use Laminas\Stdlib\Parameters;
@@ -240,7 +241,9 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
     {
         $this->dispatch('/tests');
 
-        $this->expectedException(ExpectationFailedException::class);
+        // symfony/dom-crawler 5.4: InvalidArgumentException
+        // symfony/dom-crawler 6.0: ExpectationFailedException
+        $this->expectedException(BaseException::class);
 
         $this->assertXpathQuery('form#myform');
     }
