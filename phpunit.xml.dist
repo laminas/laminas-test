@@ -3,8 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
     bootstrap="./test/bootstrap.php"
-    colors="true"
-    cacheDirectory=".phpunit.result.cache">
+    colors="true">
     <coverage>
         <include>
             <directory suffix=".php">./src</directory>

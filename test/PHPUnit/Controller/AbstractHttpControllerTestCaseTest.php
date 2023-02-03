@@ -241,17 +241,9 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
     {
         $this->dispatch('/tests');
 
-        // symfony/dom-crawler 5.4: InvalidArgumentException
-        // symfony/dom-crawler 6.0: can process the path, but path invalid so nothing is found:
-        // AbstractHttpControllerTestCase::queryAssertion throws ExpectationFailedException
+        $this->expectedException(ExpectationFailedException::class);
 
-        try {
-            $this->assertXpathQuery('form#myform');
-        } catch (InvalidArgumentException $e) {
-            $this->assertStringContainsString('Expecting a DOMNodeList or DOMNode instance', $e->getMessage());
-        } catch (ExpectationFailedException $e) {
-            $this->assertSame('Failed asserting node DENOTED BY form#myform EXISTS', $e->getMessage());
-        }
+        $this->assertXpathQuery('form#myform');
     }
 
     public function testAssertNotQuery(): void

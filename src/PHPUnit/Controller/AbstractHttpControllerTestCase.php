@@ -426,7 +426,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
             }
         }
 
-        return $useXpath ? @$document->filterXPath($path) : $document->filter($path);
+        return $useXpath ? $document->filterXPath($path) : $document->filter($path);
     }
 
     /**

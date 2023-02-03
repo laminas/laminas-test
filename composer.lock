@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2fedee052b945d5b7b6ab35e4354cc3f",
+    "content-hash": "1f94ddc98ba2520a3e9369716f837c69",
     "packages": [
         {
             "name": "brick/varexporter",
@@ -1053,6 +1053,75 @@
                 }
             ],
             "time": "2022-12-21T11:35:32+00:00"
+        },
+        {
+            "name": "masterminds/html5",
+            "version": "2.7.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Masterminds/html5-php.git",
+                "reference": "897eb517a343a2281f11bc5556d6548db7d93947"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Masterminds/html5-php/zipball/897eb517a343a2281f11bc5556d6548db7d93947",
+                "reference": "897eb517a343a2281f11bc5556d6548db7d93947",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ctype": "*",
+                "ext-dom": "*",
+                "ext-libxml": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.35 || ^5.7.21 || ^6 || ^7"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Masterminds\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matt Butcher",
+                    "email": "technosophos@gmail.com"
+                },
+                {
+                    "name": "Matt Farina",
+                    "email": "matt@mattfarina.com"
+                },
+                {
+                    "name": "Asmir Mustafic",
+                    "email": "goetas@gmail.com"
+                }
+            ],
+            "description": "An HTML5 parser and serializer.",
+            "homepage": "http://masterminds.github.io/html5-php",
+            "keywords": [
+                "HTML5",
+                "dom",
+                "html",
+                "parser",
+                "querypath",
+                "serializer",
+                "xml"
+            ],
+            "support": {
+                "issues": "https://github.com/Masterminds/html5-php/issues",
+                "source": "https://github.com/Masterminds/html5-php/tree/2.7.6"
+            },
+            "time": "2022-08-18T16:18:26+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -2709,20 +2778,20 @@
         },
         {
             "name": "symfony/css-selector",
-            "version": "v6.0.17",
+            "version": "v6.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
-                "reference": "3e526b732295b5d4c16c38d557b74ba8498a92b4"
+                "reference": "bf1b9d4ad8b1cf0dbde8b08e0135a2f6259b9ba1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/css-selector/zipball/3e526b732295b5d4c16c38d557b74ba8498a92b4",
-                "reference": "3e526b732295b5d4c16c38d557b74ba8498a92b4",
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/bf1b9d4ad8b1cf0dbde8b08e0135a2f6259b9ba1",
+                "reference": "bf1b9d4ad8b1cf0dbde8b08e0135a2f6259b9ba1",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.0.2"
+                "php": ">=8.1"
             },
             "type": "library",
             "autoload": {
@@ -2754,7 +2823,7 @@
             "description": "Converts CSS selectors to XPath expressions",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/css-selector/tree/v6.0.17"
+                "source": "https://github.com/symfony/css-selector/tree/v6.2.5"
             },
             "funding": [
                 {
@@ -2770,32 +2839,29 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-12-28T14:21:34+00:00"
+            "time": "2023-01-01T08:38:09+00:00"
         },
         {
             "name": "symfony/dom-crawler",
-            "version": "v6.0.17",
+            "version": "v6.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dom-crawler.git",
-                "reference": "281d13dfd1a2ac4ca8be8c60b0af208ffdac95fe"
+                "reference": "19aa4962a0687e96941f0bdb27b794c5b73e2394"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/281d13dfd1a2ac4ca8be8c60b0af208ffdac95fe",
-                "reference": "281d13dfd1a2ac4ca8be8c60b0af208ffdac95fe",
+                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/19aa4962a0687e96941f0bdb27b794c5b73e2394",
+                "reference": "19aa4962a0687e96941f0bdb27b794c5b73e2394",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.0.2",
+                "masterminds/html5": "^2.6",
+                "php": ">=8.1",
                 "symfony/polyfill-ctype": "~1.8",
                 "symfony/polyfill-mbstring": "~1.0"
             },
-            "conflict": {
-                "masterminds/html5": "<2.6"
-            },
             "require-dev": {
-                "masterminds/html5": "^2.6",
                 "symfony/css-selector": "^5.4|^6.0"
             },
             "suggest": {
@@ -2827,7 +2893,7 @@
             "description": "Eases DOM navigation for HTML and XML documents",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/dom-crawler/tree/v6.0.17"
+                "source": "https://github.com/symfony/dom-crawler/tree/v6.2.5"
             },
             "funding": [
                 {
@@ -2843,7 +2909,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-12-22T17:53:58+00:00"
+            "time": "2023-01-20T17:45:48+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
