@@ -32,8 +32,6 @@ abstract class LaminasConstraint extends Constraint
     }
 
     /**
-     * @param mixed $other
-     * @param string $description
      * @psalm-return never
      */
     final public function fail(mixed $other, string $description, ?ComparisonFailure $comparisonFailure = null): never

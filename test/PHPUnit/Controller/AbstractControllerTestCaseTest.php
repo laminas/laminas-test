@@ -570,7 +570,6 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
 
     /**
      * @dataProvider method
-     * @param null|string $method
      */
     public function testDispatchWithNullParams(?string $method): void
     {
@@ -623,7 +622,6 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
 
     /**
      * @dataProvider routeParam
-     * @param string $param
      */
     public function testRequestWithRouteParam(string $param): void
     {
