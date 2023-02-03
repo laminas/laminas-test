@@ -243,9 +243,15 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
 
         // symfony/dom-crawler 5.4: InvalidArgumentException
         // symfony/dom-crawler 6.0: ExpectationFailedException
-        $this->expectedException(BaseException::class);
 
-        $this->assertXpathQuery('form#myform');
+        try {
+            $this->assertXpathQuery('form#myform');
+        } catch (\Throwable) {
+            $this->assertTrue(true);
+            return;
+        }
+
+        $this->fail('should not have been called');
     }
 
     public function testAssertNotQuery(): void
