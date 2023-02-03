@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace LaminasTest\Test\PHPUnit\Controller;
 
 use Exception;
-use Exception as BaseException;
 use Laminas\Mvc\MvcEvent;
 use Laminas\Router\Http\RouteMatch;
 use Laminas\Stdlib\Parameters;
