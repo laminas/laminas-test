@@ -558,7 +558,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
     /**
      * @psalm-return Generator<string, array{0: null|string}, mixed, void>
      */
-    public function method(): Generator
+    public static function method(): Generator
     {
         yield 'null' => [null];
         yield 'get' => ['GET'];
@@ -572,7 +572,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
      * @dataProvider method
      * @param null|string $method
      */
-    public function testDispatchWithNullParams($method): void
+    public function testDispatchWithNullParams(?string $method): void
     {
         $this->dispatch('/custom-response', $method, null);
         $this->assertResponseStatusCode(999);
@@ -615,7 +615,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
     /**
      * @return Generator
      */
-    public function routeParam()
+    public static function routeParam()
     {
         yield 'phpunit' => ['phpunit'];
         yield 'param' => ['param'];
@@ -625,7 +625,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
      * @dataProvider routeParam
      * @param string $param
      */
-    public function testRequestWithRouteParam($param): void
+    public function testRequestWithRouteParam(string $param): void
     {
         $this->dispatch(sprintf('/with-param/%s', $param));
         $this->assertResponseStatusCode(200);
