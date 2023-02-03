@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace LaminasTest\Test\PHPUnit\Controller;
 
 use Exception;
+use InvalidArgumentException;
 use Laminas\Mvc\MvcEvent;
 use Laminas\Router\Http\RouteMatch;
 use Laminas\Stdlib\Parameters;
@@ -13,7 +14,6 @@ use Laminas\View\Model\ViewModel;
 use LaminasTest\Test\ExpectedExceptionTrait;
 use PHPUnit\Framework\ExpectationFailedException;
 use RuntimeException;
-use Throwable;
 
 use function current;
 use function extension_loaded;
@@ -242,16 +242,16 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
         $this->dispatch('/tests');
 
         // symfony/dom-crawler 5.4: InvalidArgumentException
-        // symfony/dom-crawler 6.0: ExpectationFailedException
+        // symfony/dom-crawler 6.0: can process the path, but path invalid so nothing is found:
+        // AbstractHttpControllerTestCase::queryAssertion throws ExpectationFailedException
 
         try {
             $this->assertXpathQuery('form#myform');
-        } catch (Throwable) {
-            $this->assertTrue(true);
-            return;
+        } catch (InvalidArgumentException $e) {
+            $this->assertStringContainsString('Expecting a DOMNodeList or DOMNode instance', $e->getMessage());
+        } catch (ExpectationFailedException $e) {
+            $this->assertSame('Failed asserting node DENOTED BY form#myform EXISTS', $e->getMessage());
         }
-
-        $this->fail('should not have been called');
     }
 
     public function testAssertNotQuery(): void
