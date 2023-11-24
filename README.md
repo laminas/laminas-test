@@ -1,6 +1,8 @@
 # laminas-test
 
-[![Build Status](https://github.com/laminas/laminas-test/workflows/Continuous%20Integration/badge.svg)](https://github.com/laminas/laminas-test/actions?query=workflow%3A"Continuous+Integration")
+[![Build Status](https://github.com/laminas/laminas-test/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/laminas/laminas-test/actions/workflows/continuous-integration.yml)
+[![type-coverage](https://shepherd.dev/github/laminas/laminas-test/coverage.svg)](https://shepherd.dev/github/laminas/laminas-test)
+[![Psalm level](https://shepherd.dev/github/laminas/laminas-test/level.svg)](https://shepherd.dev/github/laminas/laminas-test)
 
 > ## 🇷🇺 Русским гражданам
 >
