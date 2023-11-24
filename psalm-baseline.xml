@@ -1,39 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.1.0@4defa177c89397c5e14737a80fe4896584130674">
+<files psalm-version="5.16.0@2897ba636551a8cb61601cc26f6ccfbba6c36591">
   <file src="src/PHPUnit/Constraint/IsCurrentModuleNameConstraint.php">
-    <PossiblyFalseArgument occurrences="1">
-      <code>strrpos($appModules, '\\')</code>
+    <PossiblyFalseArgument>
+      <code><![CDATA[strrpos($appModules, '\\')]]></code>
     </PossiblyFalseArgument>
   </file>
   <file src="src/PHPUnit/Constraint/LaminasConstraint.php">
-    <InternalClass occurrences="1"/>
-    <InternalMethod occurrences="2">
+    <InternalClass>
+      <code><![CDATA[new ExpectationFailedException(
+                $this->createFailureMessage($failedException->getMessage()),
+                $failedException->getComparisonFailure(),
+            )]]></code>
+    </InternalClass>
+    <InternalMethod>
       <code>getComparisonFailure</code>
+      <code><![CDATA[new ExpectationFailedException(
+                $this->createFailureMessage($failedException->getMessage()),
+                $failedException->getComparisonFailure(),
+            )]]></code>
     </InternalMethod>
-    <MixedArgument occurrences="1">
-      <code>$controllerManager-&gt;get($controllerIdentifier)</code>
+    <MixedArgument>
+      <code><![CDATA[$controllerManager->get($controllerIdentifier)]]></code>
     </MixedArgument>
-    <MixedAssignment occurrences="3">
+    <MixedAssignment>
       <code>$controllerIdentifier</code>
       <code>$controllerManager</code>
       <code>$routeMatch</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="4">
+    <MixedMethodCall>
       <code>get</code>
       <code>getParam</code>
       <code>getParam</code>
       <code>getRouteMatch</code>
     </MixedMethodCall>
-    <UndefinedInterfaceMethod occurrences="2">
+    <UndefinedInterfaceMethod>
       <code>getMvcEvent</code>
       <code>getMvcEvent</code>
     </UndefinedInterfaceMethod>
   </file>
   <file src="src/PHPUnit/Controller/AbstractControllerTestCase.php">
-    <ArgumentTypeCoercion occurrences="1">
+    <ArgumentTypeCoercion>
       <code>$type</code>
     </ArgumentTypeCoercion>
-    <DeprecatedMethod occurrences="17">
+    <DeprecatedMethod>
       <code>createFailureMessage</code>
       <code>createFailureMessage</code>
       <code>createFailureMessage</code>
@@ -52,28 +61,107 @@
       <code>createFailureMessage</code>
       <code>createFailureMessage</code>
     </DeprecatedMethod>
-    <InternalClass occurrences="17">
-      <code>new ExpectationFailedException($this-&gt;createFailureMessage('No route matched'))</code>
-      <code>new ExpectationFailedException($this-&gt;createFailureMessage('No route matched'))</code>
-      <code>new ExpectationFailedException($this-&gt;createFailureMessage('No route matched'))</code>
-      <code>new ExpectationFailedException($this-&gt;createFailureMessage('No route matched'))</code>
-      <code>new ExpectationFailedException($this-&gt;createFailureMessage('No route matched'))</code>
+    <InternalClass>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                'Failed asserting application exception, param "exception" does not exist'
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                sprintf(
+                    'Failed asserting matched route name was "%s", actual matched route name is "%s"',
+                    $route,
+                    $match
+                )
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                sprintf('Failed asserting action name "%s", actual action name is "%s"', $action, $match)
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                sprintf('Failed asserting action name was NOT "%s"', $action)
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                sprintf('Failed asserting controller class "%s", actual controller class is "%s"', $controller, $match)
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                sprintf('Failed asserting controller class was NOT "%s"', $controller)
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                sprintf('Failed asserting controller name "%s", actual controller name is "%s"', $controller, $match)
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                sprintf('Failed asserting controller name was NOT "%s"', $controller)
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                sprintf('Failed asserting response code "%s", actual status code is "%s"', $code, $match)
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                sprintf('Failed asserting response code was NOT "%s"', $code)
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                sprintf('Several modules WAS not loaded "%s"', implode(', ', $list))
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                sprintf('Several modules are not loaded "%s"', implode(', ', $list))
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage('No route matched'))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage('No route matched'))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage('No route matched'))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage('No route matched'))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage('No route matched'))]]></code>
     </InternalClass>
-    <InternalMethod occurrences="17">
-      <code>new ExpectationFailedException($this-&gt;createFailureMessage('No route matched'))</code>
-      <code>new ExpectationFailedException($this-&gt;createFailureMessage('No route matched'))</code>
-      <code>new ExpectationFailedException($this-&gt;createFailureMessage('No route matched'))</code>
-      <code>new ExpectationFailedException($this-&gt;createFailureMessage('No route matched'))</code>
-      <code>new ExpectationFailedException($this-&gt;createFailureMessage('No route matched'))</code>
+    <InternalMethod>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                'Failed asserting application exception, param "exception" does not exist'
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                sprintf(
+                    'Failed asserting matched route name was "%s", actual matched route name is "%s"',
+                    $route,
+                    $match
+                )
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                sprintf('Failed asserting action name "%s", actual action name is "%s"', $action, $match)
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                sprintf('Failed asserting action name was NOT "%s"', $action)
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                sprintf('Failed asserting controller class "%s", actual controller class is "%s"', $controller, $match)
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                sprintf('Failed asserting controller class was NOT "%s"', $controller)
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                sprintf('Failed asserting controller name "%s", actual controller name is "%s"', $controller, $match)
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                sprintf('Failed asserting controller name was NOT "%s"', $controller)
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                sprintf('Failed asserting response code "%s", actual status code is "%s"', $code, $match)
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                sprintf('Failed asserting response code was NOT "%s"', $code)
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                sprintf('Several modules WAS not loaded "%s"', implode(', ', $list))
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                sprintf('Several modules are not loaded "%s"', implode(', ', $list))
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage('No route matched'))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage('No route matched'))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage('No route matched'))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage('No route matched'))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage('No route matched'))]]></code>
     </InternalMethod>
-    <LessSpecificReturnStatement occurrences="1">
-      <code>$this-&gt;getApplication()-&gt;getServiceManager()</code>
+    <LessSpecificReturnStatement>
+      <code><![CDATA[$this->getApplication()->getServiceManager()]]></code>
     </LessSpecificReturnStatement>
-    <MissingClosureParamType occurrences="1">
+    <MissingClosureParamType>
       <code>$r</code>
     </MissingClosureParamType>
-    <MixedArgument occurrences="15">
-      <code>$child</code>
+    <MixedArgument>
       <code>$event</code>
       <code>$event</code>
       <code>$match</code>
@@ -89,12 +177,11 @@
       <code>$query</code>
       <code>$viewModel</code>
     </MixedArgument>
-    <MixedArgumentTypeCoercion occurrences="2">
+    <MixedArgumentTypeCoercion>
       <code>$list</code>
       <code>$list</code>
     </MixedArgumentTypeCoercion>
-    <MixedAssignment occurrences="23">
-      <code>$child</code>
+    <MixedAssignment>
       <code>$event</code>
       <code>$exception</code>
       <code>$headers</code>
@@ -118,7 +205,7 @@
       <code>$routeMatch</code>
       <code>$viewModel</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="25">
+    <MixedMethodCall>
       <code>addHeaderLine</code>
       <code>detach</code>
       <code>getError</code>
@@ -145,26 +232,26 @@
       <code>toArray</code>
       <code>toArray</code>
     </MixedMethodCall>
-    <MoreSpecificReturnType occurrences="1">
+    <MoreSpecificReturnType>
       <code>ServiceManager</code>
     </MoreSpecificReturnType>
-    <PossiblyFalseOperand occurrences="2">
-      <code>strrpos($controllerClass, '\\')</code>
-      <code>strrpos($controllerClass, '\\')</code>
+    <PossiblyFalseOperand>
+      <code><![CDATA[strrpos($controllerClass, '\\')]]></code>
+      <code><![CDATA[strrpos($controllerClass, '\\')]]></code>
     </PossiblyFalseOperand>
-    <PossiblyNullPropertyAssignmentValue occurrences="1">
+    <PossiblyNullPropertyAssignmentValue>
       <code>null</code>
     </PossiblyNullPropertyAssignmentValue>
-    <RedundantConditionGivenDocblockType occurrences="4">
-      <code>$this-&gt;application</code>
-      <code>null !== $this-&gt;application</code>
-      <code>null !== $this-&gt;application &amp;&amp; null !== $this-&gt;applicationConfig</code>
-      <code>null !== $this-&gt;applicationConfig</code>
+    <RedundantConditionGivenDocblockType>
+      <code><![CDATA[$this->application]]></code>
+      <code><![CDATA[null !== $this->application]]></code>
+      <code><![CDATA[null !== $this->application && null !== $this->applicationConfig]]></code>
+      <code><![CDATA[null !== $this->applicationConfig]]></code>
     </RedundantConditionGivenDocblockType>
-    <TooManyArguments occurrences="1">
+    <TooManyArguments>
       <code>getTemplate</code>
     </TooManyArguments>
-    <UndefinedInterfaceMethod occurrences="21">
+    <UndefinedInterfaceMethod>
       <code>getHeaders</code>
       <code>getMethod</code>
       <code>getMvcEvent</code>
@@ -187,12 +274,23 @@
       <code>setRequestUri</code>
       <code>setUri</code>
     </UndefinedInterfaceMethod>
-    <UndefinedMethod occurrences="1">
+    <UndefinedMethod>
       <code>setExpectedException</code>
     </UndefinedMethod>
   </file>
   <file src="src/PHPUnit/Controller/AbstractHttpControllerTestCase.php">
-    <DeprecatedMethod occurrences="34">
+    <ArgumentTypeCoercion>
+      <code>$pattern</code>
+      <code>$pattern</code>
+      <code>$pattern</code>
+      <code>$pattern</code>
+      <code>$pattern</code>
+      <code>$pattern</code>
+      <code>$pattern</code>
+      <code>$pattern</code>
+      <code>$pattern</code>
+    </ArgumentTypeCoercion>
+    <DeprecatedMethod>
       <code>createFailureMessage</code>
       <code>createFailureMessage</code>
       <code>createFailureMessage</code>
@@ -228,122 +326,424 @@
       <code>createFailureMessage</code>
       <code>createFailureMessage</code>
     </DeprecatedMethod>
-    <InternalClass occurrences="34"/>
-    <InternalMethod occurrences="34"/>
-    <InvalidReturnStatement occurrences="1">
-      <code>$this-&gt;getResponse()-&gt;getHeaders()-&gt;get($header)</code>
+    <InternalClass>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                'Failed asserting response is a redirect'
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                'Failed asserting response is a redirect'
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                'Failed asserting response is a redirect'
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                'Failed asserting response is a redirect'
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                'Failed asserting response is a redirect'
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                    'Failed asserting node DENOTED BY %s DOES NOT CONTAIN content "%s"',
+                    $path,
+                    $match
+                )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                    'Failed asserting response header "%s" DOES NOT CONTAIN "%s"',
+                    $header,
+                    $match
+                )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                    'Failed asserting response header "%s" DOES NOT MATCH regex "%s"',
+                    $header,
+                    $pattern
+                )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting node DENOTED BY %s DOES NOT CONTAIN content MATCHING "%s"',
+                $path,
+                $pattern
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting node DENOTED BY %s DOES NOT EXIST',
+                $path
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting node DENOTED BY %s DOES NOT OCCUR EXACTLY %d times',
+                $path,
+                $count
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting node DENOTED BY %s EXISTS',
+                $path
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting node DENOTED BY %s EXISTS',
+                $path
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting node DENOTED BY %s EXISTS',
+                $path
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting node DENOTED BY %s EXISTS',
+                $path
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting node DENOTED BY %s EXISTS',
+                $path
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting node DENOTED BY %s OCCURS AT LEAST %d times, actually occurs %d times',
+                $path,
+                $count,
+                $match
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting node DENOTED BY %s OCCURS AT MOST %d times, actually occurs %d times',
+                $path,
+                $count,
+                $match
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting node DENOTED BY %s OCCURS EXACTLY %d times, actually occurs %d times',
+                $path,
+                $count,
+                $match
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting node denoted by %s CONTAINS content MATCHING "%s", actual content is "%s"',
+                $path,
+                $pattern,
+                implode('', $nodeValues)
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting response DOES NOT redirect to URL MATCHING "%s"',
+                $pattern
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting response header "%s" WAS NOT found',
+                $header
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting response header "%s" exists and contains "%s", actual content is "%s"',
+                $header,
+                $match,
+                $currentHeader->getFieldValue()
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting response header "%s" exists and matches regex "%s", actual content is "%s"',
+                $header,
+                $pattern,
+                $currentHeader->getFieldValue()
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting response header "%s" found',
+                $header
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting response header, header "%s" doesn\'t exist',
+                $header
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting response header, header "%s" doesn\'t exist',
+                $header
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting response header, header "%s" doesn\'t exist',
+                $header
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting response header, header "%s" doesn\'t exist',
+                $header
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting response is NOT a redirect, actual redirection is "%s"',
+                $responseHeader->getFieldValue()
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting response redirects to "%s"',
+                $url
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting response redirects to "%s", actual redirection is "%s"',
+                $url,
+                $responseHeader->getFieldValue()
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting response redirects to URL MATCHING "%s", actual redirection is "%s"',
+                $pattern,
+                $responseHeader->getFieldValue()
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+            'Failed asserting node denoted by %s CONTAINS content "%s", Contents: [%s]',
+            $path,
+            $match,
+            implode(',', $nodeValues)
+        )))]]></code>
+    </InternalClass>
+    <InternalMethod>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                'Failed asserting response is a redirect'
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                'Failed asserting response is a redirect'
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                'Failed asserting response is a redirect'
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                'Failed asserting response is a redirect'
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(
+                'Failed asserting response is a redirect'
+            ))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                    'Failed asserting node DENOTED BY %s DOES NOT CONTAIN content "%s"',
+                    $path,
+                    $match
+                )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                    'Failed asserting response header "%s" DOES NOT CONTAIN "%s"',
+                    $header,
+                    $match
+                )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                    'Failed asserting response header "%s" DOES NOT MATCH regex "%s"',
+                    $header,
+                    $pattern
+                )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting node DENOTED BY %s DOES NOT CONTAIN content MATCHING "%s"',
+                $path,
+                $pattern
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting node DENOTED BY %s DOES NOT EXIST',
+                $path
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting node DENOTED BY %s DOES NOT OCCUR EXACTLY %d times',
+                $path,
+                $count
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting node DENOTED BY %s EXISTS',
+                $path
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting node DENOTED BY %s EXISTS',
+                $path
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting node DENOTED BY %s EXISTS',
+                $path
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting node DENOTED BY %s EXISTS',
+                $path
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting node DENOTED BY %s EXISTS',
+                $path
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting node DENOTED BY %s OCCURS AT LEAST %d times, actually occurs %d times',
+                $path,
+                $count,
+                $match
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting node DENOTED BY %s OCCURS AT MOST %d times, actually occurs %d times',
+                $path,
+                $count,
+                $match
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting node DENOTED BY %s OCCURS EXACTLY %d times, actually occurs %d times',
+                $path,
+                $count,
+                $match
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting node denoted by %s CONTAINS content MATCHING "%s", actual content is "%s"',
+                $path,
+                $pattern,
+                implode('', $nodeValues)
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting response DOES NOT redirect to URL MATCHING "%s"',
+                $pattern
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting response header "%s" WAS NOT found',
+                $header
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting response header "%s" exists and contains "%s", actual content is "%s"',
+                $header,
+                $match,
+                $currentHeader->getFieldValue()
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting response header "%s" exists and matches regex "%s", actual content is "%s"',
+                $header,
+                $pattern,
+                $currentHeader->getFieldValue()
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting response header "%s" found',
+                $header
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting response header, header "%s" doesn\'t exist',
+                $header
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting response header, header "%s" doesn\'t exist',
+                $header
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting response header, header "%s" doesn\'t exist',
+                $header
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting response header, header "%s" doesn\'t exist',
+                $header
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting response is NOT a redirect, actual redirection is "%s"',
+                $responseHeader->getFieldValue()
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting response redirects to "%s"',
+                $url
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting response redirects to "%s", actual redirection is "%s"',
+                $url,
+                $responseHeader->getFieldValue()
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+                'Failed asserting response redirects to URL MATCHING "%s", actual redirection is "%s"',
+                $pattern,
+                $responseHeader->getFieldValue()
+            )))]]></code>
+      <code><![CDATA[new ExpectationFailedException($this->createFailureMessage(sprintf(
+            'Failed asserting node denoted by %s CONTAINS content "%s", Contents: [%s]',
+            $path,
+            $match,
+            implode(',', $nodeValues)
+        )))]]></code>
+    </InternalMethod>
+    <InvalidReturnStatement>
+      <code><![CDATA[$this->getResponse()->getHeaders()->get($header)]]></code>
     </InvalidReturnStatement>
-    <InvalidReturnType occurrences="1">
+    <InvalidReturnType>
       <code>HeaderInterface|false</code>
     </InvalidReturnType>
-    <MixedArgument occurrences="3">
-      <code>$currentHeader-&gt;getFieldValue()</code>
-      <code>$currentHeader-&gt;getFieldValue()</code>
-      <code>$response-&gt;getContent()</code>
+    <MixedArgument>
+      <code><![CDATA[$currentHeader->getFieldValue()]]></code>
+      <code><![CDATA[$currentHeader->getFieldValue()]]></code>
+      <code><![CDATA[$currentHeader->getFieldValue()]]></code>
+      <code><![CDATA[$currentHeader->getFieldValue()]]></code>
+      <code><![CDATA[$response->getContent()]]></code>
     </MixedArgument>
-    <MixedArgumentTypeCoercion occurrences="2">
-      <code>$nodeValues</code>
-      <code>$nodeValues</code>
-    </MixedArgumentTypeCoercion>
-    <MixedAssignment occurrences="4">
+    <MixedAssignment>
       <code>$currentValue</code>
-      <code>$nodeValue</code>
-      <code>$nodeValues[]</code>
-      <code>$nodeValues[]</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="4">
+    <MixedMethodCall>
+      <code>getFieldValue</code>
+      <code>getFieldValue</code>
+      <code>getFieldValue</code>
+      <code>getFieldValue</code>
       <code>getFieldValue</code>
       <code>getFieldValue</code>
       <code>getFieldValue</code>
       <code>getFieldValue</code>
     </MixedMethodCall>
-    <MixedPropertyFetch occurrences="1">
-      <code>$node-&gt;nodeValue</code>
+    <MixedPropertyFetch>
+      <code><![CDATA[$node->nodeValue]]></code>
     </MixedPropertyFetch>
-    <PossiblyUndefinedVariable occurrences="5">
+    <PossiblyUndefinedVariable>
       <code>$currentHeader</code>
       <code>$currentHeader</code>
       <code>$currentHeader</code>
       <code>$currentHeader</code>
       <code>$node</code>
     </PossiblyUndefinedVariable>
-    <RedundantCondition occurrences="3">
+    <RedundantCondition>
       <code>assertFalse</code>
       <code>assertTrue</code>
       <code>assertTrue</code>
     </RedundantCondition>
-    <RedundantConditionGivenDocblockType occurrences="2">
+    <RedundantConditionGivenDocblockType>
       <code>assertFalse</code>
       <code>assertFalse</code>
     </RedundantConditionGivenDocblockType>
-    <UndefinedPropertyFetch occurrences="4">
-      <code>$node-&gt;nodeValue</code>
-      <code>$node-&gt;nodeValue</code>
-      <code>$node-&gt;nodeValue</code>
-      <code>$node-&gt;nodeValue</code>
-    </UndefinedPropertyFetch>
   </file>
   <file src="src/Util/ModuleLoader.php">
-    <MixedArgument occurrences="1">
+    <MixedArgument>
       <code>$smConfig</code>
     </MixedArgument>
-    <MixedAssignment occurrences="4">
-      <code>$configuration['module_listener_options']['module_paths'][$key]</code>
-      <code>$configuration['modules'][]</code>
+    <MixedAssignment>
+      <code><![CDATA[$configuration['module_listener_options']['module_paths'][$key]]]></code>
+      <code><![CDATA[$configuration['modules'][]]]></code>
       <code>$module</code>
       <code>$smConfig</code>
     </MixedAssignment>
-    <MixedInferredReturnType occurrences="2">
+    <MixedInferredReturnType>
       <code>Application</code>
       <code>ModuleManager</code>
     </MixedInferredReturnType>
-    <MixedMethodCall occurrences="1">
+    <MixedMethodCall>
       <code>loadModules</code>
     </MixedMethodCall>
-    <MixedReturnStatement occurrences="2">
-      <code>$this-&gt;getServiceManager()-&gt;get('Application')</code>
-      <code>$this-&gt;getServiceManager()-&gt;get('ModuleManager')</code>
+    <MixedReturnStatement>
+      <code><![CDATA[$this->getServiceManager()->get('Application')]]></code>
+      <code><![CDATA[$this->getServiceManager()->get('ModuleManager')]]></code>
     </MixedReturnStatement>
   </file>
   <file src="test/PHPUnit/Controller/AbstractControllerTestCaseTest.php">
-    <InvalidArgument occurrences="2">
+    <InvalidArgument>
       <code>$haystack</code>
       <code>$haystack</code>
     </InvalidArgument>
-    <MixedArgument occurrences="3">
+    <MixedArgument>
       <code>$message</code>
       <code>$message</code>
-      <code>$this-&gt;getRequest()-&gt;getContent()</code>
+      <code><![CDATA[$this->getRequest()->getContent()]]></code>
     </MixedArgument>
-    <MixedArrayAccess occurrences="1">
-      <code>$config['module_listener_options']['cache_dir']</code>
+    <MixedArrayAccess>
+      <code><![CDATA[$config['module_listener_options']['cache_dir']]]></code>
     </MixedArrayAccess>
-    <MixedArrayAssignment occurrences="3">
-      <code>$applicationConfig['module_listener_options']['module_paths']</code>
-      <code>$applicationConfig['module_listener_options']['module_paths']['ModuleWithNamespace\TestModule']</code>
-      <code>$applicationConfig['modules'][]</code>
+    <MixedArrayAssignment>
+      <code><![CDATA[$applicationConfig['module_listener_options']['module_paths']]]></code>
+      <code><![CDATA[$applicationConfig['module_listener_options']['module_paths']['ModuleWithNamespace\TestModule']]]></code>
+      <code><![CDATA[$applicationConfig['modules'][]]]></code>
     </MixedArrayAssignment>
-    <MixedAssignment occurrences="2">
+    <MixedAssignment>
       <code>$config</code>
       <code>$file</code>
     </MixedAssignment>
-    <MixedInferredReturnType occurrences="1">
+    <MixedInferredReturnType>
       <code>Generator</code>
     </MixedInferredReturnType>
-    <MixedMethodCall occurrences="4">
+    <MixedMethodCall>
       <code>getError</code>
       <code>setParam</code>
       <code>setParam</code>
       <code>toString</code>
     </MixedMethodCall>
-    <MixedOperand occurrences="1">
+    <MixedOperand>
       <code>$config</code>
     </MixedOperand>
-    <PossiblyUndefinedVariable occurrences="2">
+    <PossiblyUndefinedVariable>
       <code>$message</code>
       <code>$message</code>
     </PossiblyUndefinedVariable>
-    <UndefinedInterfaceMethod occurrences="12">
+    <PossiblyUnusedReturnValue>
+      <code>bool</code>
+    </PossiblyUnusedReturnValue>
+    <UndefinedInterfaceMethod>
       <code>getMethod</code>
       <code>getMethod</code>
       <code>getMethod</code>
@@ -359,17 +759,17 @@
     </UndefinedInterfaceMethod>
   </file>
   <file src="test/PHPUnit/Controller/AbstractHttpControllerTestCaseTest.php">
-    <ArgumentTypeCoercion occurrences="1">
-      <code>'RuntimeException'</code>
+    <ArgumentTypeCoercion>
+      <code><![CDATA['RuntimeException']]></code>
     </ArgumentTypeCoercion>
-    <MixedArgument occurrences="5">
-      <code>$layout-&gt;getChildren()</code>
+    <MixedArgument>
+      <code><![CDATA[$layout->getChildren()]]></code>
       <code>$messages</code>
       <code>$messages</code>
       <code>$messages</code>
       <code>$messages</code>
     </MixedArgument>
-    <MixedAssignment occurrences="18">
+    <MixedAssignment>
       <code>$controller</code>
       <code>$controller</code>
       <code>$controller</code>
@@ -389,7 +789,7 @@
       <code>$viewModel</code>
       <code>$viewModel</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="30">
+    <MixedMethodCall>
       <code>flashMessenger</code>
       <code>flashMessenger</code>
       <code>flashMessenger</code>
@@ -421,7 +821,7 @@
       <code>setPost</code>
       <code>setQuery</code>
     </MixedMethodCall>
-    <UndefinedInterfaceMethod occurrences="14">
+    <UndefinedInterfaceMethod>
       <code>getMethod</code>
       <code>getMvcEvent</code>
       <code>getMvcEvent</code>
@@ -439,24 +839,24 @@
     </UndefinedInterfaceMethod>
   </file>
   <file src="test/PHPUnit/Controller/MemoryLeakTest.php">
-    <MixedInferredReturnType occurrences="1">
+    <MixedInferredReturnType>
       <code>array</code>
     </MixedInferredReturnType>
-    <PossiblyNullOperand occurrences="1">
+    <PossiblyNullOperand>
       <code>self::$memStart</code>
     </PossiblyNullOperand>
   </file>
   <file src="test/PHPUnit/Util/ModuleLoaderTest.php">
-    <ArgumentTypeCoercion occurrences="7">
-      <code>'Baz\Module'</code>
-      <code>'Baz\Module'</code>
-      <code>'Baz\Module'</code>
-      <code>'Baz\Module'</code>
-      <code>'Foo\Module'</code>
-      <code>'ModuleWithNamespace\TestModule\Module'</code>
-      <code>'stdClass'</code>
+    <ArgumentTypeCoercion>
+      <code><![CDATA['Baz\Module']]></code>
+      <code><![CDATA['Baz\Module']]></code>
+      <code><![CDATA['Baz\Module']]></code>
+      <code><![CDATA['Baz\Module']]></code>
+      <code><![CDATA['Foo\Module']]></code>
+      <code><![CDATA['ModuleWithNamespace\TestModule\Module']]></code>
+      <code><![CDATA['stdClass']]></code>
     </ArgumentTypeCoercion>
-    <MixedAssignment occurrences="7">
+    <MixedAssignment>
       <code>$baz</code>
       <code>$baz</code>
       <code>$baz</code>
@@ -465,67 +865,128 @@
       <code>$foo</code>
       <code>$fooObject</code>
     </MixedAssignment>
+    <PossiblyUnusedReturnValue>
+      <code>bool</code>
+    </PossiblyUnusedReturnValue>
+  </file>
+  <file src="test/_files/Baz/Module.php">
+    <UnusedClass>
+      <code>Module</code>
+    </UnusedClass>
   </file>
   <file src="test/_files/Baz/src/Baz/Controller/IndexController.php">
-    <MixedAssignment occurrences="2">
+    <MixedAssignment>
       <code>$numGet</code>
       <code>$numPost</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="5">
+    <MixedMethodCall>
       <code>addHeaderLine</code>
       <code>addHeaderLine</code>
       <code>addMessage</code>
       <code>get</code>
       <code>get</code>
     </MixedMethodCall>
-    <MixedReturnTypeCoercion occurrences="2">
-      <code>['num_get' =&gt; $numGet, 'num_post' =&gt; $numPost]</code>
-      <code>array&lt;string, string&gt;</code>
+    <MixedReturnTypeCoercion>
+      <code><![CDATA[['num_get' => $numGet, 'num_post' => $numPost]]]></code>
+      <code><![CDATA[array<string, string>]]></code>
     </MixedReturnTypeCoercion>
-    <UndefinedInterfaceMethod occurrences="3">
+    <UndefinedInterfaceMethod>
       <code>getHeaders</code>
       <code>getPost</code>
       <code>getQuery</code>
     </UndefinedInterfaceMethod>
-    <UndefinedMagicMethod occurrences="1">
+    <UndefinedMagicMethod>
       <code>flashMessenger</code>
     </UndefinedMagicMethod>
+    <UnusedClass>
+      <code>IndexController</code>
+    </UnusedClass>
   </file>
   <file src="test/_files/ModuleWithEvents/Module.php">
-    <MissingClosureParamType occurrences="1">
+    <MissingClosureParamType>
       <code>$e</code>
     </MissingClosureParamType>
-    <PossiblyNullReference occurrences="2">
+    <PossiblyNullReference>
       <code>attach</code>
       <code>getMatchedRouteName</code>
     </PossiblyNullReference>
-    <UnusedClosureParam occurrences="1">
+    <UnusedClass>
+      <code>Module</code>
+    </UnusedClass>
+    <UnusedClosureParam>
       <code>$e</code>
     </UnusedClosureParam>
   </file>
+  <file src="test/_files/ModuleWithNamespace/TestModule/Module.php">
+    <PossiblyUnusedMethod>
+      <code>getAutoloaderConfig</code>
+      <code>getConfig</code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="test/_files/ModuleWithNamespace/TestModule/src/Controller/IndexController.php">
+    <UnusedClass>
+      <code>IndexController</code>
+    </UnusedClass>
+  </file>
+  <file src="test/_files/ModuleWithSimilarName/Test/Module.php">
+    <UnusedClass>
+      <code>Module</code>
+    </UnusedClass>
+  </file>
+  <file src="test/_files/ModuleWithSimilarName/Test/src/Controller/IndexController.php">
+    <UnusedClass>
+      <code>IndexController</code>
+    </UnusedClass>
+  </file>
+  <file src="test/_files/ModuleWithSimilarName/TestModule/Module.php">
+    <UnusedClass>
+      <code>Module</code>
+    </UnusedClass>
+  </file>
+  <file src="test/_files/ModuleWithSimilarName/TestModule/src/Controller/IndexController.php">
+    <UnusedClass>
+      <code>IndexController</code>
+    </UnusedClass>
+  </file>
   <file src="test/_files/modules-path/with-subdir/Bar/Module.php">
-    <MissingClosureParamType occurrences="1">
+    <MissingClosureParamType>
       <code>$sm</code>
     </MissingClosureParamType>
-    <MissingClosureReturnType occurrences="1">
+    <MissingClosureReturnType>
       <code>static function ($sm) {</code>
     </MissingClosureReturnType>
-    <MixedAssignment occurrences="1">
+    <MixedAssignment>
       <code>$foo</code>
     </MixedAssignment>
-    <MixedMethodCall occurrences="1">
+    <MixedMethodCall>
       <code>get</code>
     </MixedMethodCall>
-    <MixedPropertyAssignment occurrences="1">
+    <MixedPropertyAssignment>
       <code>$foo</code>
     </MixedPropertyAssignment>
+    <UnusedClass>
+      <code>Module</code>
+    </UnusedClass>
+  </file>
+  <file src="test/_files/modules-path/with-subdir/Bar/src/Bar/Controller/IndexController.php">
+    <UnusedClass>
+      <code>IndexController</code>
+    </UnusedClass>
   </file>
   <file src="test/_files/modules-path/with-subdir/Foo/Module.php">
-    <MissingClosureParamType occurrences="1">
+    <MissingClosureParamType>
       <code>$sm</code>
     </MissingClosureParamType>
-    <UnusedClosureParam occurrences="1">
+    <UnusedClass>
+      <code>Module</code>
+    </UnusedClass>
+    <UnusedClosureParam>
       <code>$sm</code>
     </UnusedClosureParam>
+  </file>
+  <file src="test/_files/modules-path/with-subdir/Foo/src/Foo/Controller/IndexController.php">
+    <UnusedClass>
+      <code>IndexController</code>
+    </UnusedClass>
   </file>
 </files>
