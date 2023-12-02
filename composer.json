@@ -38,8 +38,8 @@
         "laminas/laminas-uri": "^2.5",
         "laminas/laminas-view": "^2.13.1",
         "phpunit/phpunit": "^10.4",
-        "symfony/css-selector": "^6.0",
-        "symfony/dom-crawler": "^6.0"
+        "symfony/css-selector": "^6.0 || ^7.0",
+        "symfony/dom-crawler": "^6.0 || ^7.0"
     },
     "require-dev": {
         "laminas/laminas-coding-standard": "^2.4.0",
