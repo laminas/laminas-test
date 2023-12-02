@@ -19,7 +19,7 @@ return [
     ],
     'controllers' => [
         'invokables' => [
-            'namespace_index' => 'ModuleWithNamespace\TestModule\Controller\IndexController',
+            'namespace_index' => \ModuleWithNamespace\TestModule\Controller\IndexController::class,
         ],
     ],
 ];

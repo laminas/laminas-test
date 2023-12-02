@@ -375,7 +375,6 @@ abstract class AbstractControllerTestCase extends TestCase
     /**
      * Assert modules were loaded with the module manager
      *
-     * @param array $modules
      * @return void
      */
     public function assertModulesLoaded(array $modules)
@@ -394,7 +393,6 @@ abstract class AbstractControllerTestCase extends TestCase
     /**
      * Assert modules were not loaded with the module manager
      *
-     * @param array $modules
      * @return void
      */
     public function assertNotModulesLoaded(array $modules)
@@ -494,7 +492,7 @@ abstract class AbstractControllerTestCase extends TestCase
      */
     protected function getControllerFullClassName()
     {
-        return get_class($this->getControllerFullClass());
+        return $this->getControllerFullClass()::class;
     }
 
     /**
@@ -604,7 +602,7 @@ abstract class AbstractControllerTestCase extends TestCase
             throw new ExpectationFailedException($this->createFailureMessage('No route matched'));
         }
         $match      = $routeMatch->getParam('controller');
-        $match      = strtolower($match);
+        $match      = strtolower((string) $match);
         $controller = strtolower($controller);
         if ($controller !== $match) {
             throw new ExpectationFailedException($this->createFailureMessage(
@@ -627,7 +625,7 @@ abstract class AbstractControllerTestCase extends TestCase
             throw new ExpectationFailedException($this->createFailureMessage('No route matched'));
         }
         $match      = $routeMatch->getParam('controller');
-        $match      = strtolower($match);
+        $match      = strtolower((string) $match);
         $controller = strtolower($controller);
         if ($controller === $match) {
             throw new ExpectationFailedException($this->createFailureMessage(
@@ -650,7 +648,7 @@ abstract class AbstractControllerTestCase extends TestCase
             throw new ExpectationFailedException($this->createFailureMessage('No route matched'));
         }
         $match  = $routeMatch->getParam('action');
-        $match  = strtolower($match);
+        $match  = strtolower((string) $match);
         $action = strtolower($action);
         if ($action !== $match) {
             throw new ExpectationFailedException($this->createFailureMessage(
@@ -673,7 +671,7 @@ abstract class AbstractControllerTestCase extends TestCase
             throw new ExpectationFailedException($this->createFailureMessage('No route matched'));
         }
         $match  = $routeMatch->getParam('action');
-        $match  = strtolower($match);
+        $match  = strtolower((string) $match);
         $action = strtolower($action);
         if ($action === $match) {
             throw new ExpectationFailedException($this->createFailureMessage(
@@ -696,7 +694,7 @@ abstract class AbstractControllerTestCase extends TestCase
             throw new ExpectationFailedException($this->createFailureMessage('No route matched'));
         }
         $match = $routeMatch->getMatchedRouteName();
-        $match = strtolower($match);
+        $match = strtolower((string) $match);
         $route = strtolower($route);
         if ($route !== $match) {
             throw new ExpectationFailedException($this->createFailureMessage(

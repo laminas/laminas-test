@@ -18,8 +18,6 @@ class ModuleLoader
 
     /**
      * Load list of modules or application configuration
-     *
-     * @param array $configuration
      */
     public function __construct(array $configuration)
     {

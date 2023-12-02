@@ -106,14 +106,14 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
     /** @return void */
     public function testApplicationClass()
     {
-        $applicationClass = get_class($this->getApplication());
+        $applicationClass = $this->getApplication()::class;
         $this->assertEquals($applicationClass, Application::class);
     }
 
     /** @return void */
     public function testApplicationServiceLocatorClass()
     {
-        $smClass = get_class($this->getApplicationServiceLocator());
+        $smClass = $this->getApplicationServiceLocator()::class;
         $this->assertEquals($smClass, ServiceManager::class);
     }
 
@@ -520,7 +520,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
     public function testCanHandleMultidimensionalParams(): void
     {
         $this->dispatch('/tests', 'PUT', ['a' => ['b' => 1]]);
-        $this->assertEquals('a[b]=1', urldecode($this->getRequest()->getContent()));
+        $this->assertEquals('a[b]=1', urldecode((string) $this->getRequest()->getContent()));
     }
 
     public function testAssertTemplateName(): void

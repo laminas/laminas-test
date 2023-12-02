@@ -61,7 +61,7 @@ class ModuleLoaderTest extends TestCase
 
         $loader = new ModuleLoader(['Baz']);
         $baz    = $loader->getModule('Baz');
-        $this->assertInstanceOf('Baz\Module', $baz);
+        $this->assertInstanceOf(\Baz\Module::class, $baz);
     }
 
     /** @return void */
@@ -73,7 +73,7 @@ class ModuleLoaderTest extends TestCase
 
         $testModule = $loader->getModule('ModuleWithNamespace\TestModule');
 
-        $this->assertInstanceOf('ModuleWithNamespace\TestModule\Module', $testModule);
+        $this->assertInstanceOf(\ModuleWithNamespace\TestModule\Module::class, $testModule);
         $this->assertInstanceOf(Module::class, $testModule);
     }
 
@@ -89,7 +89,7 @@ class ModuleLoaderTest extends TestCase
     {
         $loader = new ModuleLoader(['Baz' => __DIR__ . '/../../_files/Baz']);
         $baz    = $loader->getModule('Baz');
-        $this->assertInstanceOf('Baz\Module', $baz);
+        $this->assertInstanceOf(\Baz\Module::class, $baz);
     }
 
     /** @return void */
@@ -100,9 +100,9 @@ class ModuleLoaderTest extends TestCase
 
         $loader = new ModuleLoader(['Baz', 'Foo']);
         $baz    = $loader->getModule('Baz');
-        $this->assertInstanceOf('Baz\Module', $baz);
+        $this->assertInstanceOf(\Baz\Module::class, $baz);
         $foo = $loader->getModule('Foo');
-        $this->assertInstanceOf('Foo\Module', $foo);
+        $this->assertInstanceOf(\Foo\Module::class, $foo);
     }
 
     /** @return void */
@@ -123,7 +123,7 @@ class ModuleLoaderTest extends TestCase
         $config = include __DIR__ . '/../../_files/application.config.php';
         $loader = new ModuleLoader($config);
         $baz    = $loader->getModule('Baz');
-        $this->assertInstanceOf('Baz\Module', $baz);
+        $this->assertInstanceOf(\Baz\Module::class, $baz);
     }
 
     /** @return void */

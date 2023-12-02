@@ -53,7 +53,7 @@ abstract class LaminasConstraint extends Constraint
 
         $controllerManager = $this->activeTestCase->getApplicationServiceLocator()->get('ControllerManager');
 
-        return get_class($controllerManager->get($controllerIdentifier));
+        return $controllerManager->get($controllerIdentifier)::class;
     }
 
     /**

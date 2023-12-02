@@ -112,7 +112,7 @@ return [
     ],
     'controllers'  => [
         'invokables' => [
-            'baz_index' => 'Baz\Controller\IndexController',
+            'baz_index' => \Baz\Controller\IndexController::class,
         ],
     ],
     'view_manager' => [

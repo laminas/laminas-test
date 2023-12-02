@@ -19,7 +19,7 @@ return [
     ],
     'controllers' => [
         'invokables' => [
-            'similar_name_2_index' => 'ModuleWithSimilarName\TestModule\Controller\IndexController',
+            'similar_name_2_index' => \ModuleWithSimilarName\TestModule\Controller\IndexController::class,
         ],
     ],
 ];

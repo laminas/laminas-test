@@ -19,7 +19,7 @@ return [
     ],
     'controllers'  => [
         'invokables' => [
-            'foo_index' => 'Foo\Controller\IndexController',
+            'foo_index' => \Foo\Controller\IndexController::class,
         ],
     ],
     'view_manager' => [

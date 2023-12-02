@@ -183,7 +183,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
         $headerMatched = false;
 
         foreach ($responseHeader as $currentHeader) {
-            $headerMatched = (bool) preg_match($pattern, $currentHeader->getFieldValue());
+            $headerMatched = (bool) preg_match($pattern, (string) $currentHeader->getFieldValue());
 
             if ($headerMatched) {
                 break;
@@ -226,7 +226,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
         $headerMatched = false;
 
         foreach ($responseHeader as $currentHeader) {
-            $headerMatched = (bool) preg_match($pattern, $currentHeader->getFieldValue());
+            $headerMatched = (bool) preg_match($pattern, (string) $currentHeader->getFieldValue());
 
             if ($headerMatched) {
                 throw new ExpectationFailedException($this->createFailureMessage(sprintf(

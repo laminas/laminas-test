@@ -43,7 +43,7 @@ class IndexController extends AbstractActionController
     }
 
     /** @return void */
-    public function exceptionAction()
+    public function exceptionAction(): never
     {
         throw new RuntimeException('Foo error !');
     }
