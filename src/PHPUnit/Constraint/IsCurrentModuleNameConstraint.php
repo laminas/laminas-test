@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Laminas\Test\PHPUnit\Constraint;
 
 use function ltrim;
-use function strpos;
+use function str_contains;
 use function strrpos;
 use function strtolower;
 use function substr;

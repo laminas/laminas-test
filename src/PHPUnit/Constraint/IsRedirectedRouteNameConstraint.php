@@ -15,8 +15,7 @@ use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 use PHPUnit\Framework\Constraint\Constraint;
 use RuntimeException;
 
-use function gettype;
-use function is_object;
+use function get_debug_type;
 use function is_string;
 use function sprintf;
 

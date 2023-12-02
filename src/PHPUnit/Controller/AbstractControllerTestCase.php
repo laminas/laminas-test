@@ -34,7 +34,6 @@ use function array_merge;
 use function assert;
 use function class_exists;
 use function count;
-use function get_class;
 use function http_build_query;
 use function implode;
 use function method_exists;

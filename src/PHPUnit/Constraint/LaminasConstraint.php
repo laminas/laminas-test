@@ -11,7 +11,6 @@ use PHPUnit\Framework\ExpectationFailedException;
 use SebastianBergmann\Comparator\ComparisonFailure;
 use Throwable;
 
-use function get_class;
 use function implode;
 use function sprintf;
 

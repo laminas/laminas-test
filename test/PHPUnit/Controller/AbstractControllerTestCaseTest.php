@@ -24,7 +24,6 @@ use function array_key_exists;
 use function array_merge_recursive;
 use function count;
 use function extension_loaded;
-use function get_class;
 use function glob;
 use function is_dir;
 use function method_exists;

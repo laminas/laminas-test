@@ -73,7 +73,7 @@ class ModuleLoaderTest extends TestCase
 
         $testModule = $loader->getModule('ModuleWithNamespace\TestModule');
 
-        $this->assertInstanceOf(\ModuleWithNamespace\TestModule\Module::class, $testModule);
+        $this->assertInstanceOf('ModuleWithNamespace\TestModule\Module', $testModule);
         $this->assertInstanceOf(Module::class, $testModule);
     }
 
@@ -100,9 +100,9 @@ class ModuleLoaderTest extends TestCase
 
         $loader = new ModuleLoader(['Baz', 'Foo']);
         $baz    = $loader->getModule('Baz');
-        $this->assertInstanceOf(\Baz\Module::class, $baz);
+        $this->assertInstanceOf('Baz\Module', $baz);
         $foo = $loader->getModule('Foo');
-        $this->assertInstanceOf(\Foo\Module::class, $foo);
+        $this->assertInstanceOf('Foo\Module', $foo);
     }
 
     /** @return void */
