@@ -61,7 +61,9 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "LaminasTest\\Test\\": "test/"
+            "LaminasTest\\Test\\": "test/",
+            "Baz\\": "test/_files/Baz",
+            "ModuleWithNamespace\\TestModule\\": "test/_files/ModuleWithNamespace/TestModule"
         }
     },
     "scripts": {
@@ -69,8 +71,8 @@
             "@cs-check",
             "@test"
         ],
-        "cs-check": "phpcs",
-        "cs-fix": "phpcbf",
+        "cs-check": "phpcs -p",
+        "cs-fix": "phpcbf -p",
         "test": "phpunit --colors",
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml",
         "static-analysis": "psalm --shepherd --stats"

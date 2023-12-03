@@ -12,20 +12,22 @@ use Laminas\Test\Util\ModuleLoader;
 use LaminasTest\Test\ExpectedExceptionTrait;
 use ModuleWithNamespace\TestModule\Module;
 use PHPUnit\Framework\TestCase;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 use function array_diff;
+use function dirname;
 use function is_dir;
 use function rmdir;
 use function scandir;
 use function sys_get_temp_dir;
 use function unlink;
 
-class ModuleLoaderTest extends TestCase
+final class ModuleLoaderTest extends TestCase
 {
     use ExpectedExceptionTrait;
 
-    /** @return void */
-    public function tearDownCacheDir()
+    public function tearDownCacheDir(): void
     {
         $cacheDir = sys_get_temp_dir() . '/laminas-module-test';
         if (is_dir($cacheDir)) {
@@ -33,8 +35,7 @@ class ModuleLoaderTest extends TestCase
         }
     }
 
-    /** @param string $dir */
-    public static function rmdir($dir): bool
+    public static function rmdir(string $dir): bool
     {
         $files = array_diff(scandir($dir), ['.', '..']);
         foreach ($files as $file) {
@@ -54,94 +55,93 @@ class ModuleLoaderTest extends TestCase
         $this->tearDownCacheDir();
     }
 
-    /** @return void */
-    public function testCanLoadModule()
+    public function testCanLoadModule(): void
     {
-        require_once __DIR__ . '/../../_files/Baz/Module.php';
+        require_once dirname(__DIR__, 2) . '/_files/Baz/Module.php';
 
         $loader = new ModuleLoader(['Baz']);
         $baz    = $loader->getModule('Baz');
+
         $this->assertInstanceOf(\Baz\Module::class, $baz);
     }
 
-    /** @return void */
-    public function testCanLoadModuleWithNamespace()
+    public function testCanLoadModuleWithNamespace(): void
     {
         $loader = new ModuleLoader([
-            'ModuleWithNamespace\TestModule' => __DIR__ . '/../../_files/ModuleWithNamespace/TestModule',
+            'ModuleWithNamespace\TestModule' => dirname(__DIR__, 2) . '/_files/ModuleWithNamespace/TestModule',
         ]);
 
+        /** @var Module $testModule */
         $testModule = $loader->getModule('ModuleWithNamespace\TestModule');
 
+        // phpcs:ignore
         $this->assertInstanceOf('ModuleWithNamespace\TestModule\Module', $testModule);
         $this->assertInstanceOf(Module::class, $testModule);
     }
 
-    /** @return void */
-    public function testCanNotLoadModule()
+    public function testCanNotLoadModule(): void
     {
         $this->expectedException(RuntimeException::class, 'could not be initialized');
         new ModuleLoader(['FooBaz']);
     }
 
-    /** @return void */
-    public function testCanLoadModuleWithPath()
+    public function testCanLoadModuleWithPath(): void
     {
-        $loader = new ModuleLoader(['Baz' => __DIR__ . '/../../_files/Baz']);
-        $baz    = $loader->getModule('Baz');
+        $loader = new ModuleLoader(['Baz' => dirname(__DIR__, 2) . '/_files/Baz']);
+
+        /** @var \Baz\Module $baz */
+        $baz = $loader->getModule('Baz');
+
         $this->assertInstanceOf(\Baz\Module::class, $baz);
     }
 
-    /** @return void */
-    public function testCanLoadModules()
+    public function testCanLoadModules(): void
     {
-        require_once __DIR__ . '/../../_files/Baz/Module.php';
-        require_once __DIR__ . '/../../_files/modules-path/with-subdir/Foo/Module.php';
+        require_once dirname(__DIR__, 2) . '/_files/Baz/Module.php';
+        require_once dirname(__DIR__, 2) . '/_files/modules-path/with-subdir/Foo/Module.php';
 
         $loader = new ModuleLoader(['Baz', 'Foo']);
-        $baz    = $loader->getModule('Baz');
-        $this->assertInstanceOf('Baz\Module', $baz);
+
+        $baz = $loader->getModule('Baz');
         $foo = $loader->getModule('Foo');
+
+        // phpcs:ignore
+        $this->assertInstanceOf('Baz\Module', $baz);
+        $this->assertInstanceOf(\Baz\Module::class, $baz);
         $this->assertInstanceOf('Foo\Module', $foo);
     }
 
-    /** @return void */
-    public function testCanLoadModulesWithPath()
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
+    public function testCanLoadModulesWithPath(): void
     {
         $loader = new ModuleLoader([
-            'Baz' => __DIR__ . '/../../_files/Baz',
-            'Foo' => __DIR__ . '/../../_files/modules-path/with-subdir/Foo',
+            'Baz' => dirname(__DIR__, 2) . '/_files/Baz',
+            'Foo' => dirname(__DIR__, 2) . '/_files/modules-path/with-subdir/Foo',
         ]);
 
         $fooObject = $loader->getServiceManager()->get('FooObject');
+
         $this->assertInstanceOf('stdClass', $fooObject);
     }
 
-    /** @return void */
-    public function testCanLoadModulesFromConfig()
+    public function testCanLoadModulesFromConfig(): void
     {
-        $config = include __DIR__ . '/../../_files/application.config.php';
+        $config = include dirname(__DIR__, 2) . '/_files/application.config.php';
         $loader = new ModuleLoader($config);
         $baz    = $loader->getModule('Baz');
+
         $this->assertInstanceOf(\Baz\Module::class, $baz);
     }
 
-    /** @return void */
-    public function testCanGetService()
+    public function testCanGetService(): void
     {
-        $loader = new ModuleLoader(['Baz' => __DIR__ . '/../../_files/Baz']);
+        $loader = new ModuleLoader(['Baz' => dirname(__DIR__, 2) . '/_files/Baz']);
 
-        $this->assertInstanceOf(
-            ServiceLocatorInterface::class,
-            $loader->getServiceManager()
-        );
-        $this->assertInstanceOf(
-            ModuleManager::class,
-            $loader->getModuleManager()
-        );
-        $this->assertInstanceOf(
-            ApplicationInterface::class,
-            $loader->getApplication()
-        );
+        $this->assertInstanceOf(ServiceLocatorInterface::class, $loader->getServiceManager());
+        $this->assertInstanceOf(ModuleManager::class, $loader->getModuleManager());
+        $this->assertInstanceOf(ApplicationInterface::class, $loader->getApplication());
     }
 }
