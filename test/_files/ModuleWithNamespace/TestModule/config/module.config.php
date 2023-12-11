@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use ModuleWithNamespace\TestModule\Controller\IndexController;
+
 return [
     'router'      => [
         'routes' => [
@@ -19,7 +21,7 @@ return [
     ],
     'controllers' => [
         'invokables' => [
-            'namespace_index' => 'ModuleWithNamespace\TestModule\Controller\IndexController',
+            'namespace_index' => IndexController::class,
         ],
     ],
 ];

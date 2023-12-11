@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Laminas\Test\PHPUnit\Constraint;
 
 use function ltrim;
-use function strpos;
+use function str_contains;
 use function strrpos;
 use function strtolower;
 use function substr;
@@ -41,8 +41,8 @@ final class IsCurrentModuleNameConstraint extends LaminasConstraint
         // Find Module from Controller
         /** @var string $appModules */
         foreach ($applicationConfig['modules'] as $appModules) {
-            if (strpos($controllerClass, $appModules . '\\') !== false) {
-                if (strpos($appModules, '\\') !== false) {
+            if (str_contains($controllerClass, $appModules . '\\')) {
+                if (str_contains($appModules, '\\')) {
                     $match = ltrim(substr($appModules, strrpos($appModules, '\\')), '\\');
                 } else {
                     $match = ltrim($appModules);

@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use ModuleWithSimilarName\TestModule\Controller\IndexController;
+
 return [
     'router'      => [
         'routes' => [
@@ -19,7 +21,7 @@ return [
     ],
     'controllers' => [
         'invokables' => [
-            'similar_name_2_index' => 'ModuleWithSimilarName\TestModule\Controller\IndexController',
+            'similar_name_2_index' => IndexController::class,
         ],
     ],
 ];

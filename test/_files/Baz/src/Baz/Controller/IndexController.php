@@ -11,7 +11,7 @@ use RuntimeException;
 class IndexController extends AbstractActionController
 {
     /** @return array<string, string> */
-    public function unittestsAction()
+    public function unittestsAction(): array
     {
         $this->getResponse()
             ->getHeaders()
@@ -24,32 +24,27 @@ class IndexController extends AbstractActionController
         return ['num_get' => $numGet, 'num_post' => $numPost];
     }
 
-    /** @return void */
-    public function persistencetestAction()
+    public function persistencetestAction(): void
     {
         $this->flashMessenger()->addMessage('test');
     }
 
-    /** @return Response */
-    public function redirectAction()
+    public function redirectAction(): Response
     {
         return $this->redirect()->toUrl('https://www.zend.com');
     }
 
-    /** @return Response */
-    public function redirectToRouteAction()
+    public function redirectToRouteAction(): Response
     {
         return $this->redirect()->toRoute('myroute');
     }
 
-    /** @return void */
-    public function exceptionAction()
+    public function exceptionAction(): never
     {
         throw new RuntimeException('Foo error !');
     }
 
-    /** @return Response */
-    public function customResponseAction()
+    public function customResponseAction(): Response
     {
         $response = new Response();
         $response->setCustomStatusCode(999);
@@ -57,8 +52,7 @@ class IndexController extends AbstractActionController
         return $response;
     }
 
-    /** @return void */
-    public function registerxpathnamespaceAction()
+    public function registerxpathnamespaceAction(): void
     {
     }
 }

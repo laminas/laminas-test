@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Bar\Controller\IndexController;
+
 return [
     'router'       => [
         'routes' => [
@@ -19,7 +21,7 @@ return [
     ],
     'controllers'  => [
         'invokables' => [
-            'bar_index' => 'Bar\Controller\IndexController',
+            'bar_index' => IndexController::class,
         ],
     ],
     'view_manager' => [

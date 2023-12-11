@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Foo\Controller\IndexController;
+
 return [
     'router'       => [
         'routes' => [
@@ -19,7 +21,7 @@ return [
     ],
     'controllers'  => [
         'invokables' => [
-            'foo_index' => 'Foo\Controller\IndexController',
+            'foo_index' => IndexController::class,
         ],
     ],
     'view_manager' => [

@@ -11,7 +11,6 @@ use PHPUnit\Framework\ExpectationFailedException;
 use SebastianBergmann\Comparator\ComparisonFailure;
 use Throwable;
 
-use function get_class;
 use function implode;
 use function sprintf;
 
@@ -53,7 +52,7 @@ abstract class LaminasConstraint extends Constraint
 
         $controllerManager = $this->activeTestCase->getApplicationServiceLocator()->get('ControllerManager');
 
-        return get_class($controllerManager->get($controllerIdentifier));
+        return $controllerManager->get($controllerIdentifier)::class;
     }
 
     /**
