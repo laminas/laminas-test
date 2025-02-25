@@ -6,6 +6,7 @@ namespace Laminas\Test\PHPUnit\Constraint;
 
 use Exception;
 use Laminas\Test\PHPUnit\Controller\AbstractControllerTestCase;
+use Override;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\ExpectationFailedException;
 use SebastianBergmann\Comparator\ComparisonFailure;
@@ -33,6 +34,7 @@ abstract class LaminasConstraint extends Constraint
     /**
      * @psalm-return never
      */
+    #[Override]
     final public function fail(mixed $other, string $description, ?ComparisonFailure $comparisonFailure = null): never
     {
         try {

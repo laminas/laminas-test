@@ -11,6 +11,7 @@ use Laminas\ServiceManager\ServiceLocatorInterface;
 use Laminas\Test\Util\ModuleLoader;
 use LaminasTest\Test\ExpectedExceptionTrait;
 use ModuleWithNamespace\TestModule\Module;
+use Override;
 use PHPUnit\Framework\TestCase;
 
 use function array_diff;
@@ -48,11 +49,13 @@ class ModuleLoaderTest extends TestCase
         return rmdir($dir);
     }
 
+    #[Override]
     protected function setUp(): void
     {
         $this->tearDownCacheDir();
     }
 
+    #[Override]
     protected function tearDown(): void
     {
         $this->tearDownCacheDir();

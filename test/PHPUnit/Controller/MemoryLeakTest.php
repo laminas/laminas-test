@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace LaminasTest\Test\PHPUnit\Controller;
 
 use Laminas\Test\PHPUnit\Controller\AbstractControllerTestCase;
+use Override;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 use function array_fill;
@@ -15,6 +16,7 @@ class MemoryLeakTest extends AbstractControllerTestCase
     /** @var int|null */
     public static $memStart;
 
+    #[Override]
     public static function setUpBeforeClass(): void
     {
         self::$memStart = memory_get_usage(true);

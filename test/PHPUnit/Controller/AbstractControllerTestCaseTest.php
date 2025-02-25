@@ -15,6 +15,7 @@ use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 use LaminasTest\Test\ExpectedExceptionTrait;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamWrapper;
+use Override;
 use PHPUnit\Framework\AssertionFailedError;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\ExpectationFailedException;
@@ -70,6 +71,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         return rmdir($dir);
     }
 
+    #[Override]
     protected function setUp(): void
     {
         $this->traceErrorCache = $this->traceError;
@@ -80,6 +82,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         parent::setUp();
     }
 
+    #[Override]
     protected function tearDown(): void
     {
         $this->traceError = $this->traceErrorCache;
