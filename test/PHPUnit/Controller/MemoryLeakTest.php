@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace LaminasTest\Test\PHPUnit\Controller;
 
 use Laminas\Test\PHPUnit\Controller\AbstractControllerTestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 use function array_fill;
 use function memory_get_usage;
@@ -21,6 +22,7 @@ class MemoryLeakTest extends AbstractControllerTestCase
 
     /**
      * @return array<array-key, array{null}>
+     * @psalm-suppress PossiblyUnusedMethod Psalm does not yet recognize the DataProvider attribute
      */
     public static function dataForMultipleTests(): array
     {
@@ -28,10 +30,10 @@ class MemoryLeakTest extends AbstractControllerTestCase
     }
 
     /**
-     * @dataProvider dataForMultipleTests
      * @param null $null
      * @return void
      */
+    #[DataProvider('dataForMultipleTests')]
     public function testMemoryConsumptionNotGrowing($null)
     {
         $this->setApplicationConfig(

@@ -36,7 +36,11 @@ class ModuleLoaderTest extends TestCase
     /** @param string $dir */
     public static function rmdir($dir): bool
     {
-        $files = array_diff(scandir($dir), ['.', '..']);
+        $files = scandir($dir);
+        if ($files === false) {
+            throw new \RuntimeException('Could not read directory');
+        }
+        $files = array_diff($files, ['.', '..']);
         foreach ($files as $file) {
             is_dir("$dir/$file") ? static::rmdir("$dir/$file") : unlink("$dir/$file");
         }

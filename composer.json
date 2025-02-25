@@ -37,22 +37,22 @@
         "laminas/laminas-servicemanager": "^3.0.3",
         "laminas/laminas-uri": "^2.5",
         "laminas/laminas-view": "^2.13.1",
-        "phpunit/phpunit": "^10.4",
+        "phpunit/phpunit": "^10.4 || ^11.0 || ^12.0",
         "symfony/css-selector": "^6.0 || ^7.0",
         "symfony/dom-crawler": "^6.0 || ^7.0"
     },
     "require-dev": {
-        "laminas/laminas-coding-standard": "^3.0",
-        "laminas/laminas-i18n": "^2.21",
-        "laminas/laminas-modulemanager": "^2.14.0",
-        "laminas/laminas-mvc-plugin-flashmessenger": "^1.9.0",
-        "laminas/laminas-serializer": "^2.14.0",
-        "laminas/laminas-session": "^2.16",
-        "laminas/laminas-stdlib": "^3.16.1",
-        "laminas/laminas-validator": "^2.28",
-        "mikey179/vfsstream": "^1.6.11",
-        "psalm/plugin-phpunit": "^0.19.0",
-        "vimeo/psalm": "^5.26"
+        "laminas/laminas-coding-standard": "^3.0.1",
+        "laminas/laminas-i18n": "^2.29",
+        "laminas/laminas-modulemanager": "^2.17",
+        "laminas/laminas-mvc-plugin-flashmessenger": "^1.11",
+        "laminas/laminas-serializer": "^2.18",
+        "laminas/laminas-session": "^2.24",
+        "laminas/laminas-stdlib": "^3.20",
+        "laminas/laminas-validator": "^2.64.2",
+        "mikey179/vfsstream": "^1.6.12",
+        "psalm/plugin-phpunit": "^0.19.2",
+        "vimeo/psalm": "^5.26 || ^6.8.7"
     },
     "autoload": {
         "psr-4": {

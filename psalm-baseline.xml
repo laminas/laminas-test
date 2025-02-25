@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.26.1@d747f6500b38ac4f7dfc5edbcae6e4b637d7add0">
+<files psalm-version="6.8.7@4258dc813b28c2b03865f34a17ddf072f006b357">
   <file src="src/PHPUnit/Constraint/IsCurrentModuleNameConstraint.php">
     <PossiblyFalseArgument>
       <code><![CDATA[strrpos($appModules, '\\')]]></code>
@@ -244,6 +244,12 @@
     <MixedPropertyFetch>
       <code><![CDATA[$node->nodeValue]]></code>
     </MixedPropertyFetch>
+    <PossiblyNullReference>
+      <code><![CDATA[getFieldValue]]></code>
+      <code><![CDATA[getFieldValue]]></code>
+      <code><![CDATA[getFieldValue]]></code>
+      <code><![CDATA[getFieldValue]]></code>
+    </PossiblyNullReference>
     <PossiblyUndefinedVariable>
       <code><![CDATA[$currentHeader]]></code>
       <code><![CDATA[$currentHeader]]></code>
@@ -271,10 +277,6 @@
       <code><![CDATA[$module]]></code>
       <code><![CDATA[$smConfig]]></code>
     </MixedAssignment>
-    <MixedInferredReturnType>
-      <code><![CDATA[Application]]></code>
-      <code><![CDATA[ModuleManager]]></code>
-    </MixedInferredReturnType>
     <MixedMethodCall>
       <code><![CDATA[loadModules]]></code>
     </MixedMethodCall>
@@ -303,7 +305,6 @@
     </MixedArrayAssignment>
     <MixedAssignment>
       <code><![CDATA[$config]]></code>
-      <code><![CDATA[$file]]></code>
     </MixedAssignment>
     <MixedMethodCall>
       <code><![CDATA[getError]]></code>
@@ -426,7 +427,6 @@
       <code><![CDATA['stdClass']]></code>
     </ArgumentTypeCoercion>
     <MixedAssignment>
-      <code><![CDATA[$file]]></code>
       <code><![CDATA[$fooObject]]></code>
     </MixedAssignment>
     <PossiblyUnusedReturnValue>

@@ -5,6 +5,7 @@
         xmlns="https://getpsalm.org/schema/config"
         xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
         errorLevel="1"
+        ensureOverrideAttribute="false"
         findUnusedPsalmSuppress="true"
         findUnusedCode="true"
         findUnusedBaselineEntry="true"
@@ -19,16 +20,8 @@
     </projectFiles>
 
     <issueHandlers>
+        <ClassMustBeFinal errorLevel="info"/>
         <InternalMethod>
-            <errorLevel type="suppress">
-                <referencedMethod name="PHPUnit\Framework\MockObject\Builder\InvocationMocker::method"/>
-            </errorLevel>
-            <errorLevel type="suppress">
-                <referencedMethod name="PHPUnit\Framework\MockObject\Builder\InvocationMocker::willReturn"/>
-            </errorLevel>
-            <errorLevel type="suppress">
-                <referencedMethod name="PHPUnit\Framework\MockObject\Builder\InvocationMocker::with"/>
-            </errorLevel>
             <errorLevel type="suppress">
                 <referencedMethod name="PHPUnit\Framework\ExpectationFailedException::__construct"/>
             </errorLevel>
