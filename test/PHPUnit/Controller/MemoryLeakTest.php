@@ -24,7 +24,6 @@ class MemoryLeakTest extends AbstractControllerTestCase
 
     /**
      * @return array<array-key, array{null}>
-     * @psalm-suppress PossiblyUnusedMethod Psalm does not yet recognize the DataProvider attribute
      */
     public static function dataForMultipleTests(): array
     {

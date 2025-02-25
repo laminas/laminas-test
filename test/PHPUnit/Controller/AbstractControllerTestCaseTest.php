@@ -630,7 +630,6 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
 
     /**
      * @psalm-return Generator<string, array{0: null|string}, mixed, void>
-     * @psalm-suppress PossiblyUnusedMethod Psalm does not yet recognize the DataProvider attribute
      */
     public static function method(): Generator
     {
@@ -685,7 +684,6 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
 
     /**
      * @return iterable<non-empty-string, array{non-empty-string}>
-     * @psalm-suppress PossiblyUnusedMethod Psalm does not yet recognize the DataProvider attribute
      */
     public static function routeParam(): iterable
     {

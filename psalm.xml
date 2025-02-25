@@ -30,6 +30,11 @@
                 <referencedClass name="PHPUnit\Framework\ExpectationFailedException" />
             </errorLevel>
         </InternalClass>
+        <PossiblyUnusedMethod>
+            <errorLevel type="suppress">
+                <directory name="test"/>
+            </errorLevel>
+        </PossiblyUnusedMethod>
     </issueHandlers>
     <plugins>
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
