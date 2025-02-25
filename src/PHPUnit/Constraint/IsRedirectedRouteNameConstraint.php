@@ -12,6 +12,7 @@ use Laminas\Mvc\Controller\ControllerManager;
 use Laminas\Mvc\Controller\Plugin\Url;
 use Laminas\Router\RouteMatch;
 use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
+use Override;
 use PHPUnit\Framework\Constraint\Constraint;
 use RuntimeException;
 
@@ -25,12 +26,14 @@ final class IsRedirectedRouteNameConstraint extends Constraint
     {
     }
 
+    #[Override]
     public function toString(): string
     {
         return 'is the redirected route name';
     }
 
     /** @param mixed $other */
+    #[Override]
     public function matches($other): bool
     {
         if (! is_string($other)) {

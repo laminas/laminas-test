@@ -11,6 +11,7 @@ use Laminas\Stdlib\Parameters;
 use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 use Laminas\View\Model\ViewModel;
 use LaminasTest\Test\ExpectedExceptionTrait;
+use Override;
 use PHPUnit\Framework\ExpectationFailedException;
 use RuntimeException;
 
@@ -24,6 +25,7 @@ class AbstractHttpControllerTestCaseTest extends AbstractHttpControllerTestCase
 {
     use ExpectedExceptionTrait;
 
+    #[Override]
     protected function setUp(): void
     {
         $this->setApplicationConfig(

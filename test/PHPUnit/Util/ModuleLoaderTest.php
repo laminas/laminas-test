@@ -11,6 +11,7 @@ use Laminas\ServiceManager\ServiceLocatorInterface;
 use Laminas\Test\Util\ModuleLoader;
 use LaminasTest\Test\ExpectedExceptionTrait;
 use ModuleWithNamespace\TestModule\Module;
+use Override;
 use PHPUnit\Framework\TestCase;
 
 use function array_diff;
@@ -36,7 +37,11 @@ class ModuleLoaderTest extends TestCase
     /** @param string $dir */
     public static function rmdir($dir): bool
     {
-        $files = array_diff(scandir($dir), ['.', '..']);
+        $files = scandir($dir);
+        if ($files === false) {
+            throw new \RuntimeException('Could not read directory');
+        }
+        $files = array_diff($files, ['.', '..']);
         foreach ($files as $file) {
             is_dir("$dir/$file") ? static::rmdir("$dir/$file") : unlink("$dir/$file");
         }
@@ -44,11 +49,13 @@ class ModuleLoaderTest extends TestCase
         return rmdir($dir);
     }
 
+    #[Override]
     protected function setUp(): void
     {
         $this->tearDownCacheDir();
     }
 
+    #[Override]
     protected function tearDown(): void
     {
         $this->tearDownCacheDir();

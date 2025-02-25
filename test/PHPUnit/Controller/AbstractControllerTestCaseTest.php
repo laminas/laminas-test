@@ -15,7 +15,9 @@ use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 use LaminasTest\Test\ExpectedExceptionTrait;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamWrapper;
+use Override;
 use PHPUnit\Framework\AssertionFailedError;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\ExpectationFailedException;
 use RuntimeException;
 
@@ -57,7 +59,11 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
 
     public static function rmdir(string $dir): bool
     {
-        $files = array_diff(scandir($dir), ['.', '..']);
+        $files = scandir($dir);
+        if ($files === false) {
+            throw new RuntimeException('Failed to scan directory');
+        }
+        $files = array_diff($files, ['.', '..']);
         foreach ($files as $file) {
             is_dir("$dir/$file") ? static::rmdir("$dir/$file") : unlink("$dir/$file");
         }
@@ -65,6 +71,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         return rmdir($dir);
     }
 
+    #[Override]
     protected function setUp(): void
     {
         $this->traceErrorCache = $this->traceError;
@@ -75,6 +82,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         parent::setUp();
     }
 
+    #[Override]
     protected function tearDown(): void
     {
         $this->traceError = $this->traceErrorCache;
@@ -87,7 +95,11 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
     {
         $config = $this->getApplicationConfig();
         $config = $config['module_listener_options']['cache_dir'];
-        $this->assertEquals(0, count(glob($config . '/*.php')));
+        $files  = glob($config . '/*.php');
+        if ($files === false) {
+            throw new RuntimeException('Failed to glob cache directory');
+        }
+        $this->assertEquals(0, count($files));
     }
 
     /** @return void */
@@ -629,9 +641,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         yield 'patch' => ['PATCH'];
     }
 
-    /**
-     * @dataProvider method
-     */
+    #[DataProvider('method')]
     public function testDispatchWithNullParams(?string $method): void
     {
         $this->dispatch('/custom-response', $method, null);
@@ -681,9 +691,7 @@ class AbstractControllerTestCaseTest extends AbstractHttpControllerTestCase
         yield 'param' => ['param'];
     }
 
-    /**
-     * @dataProvider routeParam
-     */
+    #[DataProvider('routeParam')]
     public function testRequestWithRouteParam(string $param): void
     {
         $this->dispatch(sprintf('/with-param/%s', $param));

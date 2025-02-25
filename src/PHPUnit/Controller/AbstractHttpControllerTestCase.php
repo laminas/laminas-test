@@ -483,7 +483,7 @@ abstract class AbstractHttpControllerTestCase extends AbstractControllerTestCase
     private function queryAssertion($path, $useXpath = false): void
     {
         $match = $this->queryCountOrxpathQueryCount($path, $useXpath);
-        if (! $match > 0) {
+        if ($match <= 0) {
             throw new ExpectationFailedException($this->createFailureMessage(sprintf(
                 'Failed asserting node DENOTED BY %s EXISTS',
                 $path

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Laminas\Test\PHPUnit\Constraint;
 
+use Override;
+
 use function ltrim;
 use function str_contains;
 use function strrpos;
@@ -12,12 +14,14 @@ use function substr;
 
 final class IsCurrentModuleNameConstraint extends LaminasConstraint
 {
+    #[Override]
     public function toString(): string
     {
         return 'is the actual module name';
     }
 
     /** @param mixed $other */
+    #[Override]
     public function failureDescription($other): string
     {
         $other = (string) $other;
@@ -25,6 +29,7 @@ final class IsCurrentModuleNameConstraint extends LaminasConstraint
     }
 
     /** @param mixed $other */
+    #[Override]
     public function matches($other): bool
     {
         $other = (string) $other;

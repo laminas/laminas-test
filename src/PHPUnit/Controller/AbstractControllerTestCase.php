@@ -23,6 +23,7 @@ use Laminas\Stdlib\ResponseInterface;
 use Laminas\Test\PHPUnit\Constraint\IsCurrentModuleNameConstraint;
 use Laminas\Uri\Http as HttpUri;
 use Laminas\View\Model\ModelInterface;
+use Override;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
@@ -66,6 +67,7 @@ abstract class AbstractControllerTestCase extends TestCase
     /**
      * Reset the application for isolation
      */
+    #[Override]
     protected function setUp(): void
     {
         $this->reset();
@@ -74,6 +76,7 @@ abstract class AbstractControllerTestCase extends TestCase
     /**
      * Restore params
      */
+    #[Override]
     protected function tearDown(): void
     {
         // Prevent memory leak

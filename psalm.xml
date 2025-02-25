@@ -19,16 +19,8 @@
     </projectFiles>
 
     <issueHandlers>
+        <ClassMustBeFinal errorLevel="info"/>
         <InternalMethod>
-            <errorLevel type="suppress">
-                <referencedMethod name="PHPUnit\Framework\MockObject\Builder\InvocationMocker::method"/>
-            </errorLevel>
-            <errorLevel type="suppress">
-                <referencedMethod name="PHPUnit\Framework\MockObject\Builder\InvocationMocker::willReturn"/>
-            </errorLevel>
-            <errorLevel type="suppress">
-                <referencedMethod name="PHPUnit\Framework\MockObject\Builder\InvocationMocker::with"/>
-            </errorLevel>
             <errorLevel type="suppress">
                 <referencedMethod name="PHPUnit\Framework\ExpectationFailedException::__construct"/>
             </errorLevel>
@@ -38,6 +30,11 @@
                 <referencedClass name="PHPUnit\Framework\ExpectationFailedException" />
             </errorLevel>
         </InternalClass>
+        <PossiblyUnusedMethod>
+            <errorLevel type="suppress">
+                <directory name="test"/>
+            </errorLevel>
+        </PossiblyUnusedMethod>
     </issueHandlers>
     <plugins>
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
