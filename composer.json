@@ -51,7 +51,7 @@
         "laminas/laminas-stdlib": "^3.20",
         "laminas/laminas-validator": "^2.64.2",
         "mikey179/vfsstream": "^1.6.12",
-        "psalm/plugin-phpunit": "^0.19.2",
+        "psalm/plugin-phpunit": "^1.0.0",
         "vimeo/psalm": "^5.26 || ^6.8.7"
     },
     "autoload": {
